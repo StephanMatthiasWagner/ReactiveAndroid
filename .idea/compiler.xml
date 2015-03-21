@@ -30,7 +30,8 @@
     <bytecodeTargetLevel>
       <module name="AndroidConcurrency" target="1.7" />
       <module name="JavaConcurrency" target="1.7" />
+      <module name="ReactiveAndroid" target="1.7" />
+      <module name="RXConcurrency" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
-

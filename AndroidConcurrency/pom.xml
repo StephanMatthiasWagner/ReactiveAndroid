@@ -27,11 +27,6 @@
          <version>4.8.2</version>
          <scope>test</scope>
       </dependency>
-      <dependency>
-         <groupId>com.wagner.android.gestureLib</groupId>
-         <artifactId>GestureLib</artifactId>
-         <version>1.0.0</version>
-      </dependency>
    </dependencies>
    <build>
       <finalName>${project.artifactId}</finalName>
@@ -51,7 +46,7 @@
             <artifactId>android-maven-plugin</artifactId>
             <configuration>
                <sdk>
-                  <platform>16</platform>
+                  <platform>20</platform>
                </sdk>
             </configuration>
          </plugin>
