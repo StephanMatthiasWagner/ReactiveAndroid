@@ -6,6 +6,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="android" url="file://$PROJECT_DIR$/AndroidConcurrency" />
     <file type="android" url="file://$PROJECT_DIR$/JavaConcurrency" />
+    <file type="android" url="file://$PROJECT_DIR$/RXConcurrency" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -18,3 +19,4 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
+

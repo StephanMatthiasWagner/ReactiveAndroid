@@ -17,6 +17,7 @@
       <module>RXConcurrency</module>
       <module>AndroidConcurrency</module>
       <module>JavaConcurrency</module>
+       <module>untitled</module>
    </modules>
 
    <build>
