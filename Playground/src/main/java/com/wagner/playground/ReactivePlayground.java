@@ -2,6 +2,7 @@ package com.wagner.playground;
 
 import rx.Observable;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,7 +24,7 @@ public class ReactivePlayground {
 
 
     public static void observerHallo(String... names){
-        Observable.from(names).subscribe(new Action1<String>() {
+        Observable.from(names).subscribeOn(Schedulers.newThread()).subscribe(new Action1<String>() {
 
             @Override
             public void call(String s) {
@@ -31,6 +32,5 @@ public class ReactivePlayground {
             }
 
         });
-
     }
 }

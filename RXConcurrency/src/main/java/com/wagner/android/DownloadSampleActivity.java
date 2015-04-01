@@ -3,16 +3,23 @@ package com.wagner.android;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 import com.wagner.android.sampleapp.R;
+import rx.Observer;
+import rx.Subscription;
+import rx.android.observables.AndroidObservable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.Observable;
 import rx.android.app.AppObservable;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.Subscriptions;
+
+import java.io.File;
 
 /**
  * Created by Little on 20.03.2015.
  */
-public class DownloadSampleActivity extends Activity
+public class DownloadSampleActivity extends Activity implements Observer<File>
 {
 
    private static final String TAG = "HelloAndroidActivity";
@@ -30,6 +37,8 @@ public class DownloadSampleActivity extends Activity
       Log.d(TAG, "call constructor");
    }
 
+
+    private Subscription subscription;
    /**
     * Called when the activity is first created.
     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this
@@ -47,10 +56,10 @@ public class DownloadSampleActivity extends Activity
       }
 
       setContentView(R.layout.activity_main);
-      Observable.from(new String[]{"one", "two", "three", "four", "five"})
+     /* Observable.from(new String[]{"one", "two", "three", "four", "five"})
                .subscribeOn(Schedulers.newThread())
                .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(/* an Observer */);
+               .subscribe(/* an Observer );*/
 
 
 /*      LayoutInflater inflater = getLayoutInflater();
@@ -81,6 +90,51 @@ public class DownloadSampleActivity extends Activity
       final DummyLib gestureLib = new DummyLib();
       gestureLib.callDummyLib("This is the call Message for GestureLib");
 */
+
+       subscription = AndroidObservable.bindActivity(this, downloadFileObservable())
+               .subscribeOn(Schedulers.newThread())
+               .subscribe(this);
+   }
+
+    private Observable<File> downloadFileObservable() {
+        return Observable.create(new Observable.OnSubscribeFunc<File>() {
+            @Override
+            public Subscription onSubscribe(Observer<? super File> fileObserver) {
+                try {
+                    byte[] fileContent = downloadFile();
+                    File file = writeToFile(fileContent);
+                    fileObserver.onNext(file);
+                    fileObserver.onCompleted();
+                } catch (Exception e) {
+                    fileObserver.onError(e);
+                }
+                return Subscriptions.empty();
+            }
+        });
+    }
+
+
+
+       @Override
+       protected void onDestroy() {
+       subscription.unsubscribe();
+   }
+
+       public void onNext(File file) {
+       Toast.makeText(this,
+               "Downloaded: " + file.getAbsolutePath(),
+               Toast.LENGTH_SHORT)
+               .show();
+   }
+
+       public void onCompleted() {}
+
+       public void onError(Throwable error) {
+       Toast.makeText(this,
+               "Download failed: " + error.getMessage(),
+               Toast.LENGTH_SHORT)
+               .show();
+   }
 
    }
 
