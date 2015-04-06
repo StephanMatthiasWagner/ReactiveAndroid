@@ -24,7 +24,7 @@ public class ReactivePlayground {
 
 
     public static void observerHallo(String... names){
-        Observable.from(names).subscribeOn(Schedulers.newThread()).subscribe(new Action1<String>() {
+        Observable.from(names).subscribeOn(Schedulers.io()).subscribe(new Action1<String>() {
 
             @Override
             public void call(String s) {

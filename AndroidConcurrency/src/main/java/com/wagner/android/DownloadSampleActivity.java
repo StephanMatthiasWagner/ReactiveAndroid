@@ -1,6 +1,7 @@
 package com.wagner.android;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import com.wagner.android.sampleapp.R;
@@ -43,6 +44,7 @@ public class DownloadSampleActivity extends Activity
       }
 
       setContentView(R.layout.activity_main);
+       AsyncTask
 
 /*      LayoutInflater inflater = getLayoutInflater();
       final View l  = (View) findViewById(android.R.id.content);
