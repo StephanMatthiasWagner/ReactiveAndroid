@@ -44,21 +44,26 @@ public class ReactivePlayground2 {
 
 
     static Subscriber<String> mySubscriber = new Subscriber<String>() {
+
+
         @Override
-        public void onNext(String s) {
-            System.out.println("itemProcessing:");
+        public void onNext(String s)
+        {
+            System.out.println("First Thread itemProcessing:");
             System.out.println(s);
         }
 
         @Override
-        public void onCompleted() {
+        public void onCompleted()
+        {
             System.out.println("item Completed");
         }
 
 
 
         @Override
-        public void onError(Throwable e) {
+        public void onError(Throwable e)
+        {
             System.out.println("There was an error on first subscriber:"+e);
         }
     };
@@ -84,7 +89,7 @@ public class ReactivePlayground2 {
 
 
     public static void main (String [] args){
-        Subscription subscription = myObservable.subscribeOn(Schedulers.newThread()).subscribe(mySubscriber);
+        Subscription subscription = myObservable.subscribeOn(Schedulers.newThread()).observeOn(Schedulers.io()).subscribe(mySubscriber);
         myObservable.subscribeOn(Schedulers.newThread()).subscribe(mySndSubscriber);
 
         for(int i = 0; i<10; i++){  index++;
@@ -95,11 +100,13 @@ public class ReactivePlayground2 {
               subscription.unsubscribe();
             System.out.println("                                                       Subscription state:"+subscription.isUnsubscribed());
             }
-            try {
+            BigInteger veryBig = new BigInteger(500, new Random());
+            veryBig.nextProbablePrime();
+            /*try {
                 Thread.sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
+            } */
         }
 // Outputs "Hello, world!"
     }
