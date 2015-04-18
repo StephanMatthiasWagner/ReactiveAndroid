@@ -17,8 +17,8 @@ import java.util.Random;
 public class RandomPrimeNumGenerator {
 
 
-    int index = 0;
-    Observable<String> myObservable;
+   private Observable<String> primMessageObservable;
+   private Observable<Integer> primIntObservable;
 
     /**
      * The Constructor.
@@ -26,20 +26,20 @@ public class RandomPrimeNumGenerator {
     public RandomPrimeNumGenerator()
     {
 
-    myObservable = Observable.create(
+    primMessageObservable = Observable.create(
             new Observable.OnSubscribe<String>() {
                 @Override
                 public void call(Subscriber<? super String> sub) {
                     for(int i=0; i<10; i++)
                     {
-                        index++;
-                        sub.onNext("ObserverThread: Hello, world!" + i +" index="+index);
-
 
                         BigInteger veryBig = new BigInteger(500, new Random());
-                        veryBig.nextProbablePrime();
+                        BigInteger randomPrimeNumber = veryBig.nextProbablePrime();
 
-                        //in case of an error: you can call onError
+                       sub.onNext("Observable emits item number: " + i );
+                       sub.onNext(randomPrimeNumber.toString());
+
+                       //in case of an error: you can call onError
                        /* try {
                             Thread.sleep(200);
                         } catch (InterruptedException e) {
@@ -50,6 +50,19 @@ public class RandomPrimeNumGenerator {
                 }
             }
     );
+       primIntObservable = Observable.create(
+       new Observable.OnSubscribe<Integer>() {
+          @Override
+          public void call(Subscriber<? super Integer> sub) {
+
+             sub.onNext( );
+             sub.onNext(randomPrimeNumber.toString());
+
+             sub.onCompleted();
+          }
+       }
+       );
+
     }
 
     /**

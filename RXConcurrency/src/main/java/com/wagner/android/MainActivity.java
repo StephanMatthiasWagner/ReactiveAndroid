@@ -18,7 +18,7 @@ import rx.schedulers.Schedulers;
  */
 public class MainActivity extends Activity
 {
-    private static final String TAG = "HelloAndroidActivity";
+    private static final String TAG = "MainActivity";
 
     private static final String SAVED_INSTANCE_SOME_KEY = "SOME_KEY";
 
@@ -63,7 +63,7 @@ public class MainActivity extends Activity
         RandomPrimeNumGenerator randomPrimeNumGenerator = new RandomPrimeNumGenerator();
 
         subscription = AndroidObservable.bindActivity(this, randomPrimeNumGenerator.getObservable())
-                .subscribeOn(Schedulers.newThread()).observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread()).observeOn(Schedulers.io()).filter()
                 .subscribe(mySubscriber);
     }
 
@@ -73,7 +73,7 @@ public class MainActivity extends Activity
         final Subscriber<String> subscriber = new Subscriber<String>() {
             @Override
             public void onNext(String s) {
-                System.out.println("                     2ndThread: itemProcessing:");
+                System.out.println("                     itemProcessing:");
                 System.out.println("                     "+s);
             }
 
