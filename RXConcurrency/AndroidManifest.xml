@@ -15,7 +15,7 @@
         android:label="@string/app_name"
 
         android:theme="@style/AppTheme">
-        <activity android:name="com.wagner.android.DownloadSampleActivity"
+        <activity android:name="com.wagner.android.MainActivity"
                   android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

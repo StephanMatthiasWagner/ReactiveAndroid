@@ -3,10 +3,14 @@ package com.wagner.android;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import com.wagner.android.sampleapp.R;
 import rx.Subscriber;
 import rx.Subscription;
-import rx.android.observables.AndroidObservable;
+//import rx.android.observables.AndroidObservable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -38,10 +42,9 @@ public class MainActivity extends Activity
     public MainActivity()
     {
         Log.d(TAG, "call constructor");
-
-        mySubscriber = getSubscriber();
     }
 
+    private TextView firstObserverOutput;
     private Subscription subscription;
     /**
      * Called when the activity is first created.
@@ -52,6 +55,7 @@ public class MainActivity extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        Log.d(TAG, "ACTIVITY JUST CREATED");
         super.onCreate(savedInstanceState);
 
         if(savedInstanceState!=null && savedInstanceState.containsKey(SAVED_INSTANCE_SOME_KEY))
@@ -60,35 +64,74 @@ public class MainActivity extends Activity
         }
 
         setContentView(R.layout.activity_main);
+
+        //create view with different fields
+        //create button for starting with each field
+
+        firstObserverOutput = (TextView)findViewById(R.id.firstObserverOutput);
+        firstObserverOutput.setText("blablub");
+
+        //initSubscription();
+
+    }
+
+
+    @Override
+    public void onDestroy()
+    {
+        if(subscription!=null)
+        {
+            subscription.unsubscribe();
+        }
+    }
+
+    public void initSubscription(View aView){
+        mySubscriber = getSubscriber();
         RandomPrimeNumGenerator randomPrimeNumGenerator = new RandomPrimeNumGenerator();
 
-        subscription = AndroidObservable.bindActivity(this, randomPrimeNumGenerator.getObservable())
-                .subscribeOn(Schedulers.newThread()).observeOn(Schedulers.io()).filter()
+        subscription = randomPrimeNumGenerator.getObservable().observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .filter(new Func1<String, Boolean>() {
+                    @Override
+                    public Boolean call(String item) {
+                        try{
+                            Integer.valueOf(item);
+                        }catch (NumberFormatException e)
+                        {
+                            return false;
+                        }
+                        return true;
+                    }
+                }
+                )
                 .subscribe(mySubscriber);
+
     }
 
 
     private Subscriber<String> getSubscriber(){
 
-        final Subscriber<String> subscriber = new Subscriber<String>() {
+        return new Subscriber<String>() {
             @Override
             public void onNext(String s) {
-                System.out.println("                     itemProcessing:");
-                System.out.println("                     "+s);
+                //Actualize the view + setting value
+                String lastOutput = firstObserverOutput.getText().toString();
+                firstObserverOutput.setText(lastOutput + " \n " +s);
+
+                firstObserverOutput.invalidate();
             }
 
             @Override
             public void onCompleted() {
-                System.out.println("                    2nd Thred: item Completed");
+                //show in view that observer is ready
             }
-
-
 
             @Override
-            public void onError(Throwable e) {
+            public void onError(Throwable e)
+            {
+                //show in view that observer ran in an error
             }
         };
-        return subscriber;
     }
 
 }

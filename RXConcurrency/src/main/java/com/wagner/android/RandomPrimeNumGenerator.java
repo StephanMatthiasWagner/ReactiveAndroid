@@ -35,9 +35,16 @@ public class RandomPrimeNumGenerator {
 
                         BigInteger veryBig = new BigInteger(500, new Random());
                         BigInteger randomPrimeNumber = veryBig.nextProbablePrime();
+                        int summe = 0;
+                        while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO)) {
+                            // addiere die letzte ziffer der uebergebenen zahl zur summe
+                            summe = summe + (randomPrimeNumber.mod(BigInteger.TEN)).intValue();
+                            // entferne die letzte ziffer der uebergebenen zahl
+                            randomPrimeNumber = randomPrimeNumber.divide(BigInteger.TEN);
+                        }
 
-                       sub.onNext("Observable emits item number: " + i );
-                       sub.onNext(randomPrimeNumber.toString());
+                       sub.onNext("Observable emits CrossSum for iteration: " + i );
+                       sub.onNext(summe+"");
 
                        //in case of an error: you can call onError
                        /* try {
@@ -50,7 +57,7 @@ public class RandomPrimeNumGenerator {
                 }
             }
     );
-       primIntObservable = Observable.create(
+    /*   primIntObservable = Observable.create(
        new Observable.OnSubscribe<Integer>() {
           @Override
           public void call(Subscriber<? super Integer> sub) {
@@ -62,7 +69,7 @@ public class RandomPrimeNumGenerator {
           }
        }
        );
-
+        */
     }
 
     /**
@@ -70,7 +77,7 @@ public class RandomPrimeNumGenerator {
      * @return Observable<String> instance.
      */
     public Observable<String> getObservable(){
-        return myObservable;
+        return primMessageObservable;
     }
 
 }
