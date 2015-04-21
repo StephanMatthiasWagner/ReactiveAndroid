@@ -6,5 +6,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="edit_message">Enter some String</string>
     <string name="button_startSubscription">Start Subscription</string>
+    <string name="button_clearFirstButton">Clear First Output</string>
+    <string name="button_clearSecondButton">Clear Second Output</string>
+
+
 
 </resources>

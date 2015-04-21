@@ -34,6 +34,15 @@
                 android:layout_below="@id/firstSubscription"/>
 
 
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_clearFirstButton"
+                android:id="@+id/clearOutput1"
+                android:onClick="clearOutput"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/startSubscription1"
+                android:layout_below="@id/firstSubscription"/>
+
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:textSize="15dp"
@@ -72,6 +81,24 @@
                 android:id="@+id/startSubscription2"
                 android:onClick="initSubscription"
                 android:layout_below="@id/secondSubscription"/>
+
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_clearSecondButton"
+                android:id="@+id/clearOutput2"
+                android:onClick="clearOutput"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/startSubscription2"
+                android:layout_below="@id/secondSubscription"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="15dp"
+                  android:textColor="#FFFFFF"
+                  android:id="@+id/secondObserverOutput"
+                  android:gravity="center_horizontal"
+                  android:layout_below="@id/startSubscription2"/>
+
 
     </RelativeLayout>
 
