@@ -5,6 +5,7 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="android" url="file://$PROJECT_DIR$/AndroidConcurrency" />
+    <file type="android" url="file://$PROJECT_DIR$/BlockingAndroid" />
     <file type="android" url="file://$PROJECT_DIR$/JavaConcurrency" />
     <file type="android" url="file://$PROJECT_DIR$/RXConcurrency" />
   </component>

@@ -15,6 +15,7 @@
 
    <modules>
       <module>RXConcurrency</module>
+      <module>BlockingAndroid</module>
       <module>AndroidConcurrency</module>
       <module>JavaConcurrency</module>
        <module>Playground</module>

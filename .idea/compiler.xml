@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="AndroidConcurrency" />
+        <module name="BlockingAndroid" />
         <module name="JavaConcurrency" />
         <module name="Playground" />
         <module name="RXConcurrency" />
@@ -30,6 +31,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AndroidConcurrency" target="1.7" />
+      <module name="BlockingAndroid" target="1.7" />
       <module name="JavaConcurrency" target="1.7" />
       <module name="Playground" target="1.7" />
       <module name="ReactiveAndroid" target="1.7" />

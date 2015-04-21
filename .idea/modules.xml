@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidConcurrency/AndroidConcurrency.iml" filepath="$PROJECT_DIR$/AndroidConcurrency/AndroidConcurrency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BlockingAndroid/BlockingAndroid.iml" filepath="$PROJECT_DIR$/BlockingAndroid/BlockingAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaConcurrency/JavaConcurrency.iml" filepath="$PROJECT_DIR$/JavaConcurrency/JavaConcurrency.iml" />
       <module fileurl="file://$PROJECT_DIR$/Playground/Playground.iml" filepath="$PROJECT_DIR$/Playground/Playground.iml" />
       <module fileurl="file://$PROJECT_DIR$/RXConcurrency/RXConcurrency.iml" filepath="$PROJECT_DIR$/RXConcurrency/RXConcurrency.iml" />

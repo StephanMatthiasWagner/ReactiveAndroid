@@ -3,6 +3,7 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/AndroidConcurrency" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlockingAndroid" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/JavaConcurrency" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Playground" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/RXConcurrency" charset="UTF-8" />
