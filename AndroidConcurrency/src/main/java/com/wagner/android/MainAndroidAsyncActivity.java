@@ -6,12 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.wagner.android.sampleapp.R;
-import rx.Subscriber;
-import rx.Subscription;
-//import rx.android.observables.AndroidObservable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 import java.math.BigInteger;
 import java.util.Random;
@@ -19,11 +13,12 @@ import java.util.Random;
 /**
  * Created with IntelliJ IDEA.
  * User: Ligatus
- * Date: 16.04.15
- * Time: 19:35
+ * Date: 26.04.15
+ * Time: 12:58
  * To change this template use File | Settings | File Templates.
  */
-public class MainActivity extends Activity {
+public class MainAndroidAsyncActivity extends Activity {
+
     private static final String TAG = "MainActivity";
 
     private static final String SAVED_INSTANCE_SOME_KEY = "SOME_KEY";
@@ -34,21 +29,14 @@ public class MainActivity extends Activity {
     private String savedInstance;
 
     /**
-     * The subscriber.
-     */
-    private Subscriber<String> firstSubscriber;
-    private Subscriber<String> secondSubscriber;
-
-    /**
      * The Constructor
      */
-    public MainActivity() {
+    public MainAndroidAsyncActivity() {
         Log.d(TAG, "call constructor");
     }
 
     private TextView firstObserverOutput;
     private TextView secondObserverOutput;
-    private Subscription subscription;
 
     /**
      * Called when the activity is first created.
@@ -71,11 +59,11 @@ public class MainActivity extends Activity {
         //create view with different fields
         //create button for starting with each field
 
-        firstObserverOutput = (TextView) findViewById(R.id.firstObserverOutput);
-        firstObserverOutput.setText("This is the output of first observer:\n");
+        firstObserverOutput = (TextView) findViewById(R.id.firstCalculationOutput);
+        firstObserverOutput.setText("This is the output of first calculation:\n");
 
-        secondObserverOutput = (TextView) findViewById(R.id.secondObserverOutput);
-        secondObserverOutput.setText("This is the output of second observer:\n");
+        secondObserverOutput = (TextView) findViewById(R.id.secondCalculationOutput);
+        secondObserverOutput.setText("This is the output of second calculation:\n");
 
 
     }
@@ -83,34 +71,15 @@ public class MainActivity extends Activity {
 
     @Override
     public void onDestroy() {
-      //for later usage
+        //for later usage
     }
 
-    public void initSubscription(View aView) {
-            StringBuilder targetString = new StringBuilder(10);
-            for(int i=0; i<10; i++)
-            {
+    public void initCalculation(View aView) {
 
-                BigInteger veryBig = new BigInteger(1500, new Random());
-                BigInteger randomPrimeNumber = veryBig.nextProbablePrime();
-                int summe = 0;
-                while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO)) {
-                    // addiere die letzte ziffer der uebergebenen zahl zur summe
-                    summe = summe + (randomPrimeNumber.mod(BigInteger.TEN)).intValue();
-                    // entferne die letzte ziffer der uebergebenen zahl
-                    randomPrimeNumber = randomPrimeNumber.divide(BigInteger.TEN);
-                }
-                targetString.append(summe +" \n ");
-            }
-        if (aView.getId() == R.id.startSubscription1) {
-            firstObserverOutput.setText(targetString.toString());
-            firstObserverOutput.invalidate();
-        }
-        if (aView.getId() == R.id.startSubscription2) {
-            secondObserverOutput.setText(targetString.toString());
-            secondObserverOutput.invalidate();
+        AndroidAsyncRandomPrimeGen randomPrimeGen =
+                new AndroidAsyncRandomPrimeGen(firstObserverOutput,secondObserverOutput);
+        randomPrimeGen.execute(aView.getId());
 
-        }
     }
 
 
@@ -124,4 +93,5 @@ public class MainActivity extends Activity {
             secondObserverOutput.invalidate();
         }
     }
+
 }
