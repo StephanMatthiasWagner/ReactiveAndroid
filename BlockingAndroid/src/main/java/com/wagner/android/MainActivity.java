@@ -34,12 +34,6 @@ public class MainActivity extends Activity {
     private String savedInstance;
 
     /**
-     * The subscriber.
-     */
-    private Subscriber<String> firstSubscriber;
-    private Subscriber<String> secondSubscriber;
-
-    /**
      * The Constructor
      */
     public MainActivity() {

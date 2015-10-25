@@ -14,7 +14,7 @@ import java.util.Random;
  * Time: 12:59
  * To change this template use File | Settings | File Templates.
  */
-public class AndroidAsyncRandomPrimeGen extends AsyncTask<Integer, Void, AsyncTaskResult<String>> {
+public class AndroidAsyncRandomPrimeGen extends AsyncTask<Integer, String, AsyncTaskResult<String>> {
 
 
     AndroidAsyncRandomPrimeGen(TextView aFirstOutputView, TextView aSecondOutputView) {
@@ -34,7 +34,7 @@ public class AndroidAsyncRandomPrimeGen extends AsyncTask<Integer, Void, AsyncTa
         }
         triggerViewId = params[0].intValue();
 
-
+        publishProgress("Init Calculation");
         StringBuilder targetString = new StringBuilder(10);
         for (int i = 0; i < 10; i++) {
 
@@ -51,6 +51,7 @@ public class AndroidAsyncRandomPrimeGen extends AsyncTask<Integer, Void, AsyncTa
         }
         return new AsyncTaskResult<String>(targetString.toString());
     }
+
 
     protected void onPreExecute() {
         // Perform setup - runs on user interface thread

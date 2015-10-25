@@ -78,7 +78,7 @@ public class MainConcurrentActivity extends Activity{
 
     }
 
-    private static Handler HANDLER = new Handler() {
+    private Handler HANDLER = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             updateView(msg);

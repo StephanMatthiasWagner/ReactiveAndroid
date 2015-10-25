@@ -44,19 +44,21 @@ public class RandomPrimeNumGenerator {
                         }
 
                        sub.onNext("Observable emits CrossSum for iteration: " + i );
-                       sub.onNext(summe+"");
+                       sub.onNext(String.valueOf(summe));
 
-                       //in case of an error: you can call onError
-                       /* try {
-                            Thread.sleep(200);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                        }*/
                     }
                     sub.onCompleted();
                 }
             }
     );
+
+
+    //in case of an error: you can call onError
+                       /* try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }*/
     /*   primIntObservable = Observable.create(
        new Observable.OnSubscribe<Integer>() {
           @Override

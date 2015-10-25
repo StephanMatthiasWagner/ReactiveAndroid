@@ -1,6 +1,9 @@
 package com.wagner.playground;
 
-import rx.*;
+import rx.Observable;
+import rx.Observer;
+import rx.Subscriber;
+import rx.Subscription;
 import rx.schedulers.Schedulers;
 
 import java.math.BigInteger;
@@ -13,10 +16,8 @@ import java.util.Random;
  * Time: 08:59
  * To change this template use File | Settings | File Templates.
  */
-public class ReactivePlayground2 {
+public class ReactiveDemo {
 
-    //static int index = 0;
-    static Observer observer;
     static Observable<String> myObservable = Observable.create(
             new Observable.OnSubscribe<String>() {
                 @Override
@@ -28,12 +29,6 @@ public class ReactivePlayground2 {
                         BigInteger veryBig = new BigInteger(500, new Random());
                         veryBig.nextProbablePrime();
 
-                        //in case of an error: you can call onError
-                       /* try {
-                            Thread.sleep(200);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                        }*/
                     }
                     sub.onCompleted();
                 }
@@ -42,7 +37,6 @@ public class ReactivePlayground2 {
 
 
     static Subscriber<String> mySubscriber = new Subscriber<String>() {
-
 
         @Override
         public void onNext(String s) {

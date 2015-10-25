@@ -7,7 +7,7 @@
       <root url="jar://$MAVEN_REPOSITORY$/com/google/android/android/4.1.1.4/android-4.1.1.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/google/android/android/4.1.1.4/android-4.1.1.4-sources.jar!/" />
+      <root url="file://C:/android-sdk/sdk/sources/android-16" />
     </SOURCES>
   </library>
 </component>
