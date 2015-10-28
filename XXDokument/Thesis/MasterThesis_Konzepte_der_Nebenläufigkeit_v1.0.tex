@@ -176,74 +176,121 @@ Fakultät für Informatik und Ingenieurwissenschaften\\[0.5cm]}
 \onehalfspacing % 1,5-facher Zeilenabstand
 
 \chapter*{Zusammenfassung}
-In dieser Arbeit werden unterschiedliche Konzepte zur Realisierung von Nebenläufigkeit unter dem Android Betriebssystem untersucht. Nebenläufigkeit stellt einen Entwickler häufig vor große Herausforderungen. Unter Android bestehen dabei noch zusätzliche Besonderheiten an denen sich die hier vorgestellten Konzepte beweisen müssen. Dabei werden diese im Detail an Hand von konkreten Implementierungsbeispielen vorgestellt und analysiert. Im Anschluss fließen die aus der Detailanalyse gewonnenen Ergebnisse in eine Szenarien basierte Analyse um daraus Erkenntnisse für den sinnvollen Einsatz der Konzepte abzuleiten.
-fdg \newline
-asdfasdf
+Diese Thesis behandelt das Thema „Konzepte der Nebenläufigkeit unter Android“. Darin wird zunächst als Einführung in die Thematik, die Nebenläufigkeit allgemein mit ihren unterschiedlichen Ausprägungen (Prozess-/Threadebene) erläutert und die Risiken die mit Nebenläufigkeit einhergeht skizziert. Dabei ist ein besonders wichtiger Punkt der Botschaftenaustausch, der mittels unterschiedlicher Techniken realisierbar ist. Auch hier birgt jede Technologie ihre individuellen Vor- und Nachteile.
+Die Nebenläufigkeit unter Android unterliegt einigen Besonderheiten, die sich teilweise aus den Restriktionen des Betriebssystems ergeben, aber auch aus den Anforderungen für die Android Applikationsentwicklung, die der StyleGuide vorgibt. So ist die grundsätzliche Anforderung, dass Applikationen ansprechbar bleiben. Eine Applikation, insbesondere eine Gui Applikation sollte somit beim Start von Operationen weder blockieren oder nicht mehr auf Benutzereingaben reagieren. Technisch bedeutet dies, dass zeitaufwändige Operationen nie auf dem Main Thread der Applikation stattfinden dürfen. Stattdessen müssen derartige Operationen in Hintergrundthreads ausgelagert werden. Im Kapitel 2 werden hierzu drei unterschiedliche Konzepte an Hand konkreten Beispielimplementierungen vorgestellt und in der jeweiligen Funktionsweise analysiert.
+\begin{itemize}
+\item Java Concurrency nach Java SE
+\item Android Concurrency aus dem Android SDK
+\item RXJava Framework
+\end{itemize}
+Die aus der technischen Analyse gewonnenen Erkenntnisse werden in Kapitel 3 genutzt um Chancen und Risiken der einzelnen Konzepte zu diskutieren. Um die Ergebnisse aus dem Diskurs für zukünftige Entscheidungsfindungen zu Rate ziehen zu können fließen die aus der Detailanalyse gewonnenen Ergebnisse in eine Szenarien basierte Analyse ein, um daraus Anhaltspunkte für den sinnvollen Einsatz der Konzepte abzuleiten.
 
 \tableofcontents
 \listoffigures
 
 
 \chapter{Einleitung}
-Applikationen für mobile Endgeräte sind in großer Vielfalt am Markt verfügbar und erfreuen sich quer durch alle Bevölkerungsschichten wachsender Beliebtheit. Dabei nehmen die Möglichkeiten, wie sogenannte Apps den Alltag bereichern und / oder erleichtern mit jeder neuen Hardwareschnittstelle zu. Die meist verbreiteten Betriebsysteme iOS und Android ermöglichen dabei mit dem jeweiligen Software Development Kit (kurz SDK) den Zugriff auf diese Schnittstellen. Applikationsentwickler haben damit die Möglichkeit dem Nutzer ein reichhaltiges Angebot von Applikationen zur Verfügung zu stellen.
 \section{Motivation}
-Die rasante Verbreitung der Technologien zu Mobilen Geräten erschließt ein großes Potential an Innovationsträgern für neue Applikationen. Da die Android Applikationsentwicklung auf der freien Entwicklung basiert (d.h. Jedem ist es erlaubt Apps zu schreiben), gehören neben dem Kreis professioneller Android Entwickler ebenso nicht professionelle und Einsteiger in der Android Entwicklung zu den Innovationsträgern. Jedoch ist die Einstiegshürde selbst für erfahrene Softwareentwickler unter Umständen so hoch, dass die Umsetzung von neuen Ideen bereits im Ansatz scheitern kann. Um die Komplexität der Entwicklung von Applikationen unter iOS zu reduzieren, stellt der Hersteller Apple zumindest eine Entwicklungsumgebung bereit, in der einfache Funktionalität auf einem Storyboard aus einer Auswahl an Funktionen zusammengestellt werden kann. Kenntnisse in der Programmierung sind somit nicht in allen Entwicklungsschritten zwingend notwendig. Dagegen bietet Android keine vergleichbare Unterstützung durch ein Storyboard, wodurch die Entwicklung von Android- Applikationen zahlreiche, hohe Einstiegshürden birgt. Bei einer Einstiegshürde handelt es sich um die technische Umsetzung von bestimmten Funktionalitäten, die für eine Applikation benötigt werden, was  dazu führen kann, dass ein und dieselbe Funktionalität in unterschiedlichen Applikationen von Entwicklern auf unterschiedliche Art und Weise implementiert wird. Für weniger erfahrene Entwickler oder Einsteiger besteht hier die Gefahr, Funktionalität fehlerhaft oder unperformant zu konzipieren.\newline
-Ein weiteres Problem ist das des Code-Copy. Dies beschreibt, wie gleiche Funktionalität durch Kopieren des jeweiligen Sourcecode in unterschiedliche Softwarekomponenten durch Dublizieren des Sourcecode integriert wird, anstatt auf eine zentrale Implementierung zu referenzieren.
+Mobile Endgeräte begleiten immer mehr Menschen in ihrem Alltag. Damit einher geht die intensive Nutzung von sog. Apps., womit Applikationen auf den mobilen Endgeräten bezeichnet werden. Mit der zunehmenden Leistungsfähigkeit der Geräte werden auch immer komplexere Applikationen realisierbar. Wurde zu den Anfängen der Applikationsentwicklung für mobile Endgeräte lediglich einfache Funktionalität in Applikationen integriert, werden heute mit unter teilweise sehr rechenintensive und komplexe Funktionalitäten entwickelt. Eine optimale Konzeption der Aufgabenverarbeitung innerhalb der Applikation kann dabei einen entscheidenden Faktor für die Performance und damit auch die Akzeptanz beim Nutzer darstellen. Damit gewinnt die Nebenläufigkeit auch in der Applikationsentwicklung für mobile Endgeräte an Wichtigkeit. Nebenläufigkeit oder auch Parallelverarbeitung bezeichnet in der Informatik die Eigenschaft eines Programms oder eines Systems verschiedene Aufgaben zeitgleich, also parallel zu bearbeiten. Die jeweilige Verarbeitung kann dabei in sich abgeschlossen sein, d.h. die zu verarbeitenden Aufgaben sind voneinander unabhängig, oder die Verarbeitung hängt von den Ergebnissen aus anderen Aufgaben ab. Je nach Art und Weise der Parallelverarbeitung sind verschiedene Problematiken und Risiken zu beachten. Für Nebenläufigkeit unter dem Android Betriebssystem sind zusätzliche Besonderheiten zu beachten. Dieses Betriebssystem ist auf mobile Endgeräte zugeschnitten und hat diesbezüglich spezielle Anforderungen an Applikationen die darauf laufen sollen. Die Firma Google als Hersteller vom Betriebssystem Android legt hierbei großen Wert auf die Einhaltung eines StyleGuides der die Benutzbarkeit applikationsübergreifend in einem einheitlichen Standard definiert. Darin wird die grundlegende Anforderung nach der kontinuierlichen Ansprechbarkeit von Applikationen gefordert. Die Frage ist wie kann den Anforderungen an Android Applikationen mittels unterschiedlicher Konzepte der Nebenläufigkeit begegnet werden, sodass das von Google geforderte Ziel der Ansprechbarkeit erreicht werden kann. Welche Problemstellungen, Restriktionen oder Risiken gehen mit der Verwendung bestimmter Konzepte einher und wie praktikabel sind diese für den konkreten Praxiseinsatz? 
 
-\section{Zielsetzung}
-Ziel dieser Projektarbeit ist es, einen Lösungsansatz zu entwickeln, um den Problemstellungen in der Android- App- Entwicklung bezüglich der Einstiegshürden und dem Problem des Code-Copy entgegenzuwirken. Hierzu sind mittels Hilfe von konkreten Implementierungsbeispielen die Einstiegshürden sowie die Gefahren des Code-Copy bei der Android-Entwicklung zu veranschaulichen und daraus Erkenntnisse für die Konzeption eines allgemeinen Lösungsansatzes abzuleiten. Dieser Ansatz ist abschließend dahingehend zu untersuchen, ob er für weitere technologische Problemstellungen in diesem Kontext der Android- Entwicklung anwendbar wäre. Die Arbeit, sowie die darin aufgeführten Codebeispiele, beziehen sich auf die Android- Version 4.x. Die Version 4.0 (API Level 14) stellt dabei die Mindestanforderung an das verwendete Betriebssystem dar.
+\section{Zielsetzung und Vorgehen}
+In dieser Arbeit soll untersucht werden, wie konkurrierende Parallelverarbeitung in mobilen Anwendungen realisiert werden kann. Dabei besteht das Ziel, die Entwicklung von Nebenläufigkeit durch Verwendung unterschiedlicher Techniken zu vereinfachen und ggf. auf einem höheren Abstraktionsniveau ab zu bilden. Zunächst gilt es in einer kurzen Einführung in die Thematik, die grundsätzlichen Definitionen kurz zu erläutern und auf Besonderheiten der Parallelverarbeitung unter Android einzugehen. Weiter wird ein Überblick über eine Auswahl von unterschiedlichen Konzepten der Nebenläufigkeit unter Android erarbeitet. Diese werden mittels einfacher Beispiele vorgestellt und analysiert. Den Abschluss bildet ein kritischer Diskurs, um in Abhängigkeit vom Einsatzkontext eine Differenzierte Sicht auf die Anwendung der einzelnen Konzepte zu erhalten. Die Ergebnisse des Diskurses werden in einer szenarienbasierten Analyse aufgegriffen um diese greifbarer zu machen.
 
-\section{Inhalt und Vorgehen}
-Um sich der Problemstellungen in Android bezüglich der Einstiegshürden und dem Code Copy anzunähern, wird dessen konkrete Ausprägung am Beispiel „Steuerung von Funktionalität durch Gesten“ untersucht. Hierzu wird zunächst ein allgemeines Verständnis zu Gesten, sowie deren Erkennung aufgebaut, um dann an Hand von konkreten Bespielen ein tieferes Verständnis der Steuerung von Funktionalität mittels Gesten zu erlangen. Die dabei gewonnenen Erkenntnisse werden in einem Abstraktionsprozess auf eine generische Implementierung übertragen, um weitergehend zu diskutieren, wie diese für andere App Projekte verfügbar gemacht werden kann.\newline
-Abschließend steht die Frage, inwieweit der Lösungsansatz valide ist gegenüber weiteren Ausprägungen der Eingangsproblematik, bzw. ob sich daraus sogar ein allgemeines Lösungskonzept ableiten lässt.
+\section{Begriffsdefinition und Grundlagen der Nebenläufigkeit}
+Um sich den Konzepten der Nebenläufigkeit anzunähern, werden zunächst einige Begriffsdefinitionen benötigt. Die Nebenläufigkeit meint dabei konkret die parallele Verarbeitung von Aufgaben. Hierzu wird eine Aufgabe in Unteraufgaben aufgeteilt, um diese  weitestgehend von einander unabhängig abzuarbeiten. Die Definition wie diese Verarbeitung ablaufen soll, ist in einem Programm hinterlegt. Die Ausführung von Programmen wird von Prozessen und Threads geregelt. Diese werden im folgenden Abschnitt definiert und ein tieferes Verständnis von der Parallelverarbeitung auf Betriebssystemebene erarbeitet.
 
-\chapter{Gesten im Allgemeinen}
-\section{Begriffsdefinition}
-Gesten sind bewusste oder unbewusste Bewegungen bzw. Handlungen mit symbolischem Charakter eines Individuums, mit dem Ziel der non- verbalen Kommunikation oder der Unterstützung einer verbalen Kommunikation. Die Art und Weise einer Geste hängt dabei stark von den mentalen Modellen des Individuums ab, die es versucht durch die Geste zum Ausdruck zu bringen. Die Art und Weise der gestikulierenden Bewegung sowie die Semantik dahinter hängt u.a. vom kulturellen Hintergrund des Individuums, aber auch von körperlichen Eigenschaften wie Behinderungen ab. \newline
-Spätestens seitdem Dr. Sam Hurst 1974 den ersten Touchscreen entworfen hat, wird bei der Entwicklung technischer Systeme versucht, die Gesten als Interaktionsparadigma zu nutzen, um eine möglichst intuitive Mensch-Computer-Interaktion zu schaffen. Das durch die Gesten zu steuernde System registriert dabei vordefinierte Gesten mittels einer geeigneten Hardwareschnittstelle (z.B. Touchscreen) und führt pro Geste definierte Aktionen aus. In diesem Kontext wird unterschieden zwischen Single- und Multi-Touch-Gesten. Single-Touch-Gesten meinen einzelne Berührungen und Bewegungen (also z.B. mit einem Finger) auf einem Touchscreen. Der Android Style Guide nennt hierzu Gesten wie „Touch“, „Drag“ oder „Swipe and Drag“. Im Gegenzug bilden Multi-Touch-Gesten Bewegungen mit mehreren Fingern ab (siehe hierzu im Android Style Guide „Pinch-Open“ und „Pinch-Close“). Die Entwicklung der Sensoren zur Registrierung der einzelnen Berührungsformen ist dabei entscheidend.
+\section{Prozesse und Threads}
+Die genauen Eigenschaften von Prozessen und Threads sind abhängig vom Betriebssystem auf dem sie laufen. Da in dieser Arbeit der Fokus auf Nebenläufigkeit unter Android liegt, beziehen sich die folgenden Erläuterungen zu Prozessen und Threads auf das allgemeine Unix/Linux Betriebssystem auf dem Android basiert.
 
-\section{Meilensteine der Sensortechnologie zur Registrierung von Gesten}
-Die Entwicklung der Sensortechnologie zur Registrierung von Gesten ist in den letzten Jahren stark vorangetrieben worden. Das IBM Simon (1992) gilt als das erste mobile Endgerät mit Touchscreen. Der Grundstein für die Weiterentwicklung des Touchscreen wurde jedoch bereits in den frühen 70er Jahren gelegt, indem Dr. Sam Hurst das erste transparente Touchdisplay entwickelte. Der darin verbaute Sensor konnte einfache Single-Touch-Gesten registrieren. In den folgenden Jahren wurden die unterschiedlichsten technischen Verfahren entwickelt. Daraus ist 1984 der erste Touchsensor hervorgegangen, mit dem Multi-Touch-Gesten registriert werden konnten. Der Zeitstrahl in Abbildung 1 gibt einen Einblick in eine Auswahl von wichtigen Meilensteinen bei der Entwicklung der Sensortechnologie:
+\subsection{Prozess}
+Wird eine Anwendung gestartet, so erzeugt das Betriebssystem zunächst einen Prozess, der den Adressraum für sämtliche Programmdaten und Komponenten reserviert. Für Prozesse kann folgende Definition getroffen werden. Sie gilt betriebssystemübergreifend:
+\begin{center}
+Ein Prozess stellt ein Programm in Ausführung dar und
+ist für die Kontrolle(Sicherung) der damit verbundenen Betriebsmittel
+verantwortlich.
+\end{center}
+Die Prozesse sind (in der Regel) an einen Benutzer gebunden, welcher wiederum über bestimme Rechte u.a. im Dateisystem verfügt. Dabei sind für Linux Betriebssysteme folgende Prinzipien zu beachten:
+\begin{itemize}
+\item Hierarschische Prinzip
+\item Sandbox Prinzip
+\end{itemize}
+Das hierarchische Prinzip schreibt die Abhängigkeit von Prozessen gegenüber ihren Erzeugern vor. Mit Ausnahme des Root Prozesses des Betriebssystems, werden alle Anwendungen durch einen Vater Prozess erzeugt. Die damit verbundene Vater-Kind Abhängigkeit bildet eine Baumstruktur, in der jeder Prozess seinen erzeugenden Prozess kennt. Ein Prozess kann nur aus anderen Prozessen heraus erzeugt werden. Stirbt ein Prozess, so werden die Kind Prozesse in der Regel vom Root Prozess des Betriebsystems adoptiert.\newline
+Das Sandbox Prinzip ist ein Sicherheitskonzept aus dem Kern eines Linux/Unix Betriebssystems. Darin wird sichergestellt, dass jede Anwendung nur die eigenen Daten sehen darf. So wird bei der Installation für jede Anwendung ein eigener Betriebssystem- User erzeugt, der über spezielle Rechte zu Prozessen und Dateien verfügt. Damit wird zum Ausführungszeitpunkt verhindert, dass Programmdaten für andere Programme sichtbar werden. Die Sicht jedes Prozesses einer Anwendung ist begrenzt auf die Ressourcen die dem jeweiligen Betriebssystem User zugeordnet sind.
+
+\subsection{Thread}
+Die Begriffe Prozesse und Threads dürfen nicht synonym verwendet werden. So kann ein Thread wie folgend Definiert werden:
+\begin{center}
+Ein Thread stellt einen Ausführungsfaden
+eines Programmes dar.
+\end{center}
+Dieser besteht aus aus einem aktuellen Befehlszeiger, einem eigenen Stack und dem Inhalt der Prozessorregister. Zum Start einer Anwendung wird der sog. Main Thread erzeugt. Aus diesem lassen sich beliebig weitere Threads erzeugen. Dabei besteht keine hierarchische Bindung wie bei der Vater-Sohn Prozesshierarchie. Innerhalb eines Prozesses erzeugte Threads erhalten Zugriff auf den hier reservierten Speicher des Prozesses. Alle in einem Prozess erzeugte Threads sind von diesem abhängig. Wird demnach ein Prozess terminiert, so werden auch alle darin erzeugte Threads terminiert.
+
+\section{Botschaftenaustausch und Kommunikation}
+Der Botschaftenaustausch zwischen Prozessen unterscheidet sich vom Botschaftenaustausch zwischen Threads. Während bei der Inter Prozess Kommunikation maßgeblich das Betriebssystem am Austausch von Nachrichten zwischen Prozessen beteiligt ist, können bei der Inter Thread Kommunikation unterschiedliche Techniken unabhängig vom Betriebssystem angewandt werden. Für die Kommunikation zwischen Threads eignen sich z.B. Dateien aber auch sogenannte MessageQueues mit denen Produzenten und Konsumenten Konstrukte erzeugt werden können. Die Inter Thread Kommunikation bleibt begrenzt auf die Threads innerhalb einer Anwendung. Die Inter Prozess Kommunikation dagegen, definiert die Kommunikation über Programm- und Systemgrenzen hinaus. Innerhalb eines Betriebssystems wird in der Regel der Speicherbereich jedes Prozesses in sich gekapselt und vor anderen Prozessen verborgen (s.o. Sandbox-Prinzip). Daher werden Mechanismen seitens des Betriebssystems benötigt (Botschaftenaustausch über Socket, etc..) um die Kommunikation zu gewährleisten. Diese Mechanismen sind aufwendig und eignen sich dadurch weniger für eine effiziente Parallelverarbeitung. Daher konzentriert sich diese Arbeit auf die Kommunikation auf Thread Ebene, und die Inter Prozess Kommunikation wird nicht weiter thematisiert. Die folgenden Abschnitte geben einen Einblick auf gängige Techniken zur Realisierung von Inter Thread Kommunikation.
+
+\subsection{Geteilte Datei/ Speicher}
+Einer der einfachsten technischen Mittel für den Daten- /Botschaftenaustauch ist die Nutzung einer gemeinsamen Datei im Dateisystem des Betriebssystems. Dadurch, dass das Betriebssystem den exklusiven Zugriff auf Dateien gewährleisten kann, ist es möglich ohne großen Aufwand eine synchronisierte Kommunikation zu realisieren. Etwas komplexer ist es für die Kommunikation einen Speicherbereich zu allokieren und die Referenz darauf den jeweiligen Kommunikationspartern für den Datenaustausch zur Verfügung zu stellen. In diesem Fall muss der exklusive Ausschluss selbst realisiert werden, falls er gewünscht ist. Hierzu dienen einfache Primitive aus dem java.lang.concurrency Packet.
+
+\subsection{MessageQueues}
+Die folgende Abbildung gibt einen schematischen Überblick über die Nutzung einer MessageQueue für die Kommunikation zwischen Objektinstanzen aus unterschiedlichen Threads. Beide Objekt Instanzen müssen eine Referenz auf das MessageQueue Objekt halten um Nachrichten (z.B. Message to Thread B) in diese Queue einzustellen oder herauszuholen. Das Konzept des nachrichtengetriebenen Datenaustausches hat den Vorteil, dass jede Nachricht eine atomare (in sich geschlossene) Einheit darstellt. Dadurch lassen sich einzelne Arbeitsaufträge unterscheiden. Je nach Implementierung der MessageQueue sind auch keine weiteren Synchronisationen mehr nötig.
 \begin{figure}[H]
   \begin{centering}
-    \includegraphics[width=0.8\textwidth]{img/Einleitung_History_Touchscreen.png}
-    \caption{Meilensteine der Touchscreenentwicklung \cite[vgl. From touch displays to the Surface]{001}}
-    \label{Touchscreenentwicklung_Meilensteine}
+    \includegraphics[width=0.8\textwidth]{img/MessageQueue.png}
+  %  \caption{MessageQueue}
+    \label{MessageQueue}
   \end{centering}
 \end{figure}
-Einen kurzen Einblick in die unterschiedlichen Sensortechnologien bietet das folgende Kapitel.
+Die Kommunikation mittels einer MessageQueue kann in zwei Formen realisiert werden:
+\begin{itemize}
+\item Unidirektional
+\item Bidirektional
+\end{itemize}
+Bei der unidirektionalen Kommunikationsform darf ein Kommunikationspartner nur entweder Nachrichten aus der Queue entnehmen oder hinein geben. In unserem Beispiel dürfte demnach nur die Objekt Instanz des Thread A Nachrichten in die Queue geben und die Objekt Instanz des Thread B darf lediglich aus dieser lesen.\newline
+Bei der bidirektionalen Kommunikationsform dürfen beide Kommunikationspartner je Nachrichten in die MessageQueue einstellen wie auch herausnehmen.\newline 
+\newline
 
-\section{Sensortechnologieen zur Registrierung von Berührungen}
-Die Entwicklung der Gesten hängt unmittelbar mit der Entwicklung der Sensortechnologie zur Registrierung von Berührungen auf einem Bildschirm zusammen. Dabei sind die ersten Berührungsbildschirme, basierend auf optischen Bildschirmsensoren, beschränkt auf einfache Druck-Gesten. Diese Technologien sind aus der Entwicklung des Touchscreens hervorgegangen:
-\subsection{Biegewelle (Dispersive Signal) Technologie}
+Die letzten beiden Abschnitte haben einen Überblick über Technologieen gegeben, mit denen der Austausch von Informationen innerhalb einer nebenläufigen Verarbeitung über Thread Grenzen hinaus realisiert werden kann. Dabei stellen MessageQueues eine Abstraktionsebene zur Kommunikation über fest definierten Speicher dar. Die Entwicklung von Nebenläufigkeit kann jedoch auch zu schwerwiegenden Problemen führen.
+
+
+\section{Risiken von Nebenläufigkeit}
+Der Botschaftenaustausch zwischen Threads, sowie deren Synchronisation kann zu schwerwiegenden Problemen im Zuge der Prallelverarbeitung führen. Folgende Szenarien sind eher allgemein gehalten, jedoch gilt es, besonders in dem Kapitel 2  zu den konkreten Implementierungen von Nebenläufigkeit, diese Problematiken zu beachten. In Kapitel 3 werden die in Kapitel 2 zu diskutierenden Beispielimplementierungen u.a. an Hand der hier aufgeführten Risikoszenarien und dem damit verbundenen Fehlerpotential bewertet.
+
+
+\subsection{Philosophenproblem}
+Ein zentrales Problem der theoretischen Informatik ist das Philosophenproblem das erstmals beschrieben wurde durch Edsger W. Dijkstra. Darin wird ein Szenario berschrieben, in dem eine bestimmte Anzahl von Philosophen auf begrenzte Ressourcen zugreifen und bei gleichzeitigem Zugriff sich gegenseitig blockieren können.
+
 \begin{figure}[H]
   \begin{centering}
-    \includegraphics[width=0.8\textwidth]{img/Biegewelle.jpg}
-    \caption{Biegewelle Technologie \cite[vgl. DST-Biegewellen]{002}}
-    \label{Biegewelle}
+    \includegraphics[width=0.6\textwidth]{img/PhilosophenProblem.png}
+    \caption{Philosophenproblem \cite[vgl. ]{002}}
+    \label{Philosophenproblem}
   \end{centering}
 \end{figure}
-Das Funktionsprinzip basiert auf der Ausbreitung von durch Berührung ausgelösten Schwingungen in einem bestimmten Medium, welches in den Bildschirm integriert ist. Diese Schwingungen werden an den Bildschirmek-ken durch Sensoren gemessen. Der relative Zeitunterschied in Bezug zu den Auftreffzeitpunkten der Welle auf die Sensoren wird für die Berechnung der Position der Berührung auf dem Bildschirm verwendet. Diese Technologie leistet nur die einfache Erkennung einer Berührung (z.B. nur ein Finger), da bei mehrfacher Berührung die Überlagerung von Wellen (Interferenz) zu ungenauen Berechnungen der Positionen führen würde.
+Die Abbildung zeigt wie eine Gruppe von Philosophen an einem Runden Tisch sitzen, vor ihnen etwas zu Essen. Um zu essen, benötigen nach diesem theoretischen Aufbau die Philosophen die rechte und die linke Gabel neben dem jeweiligen Teller. Dabei versuchen die Philosophen zu nächst die Gabel zu ihrer Linken zu nehmen. Ist die Gabel frei, so behälten sie diese in der Hand bis auch die Gabel auf der rechten aufgenommen werden kann. Kann ein Philosoph eine Gabel zur Zeit nicht nehmen, da sie in Verwendung ist, verweilt er denkend bis die benötigte Gabel frei ist. Versuchen jedoch alle Philosophen gleichzeitig die Gabeln aufzunehmen, so besteht die Gefahr einer Verklemmung (engl. Deadlock). Der Ablauf stockt und die Philosophen verharren denkend bis sie verhungern. In Bezug auf die Kommunikation über geteilten Speicher oder Dateien kann dieses Problem auftreten wenn parallele Zugriffe auf exklusive Ressourcen nicht sauber synchronisiert werden.
 
-\subsection{Infrarot- Gitter Technologie}
+
+
+\subsection{Race Conditions}
+Ein weiteres Problem bei der Parallelverarbeitung tritt bei geteilten Speicher bzw. Daten auf. Folgende Abbildung illustriert das Szenario, dass drei Threads auf einen gemeinsamen Speicherbereich zugreifen. Die Threads eins bis drei greifen konkurrierend lesend, wie schreibend auf den Speicherbereich zu und tauschen darüber Informationen untereinander aus. Der Zugriff erfolgt nach dem Prinzip \glqq Wer zuerst kommt mahlt zuerst\grqq  ( = Race Condition).
+
 \begin{figure}[H]
   \begin{centering}
-    \includegraphics[width=0.8\textwidth]{img/Infrarot_Gitter.jpg}
-    \caption{Infrarot Gitter Technologie \cite[vgl. Infrarot-Gitter]{002}}
-    \label{Infrarot_Gitter}
+    \includegraphics[width=0.8\textwidth]{img/SharedMemory_RaceCondition.png}
+ %   \caption{Race_Condition beim Shared Memory  \cite[vgl. ]{002}}
+    \label{SharedMemory_RaceCondition}
   \end{centering}
 \end{figure}
-Die Infrarot-Gitter-Technologie teilt den Touchbildschirm mittels Infrarotstrahlen in ein Raster auf. Jede Berührungsgeste unterbricht einzelne Infrarotstrahlen, was durch entsprechende Sensoren wahrgenommen wird. Mehrfache Berührungen werden durch dieses Konzept prinzipiell unterstützt, wobei es zu technischen Problemen führen kann, wenn mehrere dicht zusammenliegende Berührungspunkte zu unterscheiden sind, da hierfür die Maschen des Infrarotrasters eng genug konstruiert sein müssen.
+Ist der Zugriff der Threads auf den Speicher nicht synchronisiert, so kommt es zu dem Shared Memory Effekt, (geteilter Speicher Effekt) nach dem eine Datenstruktur die, die Grundlage von Berechnungen darstellt, durch einen anderen Thread verändert wird, ohne dass die Änderung dem ersten Thread bekannt gemacht wird. Da solche Probleme von der jeweils in diesem Moment vorliegenden Prozessauslastung im System abhängen (tatsächlich gleichzeitig laufende Threads im Multi Core System), sind derartige Effekte schwer reproduzierbar und somit auch die Ursachen schwer zu finden.
 
-\subsection{Optische Rezeptor Technologie}
-\begin{figure}[H]
-  \begin{centering}
-    \includegraphics[width=0.8\textwidth]{img/optical_receptor.jpg}
-    \caption{Optische Rezeptor Technologie \cite[vgl. Optisch]{002}}
-    \label{optical_receptor}
-  \end{centering}
-\end{figure}
-Die optische Rezeptorentechnologie zur Registrierung von Berührungen auf dem Touchbildschirm realisiert die Erkennung von Gesten mittels optischer Sensoren an den Bildschirmecken. Diese messen bei Berührung des Bildschirmes die Lichtunterbrechung des an den Kanten des Bildschirmes emittierten Lichtes. Ähnlich wie bei der Infrarottechnologie gibt es auch hier technologische Schwierigkeiten, dicht zusammenliegende Berührungspunkte auseinanderzuhalten, besonders, da lediglich zwei optische Sensoren verbaut wurden.
+
+
+
+
+
+
+
+
+
 
 \subsection{Resistive Touchbildschirm Technologie}
 \begin{figure}[H]

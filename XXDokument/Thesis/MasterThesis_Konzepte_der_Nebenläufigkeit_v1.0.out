@@ -1,26 +1,28 @@
 \BOOKMARK [0][-]{chapter*.3}{Abbildungsverzeichnis}{}% 1
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 2
 \BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 3
-\BOOKMARK [1][-]{section.1.2}{Zielsetzung}{chapter.1}% 4
-\BOOKMARK [1][-]{section.1.3}{Inhalt und Vorgehen}{chapter.1}% 5
-\BOOKMARK [0][-]{chapter.2}{Gesten im Allgemeinen}{}% 6
-\BOOKMARK [1][-]{section.2.1}{Begriffsdefinition}{chapter.2}% 7
-\BOOKMARK [1][-]{section.2.2}{Meilensteine der Sensortechnologie zur Registrierung von Gesten}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.3}{Sensortechnologieen zur Registrierung von Ber\374hrungen}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.3.1}{Biegewelle \(Dispersive Signal\) Technologie}{section.2.3}% 10
-\BOOKMARK [2][-]{subsection.2.3.2}{Infrarot- Gitter Technologie}{section.2.3}% 11
-\BOOKMARK [2][-]{subsection.2.3.3}{Optische Rezeptor Technologie}{section.2.3}% 12
-\BOOKMARK [2][-]{subsection.2.3.4}{Resistive Touchbildschirm Technologie}{section.2.3}% 13
-\BOOKMARK [2][-]{subsection.2.3.5}{Surface Accustic Wave \(SAW\)}{section.2.3}% 14
-\BOOKMARK [2][-]{subsection.2.3.6}{Oberfl\344chen-kapazitive Touchscreen Technologie}{section.2.3}% 15
-\BOOKMARK [2][-]{subsection.2.3.7}{Projiziert Kapazitiver Touchscreen Technologie}{section.2.3}% 16
-\BOOKMARK [0][-]{chapter.3}{Gestenerkennung und Steuerung von Funktionalit\344t durch Gesten}{}% 17
-\BOOKMARK [1][-]{section.3.1}{Signalverarbeitung und erste Gesteninterpretation durch das Android OS}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.2}{Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\344t durch Gesten}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.3}{Gestengesteuertes Vergr\366\337ern und Verkleinern sowie Ver\344nderung des Fokus f\374r Darstellungsobjekte vom Typ ImageView}{chapter.3}% 20
-\BOOKMARK [1][-]{section.3.4}{Abstraktion gestengesteuerter Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{chapter.3}% 21
-\BOOKMARK [2][-]{subsection.3.4.1}{Generalisierung der Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{section.3.4}% 22
-\BOOKMARK [2][-]{subsection.3.4.2}{Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\344ten}{section.3.4}% 23
-\BOOKMARK [1][-]{section.3.5}{Fazit}{chapter.3}% 24
-\BOOKMARK [0][-]{lstnumber.1.229}{Anhang}{}% 25
-\BOOKMARK [0][-]{appendix.A}{Erkl\344rung}{}% 26
+\BOOKMARK [1][-]{section.1.2}{Zielsetzung und Vorgehen}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.3}{Begriffsdefinition und Grundlagen der Nebenl\344ufigkeit}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.4}{Prozesse und Threads}{chapter.1}% 6
+\BOOKMARK [2][-]{subsection.1.4.1}{Prozess}{section.1.4}% 7
+\BOOKMARK [2][-]{subsection.1.4.2}{Thread}{section.1.4}% 8
+\BOOKMARK [1][-]{section.1.5}{Botschaftenaustausch und Kommunikation}{chapter.1}% 9
+\BOOKMARK [2][-]{subsection.1.5.1}{Geteilte Datei/ Speicher}{section.1.5}% 10
+\BOOKMARK [2][-]{subsection.1.5.2}{MessageQueues}{section.1.5}% 11
+\BOOKMARK [1][-]{section.1.6}{Risiken von Nebenl\344ufigkeit}{chapter.1}% 12
+\BOOKMARK [2][-]{subsection.1.6.1}{Philosophenproblem}{section.1.6}% 13
+\BOOKMARK [2][-]{subsection.1.6.2}{Race Conditions}{section.1.6}% 14
+\BOOKMARK [2][-]{subsection.1.6.3}{Resistive Touchbildschirm Technologie}{section.1.6}% 15
+\BOOKMARK [2][-]{subsection.1.6.4}{Surface Accustic Wave \(SAW\)}{section.1.6}% 16
+\BOOKMARK [2][-]{subsection.1.6.5}{Oberfl\344chen-kapazitive Touchscreen Technologie}{section.1.6}% 17
+\BOOKMARK [2][-]{subsection.1.6.6}{Projiziert Kapazitiver Touchscreen Technologie}{section.1.6}% 18
+\BOOKMARK [0][-]{chapter.2}{Gestenerkennung und Steuerung von Funktionalit\344t durch Gesten}{}% 19
+\BOOKMARK [1][-]{section.2.1}{Signalverarbeitung und erste Gesteninterpretation durch das Android OS}{chapter.2}% 20
+\BOOKMARK [1][-]{section.2.2}{Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\344t durch Gesten}{chapter.2}% 21
+\BOOKMARK [1][-]{section.2.3}{Gestengesteuertes Vergr\366\337ern und Verkleinern sowie Ver\344nderung des Fokus f\374r Darstellungsobjekte vom Typ ImageView}{chapter.2}% 22
+\BOOKMARK [1][-]{section.2.4}{Abstraktion gestengesteuerter Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.4.1}{Generalisierung der Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{section.2.4}% 24
+\BOOKMARK [2][-]{subsection.2.4.2}{Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\344ten}{section.2.4}% 25
+\BOOKMARK [1][-]{section.2.5}{Fazit}{chapter.2}% 26
+\BOOKMARK [0][-]{lstnumber.1.229}{Anhang}{}% 27
+\BOOKMARK [0][-]{appendix.A}{Erkl\344rung}{}% 28

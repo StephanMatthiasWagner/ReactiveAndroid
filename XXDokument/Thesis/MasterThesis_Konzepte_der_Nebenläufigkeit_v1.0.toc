@@ -1,27 +1,29 @@
 \select@language {ngerman}
-\contentsline {chapter}{Abbildungsverzeichnis}{5}{chapter*.3}
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{5}{chapter*.3}
 \contentsline {chapter}{\numberline {1}Einleitung}{6}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivation}{6}{section.1.1}
-\contentsline {section}{\numberline {1.2}Zielsetzung}{7}{section.1.2}
-\contentsline {section}{\numberline {1.3}Inhalt und Vorgehen}{7}{section.1.3}
-\contentsline {chapter}{\numberline {2}Gesten im Allgemeinen}{9}{chapter.2}
-\contentsline {section}{\numberline {2.1}Begriffsdefinition}{9}{section.2.1}
-\contentsline {section}{\numberline {2.2}Meilensteine der Sensortechnologie zur Registrierung von Gesten}{10}{section.2.2}
-\contentsline {section}{\numberline {2.3}Sensortechnologieen zur Registrierung von Ber\IeC {\"u}hrungen}{11}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Biegewelle (Dispersive Signal) Technologie}{11}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Infrarot- Gitter Technologie}{12}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Optische Rezeptor Technologie}{13}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Resistive Touchbildschirm Technologie}{14}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}Surface Accustic Wave (SAW)}{15}{subsection.2.3.5}
-\contentsline {subsection}{\numberline {2.3.6}Oberfl\IeC {\"a}chen-kapazitive Touchscreen Technologie}{16}{subsection.2.3.6}
-\contentsline {subsection}{\numberline {2.3.7}Projiziert Kapazitiver Touchscreen Technologie}{17}{subsection.2.3.7}
-\contentsline {chapter}{\numberline {3}Gestenerkennung und Steuerung von Funktionalit\IeC {\"a}t durch Gesten}{18}{chapter.3}
-\contentsline {section}{\numberline {3.1}Signalverarbeitung und erste Gesteninterpretation durch das Android OS}{18}{section.3.1}
-\contentsline {section}{\numberline {3.2}Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\IeC {\"a}t durch Gesten}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Gestengesteuertes Vergr\IeC {\"o}\IeC {\ss }ern und Verkleinern sowie Ver\IeC {\"a}nderung des Fokus f\IeC {\"u}r Darstellungsobjekte vom Typ ImageView}{21}{section.3.3}
-\contentsline {section}{\numberline {3.4}Abstraktion gestengesteuerter Funktionalit\IeC {\"a}ten zum Skalieren und Fokussieren von Darstellungselementen}{23}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Generalisierung der Funktionalit\IeC {\"a}ten zum Skalieren und Fokussieren von Darstellungselementen}{23}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\IeC {\"a}ten}{25}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Fazit}{26}{section.3.5}
-\contentsline {chapter}{Anhang}{32}{lstnumber.1.229}
-\contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{33}{appendix.A}
+\contentsline {section}{\numberline {1.2}Zielsetzung und Vorgehen}{7}{section.1.2}
+\contentsline {section}{\numberline {1.3}Begriffsdefinition und Grundlagen der Nebenl\IeC {\"a}ufigkeit}{7}{section.1.3}
+\contentsline {section}{\numberline {1.4}Prozesse und Threads}{8}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Prozess}{8}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Thread}{9}{subsection.1.4.2}
+\contentsline {section}{\numberline {1.5}Botschaftenaustausch und Kommunikation}{9}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Geteilte Datei/ Speicher}{10}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}MessageQueues}{10}{subsection.1.5.2}
+\contentsline {section}{\numberline {1.6}Risiken von Nebenl\IeC {\"a}ufigkeit}{12}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}Philosophenproblem}{12}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}Race Conditions}{13}{subsection.1.6.2}
+\contentsline {subsection}{\numberline {1.6.3}Resistive Touchbildschirm Technologie}{15}{subsection.1.6.3}
+\contentsline {subsection}{\numberline {1.6.4}Surface Accustic Wave (SAW)}{16}{subsection.1.6.4}
+\contentsline {subsection}{\numberline {1.6.5}Oberfl\IeC {\"a}chen-kapazitive Touchscreen Technologie}{17}{subsection.1.6.5}
+\contentsline {subsection}{\numberline {1.6.6}Projiziert Kapazitiver Touchscreen Technologie}{18}{subsection.1.6.6}
+\contentsline {chapter}{\numberline {2}Gestenerkennung und Steuerung von Funktionalit\IeC {\"a}t durch Gesten}{19}{chapter.2}
+\contentsline {section}{\numberline {2.1}Signalverarbeitung und erste Gesteninterpretation durch das Android OS}{19}{section.2.1}
+\contentsline {section}{\numberline {2.2}Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\IeC {\"a}t durch Gesten}{20}{section.2.2}
+\contentsline {section}{\numberline {2.3}Gestengesteuertes Vergr\IeC {\"o}\IeC {\ss }ern und Verkleinern sowie Ver\IeC {\"a}nderung des Fokus f\IeC {\"u}r Darstellungsobjekte vom Typ ImageView}{22}{section.2.3}
+\contentsline {section}{\numberline {2.4}Abstraktion gestengesteuerter Funktionalit\IeC {\"a}ten zum Skalieren und Fokussieren von Darstellungselementen}{24}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Generalisierung der Funktionalit\IeC {\"a}ten zum Skalieren und Fokussieren von Darstellungselementen}{24}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\IeC {\"a}ten}{26}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Fazit}{27}{section.2.5}
+\contentsline {chapter}{Anhang}{33}{lstnumber.1.229}
+\contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{34}{appendix.A}
