@@ -13,17 +13,29 @@
 \contentsline {section}{\numberline {1.6}Risiken von Nebenl\IeC {\"a}ufigkeit}{12}{section.1.6}
 \contentsline {subsection}{\numberline {1.6.1}Philosophenproblem}{12}{subsection.1.6.1}
 \contentsline {subsection}{\numberline {1.6.2}Race Conditions}{13}{subsection.1.6.2}
-\contentsline {subsection}{\numberline {1.6.3}Resistive Touchbildschirm Technologie}{15}{subsection.1.6.3}
-\contentsline {subsection}{\numberline {1.6.4}Surface Accustic Wave (SAW)}{16}{subsection.1.6.4}
-\contentsline {subsection}{\numberline {1.6.5}Oberfl\IeC {\"a}chen-kapazitive Touchscreen Technologie}{17}{subsection.1.6.5}
-\contentsline {subsection}{\numberline {1.6.6}Projiziert Kapazitiver Touchscreen Technologie}{18}{subsection.1.6.6}
-\contentsline {chapter}{\numberline {2}Gestenerkennung und Steuerung von Funktionalit\IeC {\"a}t durch Gesten}{19}{chapter.2}
-\contentsline {section}{\numberline {2.1}Signalverarbeitung und erste Gesteninterpretation durch das Android OS}{19}{section.2.1}
-\contentsline {section}{\numberline {2.2}Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\IeC {\"a}t durch Gesten}{20}{section.2.2}
-\contentsline {section}{\numberline {2.3}Gestengesteuertes Vergr\IeC {\"o}\IeC {\ss }ern und Verkleinern sowie Ver\IeC {\"a}nderung des Fokus f\IeC {\"u}r Darstellungsobjekte vom Typ ImageView}{22}{section.2.3}
-\contentsline {section}{\numberline {2.4}Abstraktion gestengesteuerter Funktionalit\IeC {\"a}ten zum Skalieren und Fokussieren von Darstellungselementen}{24}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Generalisierung der Funktionalit\IeC {\"a}ten zum Skalieren und Fokussieren von Darstellungselementen}{24}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\IeC {\"a}ten}{26}{subsection.2.4.2}
-\contentsline {section}{\numberline {2.5}Fazit}{27}{section.2.5}
-\contentsline {chapter}{Anhang}{33}{lstnumber.1.229}
-\contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{34}{appendix.A}
+\contentsline {subsection}{\numberline {1.6.3}Speicherleck}{14}{subsection.1.6.3}
+\contentsline {subsection}{\numberline {1.6.4}Reihenfolgeproblem}{15}{subsection.1.6.4}
+\contentsline {section}{\numberline {1.7}Parallelverarbeitung und Besonderheiten unter Android}{15}{section.1.7}
+\contentsline {subsection}{\numberline {1.7.1}Prozesse und Threads unter Android}{15}{subsection.1.7.1}
+\contentsline {paragraph}{\nonumberline Prozess Charakteristika}{15}{section*.4}
+\contentsline {paragraph}{\nonumberline Sandbox Prinzip}{16}{section*.5}
+\contentsline {paragraph}{\nonumberline UI-Thread als Main Thread}{17}{section*.6}
+\contentsline {subsection}{\numberline {1.7.2}Besonderheiten im Android Umfeld bez\IeC {\"u}glich des Thread Managements}{17}{subsection.1.7.2}
+\contentsline {subsubsection}{\numberline {1.7.2.1}ANR Dialog}{17}{subsubsection.1.7.2.1}
+\contentsline {subsubsection}{\numberline {1.7.2.2}Komponentenmodell}{19}{subsubsection.1.7.2.2}
+\contentsline {subsubsection}{\numberline {1.7.2.3}Lebenszyklus einer Android Anwendung (Activity)}{20}{subsubsection.1.7.2.3}
+\contentsline {section}{\numberline {1.8}Anforderungen an Applikationen}{22}{section.1.8}
+\contentsline {section}{\numberline {1.9}Fokus und Eingrenzung}{23}{section.1.9}
+\contentsline {paragraph}{\nonumberline Zugriff auf Web Ressourcen}{23}{section*.7}
+\contentsline {paragraph}{\nonumberline Zeitintensive Berechnungen}{23}{section*.8}
+\contentsline {chapter}{\numberline {2}Asynchrone Parallelverarbeitung unter Android}{24}{chapter.2}
+\contentsline {section}{\numberline {2.1}Bolckierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}{24}{section.2.1}
+\contentsline {section}{\numberline {2.2}Parallelverarbeitung mit der Java Standard Edition (Java Concurrency)}{26}{section.2.2}
+\contentsline {section}{\numberline {2.3}Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\IeC {\"a}t durch Gesten}{28}{section.2.3}
+\contentsline {section}{\numberline {2.4}Gestengesteuertes Vergr\IeC {\"o}\IeC {\ss }ern und Verkleinern sowie Ver\IeC {\"a}nderung des Fokus f\IeC {\"u}r Darstellungsobjekte vom Typ ImageView}{30}{section.2.4}
+\contentsline {section}{\numberline {2.5}Abstraktion gestengesteuerter Funktionalit\IeC {\"a}ten zum Skalieren und Fokussieren von Darstellungselementen}{32}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Generalisierung der Funktionalit\IeC {\"a}ten zum Skalieren und Fokussieren von Darstellungselementen}{33}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\IeC {\"a}ten}{34}{subsection.2.5.2}
+\contentsline {section}{\numberline {2.6}Fazit}{35}{section.2.6}
+\contentsline {chapter}{Anhang}{41}{lstnumber.1.229}
+\contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{42}{appendix.A}

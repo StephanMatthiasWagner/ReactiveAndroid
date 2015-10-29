@@ -286,57 +286,168 @@ Ist der Zugriff der Threads auf den Speicher nicht synchronisiert, so kommt es z
 
 
 
+\subsection{Speicherleck}
+Speicherlecks (eng. Memory Leaks) entstehen häufig aus Programmierfehler heraus, in denen Speicher reserviert, aber dieser nicht mehr freigegeben wird. Geschieht dies ausreichend oft während einer Laufzeit innerhalb des Addressraums des Programmes, so gerät im schlimmsten Fall der seitens der Hardware begrenzte Speicher an seine Grenzen. Das Betriebssystem registriert dieses Verhalten und terminiert sofort die Ausführung des Programmes. Bei der Technik des geteilten Speichers, ist das Risiko eines Speicherlecks z.B. dann präsent, wenn sich der Entwickler um korrekte Dereferenzierung des Speichers und dessen Freigabe explizit kümmern muss. Wird Speicher n-Fach allokiert und nicht wieder freigegeben, so handelt es sich um ein ernstes Speicherleck. Auch bei der MessageQueue sind Speicherlecks möglich, z.B. wenn kontinuierlich Botschaften in die Queue gepackt werden, diese aber nicht aus der Queue wieder herausgenommen werden.
+
+\subsection{Reihenfolgeproblem}
+Im Falle einer bidirektionalen Kommunikation mittels einer MessageQueue muss beachtet werden, dass es nicht vorhersehbar ist, in welcher Reihenfolge die Nachrichten in die MessageQueue gelegt werden, oder wann sich welcher Thread eine Message aus der Queue holt. Dies kann zu unerwarteten Verhalten führen. So kann ein Thread B ungewollt blockieren, wenn er für seine weitere Verarbeitung eine bestimmte Nachricht benötigt und diese jedoch sich in der Reihenfolge hinter einer Nachricht für den anderen Thread A befindet. So muss Thread B solange warten bis Thread A seine Nachricht aus der Queue nimmt.
+\newline
+Welche Konzepte es gibt, um sich den allgemeinen Problematiken und Risiken von Nebenläufigkeit speziell für Android Applikationen zu nähern ist zentraler Forschungsschwerpunkt dieser Arbeit. Diese Konzepte werden im Kapitel 2 im einzelnen vorgestellt.
 
 
+\section{Parallelverarbeitung und Besonderheiten unter Android}
+Im vorangegangenen Abschnitt wurde allgemein auf die Terminologie, die Eigenschaften, sowie die Kommunikation innerhalb von Nebenläufigkeit eingegangen. Hier gilt es nun einen Fokus auf Nebenläufigkeit im mobilen Umfeld zu setzen, insbesondere unter dem Betriebsystem Android. Weiter wird ein erster Einblick in das Komponentenmodell, sowie in den Lebenszyklus von Android Applikationen erarbeitet.
 
 
+\subsection{Prozesse und Threads unter Android}
+\paragraph{Prozess Charakteristika}
+Das Android Betriebssystem basiert auf dem Linux/Unix System. Daher gelten die o.g. Eigenschaften zu Prozessen unter dem Linux/Unix Betriebssystem auch für Android. Sie werden lediglich um folgende Charakteristika erweitert.
+\begin{enumerate}
+\item Fordergrundprozess $\rightarrow$ Fordergrundprozesse sind verantwortlich für alle Komponenten einer Anwendung, die unmittelbar im Vordergrund, also für den Nutzer sichtbar sind.
+\item sichtbarer Prozess $\rightarrow$ Sichtbare Prozesse fassen alle Komponenten zusammen, die zwar nicht unmittelbar sichtbar sein müssen, jedoch Komponenten aus dem Vordergrund beeinflussen.
+\item Service Prozess $\rightarrow$  Service Prozesse laufen losgelöst von anderen Prozessen. Einmal gestartet laufen diese selbstständig (z.B. das Abspielen von Musik). Sie lassen sich jedoch weiterhin von anderen Prozessen steuern.
+\item Hindergrundprozess $\rightarrow$ Der Hintergrundprozess hält gestoppte Anwendungskomponenten. So werden darin Activity Instanzen abgelegt, für welche die onStop() Methode (siehe Activity Lifecyle) aufgerufen wurde. Dies hat die Funktion, die Anwendung möglichst schnell wieder zu reaktivieren, wenn der Nutzer dies wünscht. Der Hintergrundprozess darf nicht mit der im folgenden Kapitel thematisierten Hintergrundverarbeitung zusammen in einen Kontext gebracht werden.
+\item leerer Prozess $\rightarrow$ Leere Prozesse werden bei ausreichend Hardware Ressourcen durch das Android Betriebssystem erzeugt und als Ressourcen für einen schnelleren Start von Applikationen gehalten. Wünscht ein Nutzer eine Anwendung zu starten, so existiert bereits hierfür ein Prozess mit entsprechender Laufzeitumgebung.
+\end{enumerate}
+Rein aus der Sicht des Betriebsystems handelt es sich stets um den gleichen Prozess, jedoch kann er unterschiedliche Charakteristika innerhalb seines Lebenszyklus annehmen.
+\paragraph{Sandbox Prinzip}
+Eine weitere Besonderheit in Android erweitert das Sandbox Prinzip von Unix/Linux Systemen zur Kapselung von Prozessen und deren Ressourcen (siehe Abschnitt 1.2.1 “Prozesse und Threads”). Dabei erzeugt Android bereits zum Installationszeitpunkt pro Anwendung einen speziellen User. Wird die Anwendung gestartet, so richtet das Betriebssystem einen in sich geschlossenen Speicherbereich ein und ordnet diesen dem jeweiligen Appliction-User zu. Somit wird der exklusive Zugriff auf den Speicherbereich allein durch diese Applikation realisiert.
 
+\paragraph{UI-Thread als Main Thread}
+Bei der Entwicklung von Android Applikationen steht die Benutzerschnittstelle im Vordergrund. So erscheint es konsequent, dass das User Interface durch den Main Thread verarbeitet wird (hier gilt also Main-Thread = UI-Thread). Dieses Ausführungsmodell steht z.B. dem von Java.Swing entgegen, in welchem die Benutzerinteraktion in einem sekundären Thread, ungleich dem Hauptthread gesteuert wird. Dies hat unweigerlich Einfluss auf die Konzeption von Applikationen unter Android,
+ welche u.a. zeitintensive Operationen durchführen müssen. Denn in diesem Fall darf der UI Thread nicht blockieren und sich nach Ende der Verarbeitung erst wieder zurück melden. Die zeitintensive Operation muss in einen sekundär Thread ausgelagert werden, sodass der UI Thread weiter Benutzereingaben verarbeiten kann.
 
-\subsection{Resistive Touchbildschirm Technologie}
+\subsection{Besonderheiten im Android Umfeld bezüglich des Thread Managements}
+Das Android Betriebssystem formuliert einige spezielle Regeln für die Ausführung von Threads, die sich an einen hohen Anspruch seitens Google an der Benutzbarkeit der Applikationen orientieren. So ist der Thread für die Steuerung der Benutzeroberfläche (User Interface kurz UI) unter besonderer Beobachtung. Wird dieser Blockiert oder ist ausgelastet mit zeitintensiven Operationen, wird dieser vom Betriebssystem nach einer bestimmen Zeit angehalten. Je nach Konfiguration des Android Betriebssystems wird es dem Nutzer angeboten entweder weiter zu warten oder die Applikation zu terminieren.
+
+\subsubsection{ANR Dialog}
+Ein grundsätzlicher Anspruch, den Google an mobile Anwendungen unter seinem Android Betriebssystem stellt, ist die Benutzbarkeit durch den alltäglichen Anwender. Dieser muss über keine technischen Kenntnisse verfügen um die Applikation entsprechend einfach und intuitiv benutzen können. So ist es unerwünscht, dass eine Applikation nach dem Start irgend eines Vorganges blockiert, also auf Interaktion des Nutzers nicht reagiert. Google formuliert in seiner Andorid Developper Dokumentation daher die grundsätzliche Anforderung der kontinuierlichen Ansprechbarkeit von Appliationen bzw. der nie zu unterbrechenden Interaktionsfähigkeit zwischen Benutzer und Applikation. So ist es gemäß der Designvorgaben für Android Applikationen unerwünscht, das Applikationen blockieren. Um jedoch für den Fall einer blockierenden Anwendung gerüstet zu sein, bietet Android die Möglichkeit, mittels eines Applikation Not Responding Dialogs, kurz ANR Dialog die Verarbeitung innerhalb einer Anwendung abzubrechen oder weiter auf deren Ergebnis zu warten. Wird im Dialog auf \glqq Warten\grqq geklickt, gibt das Betriebssystem den UI Thread wieder zur Ausführung frei. Folgende Abblildung zeigt einen exemplarischen ANR Dialog:
 \begin{figure}[H]
   \begin{centering}
-    \includegraphics[width=0.8\textwidth]{img/Resistiv.png}
-    \caption{Resistive Technologie \cite[vgl. Resistiv-4-5-7-und-8-Draht]{002}}
-    \label{Resistiv}
+    \includegraphics[width=0.6\textwidth]{img/anr-dialog.png}
+ %   \caption{Race_Condition beim Shared Memory  \cite[vgl. ]{002}}
+    \label{ANR Dialog}
   \end{centering}
 \end{figure}
-In der resistiven Touchscreen-Technologie wird ein Touchbildschirm in Deckschicht und Grundschicht unterteilt. An den Innenkanten beider Schichten ist ein leitender Film angebracht, der je mit unterschiedlicher Spannung geladen ist. Wie in der Abbildung gezeigt, schließt eine Berührung den Stromkreis und mit Hilfe der an den Bildschirmkanten angebrachten Sensoren die genauen Koordinaten des Berührungspunktes ermittelt. Prinzipiell ist bei dieser Technologie die Erkennung von Mehrfachberührungen möglich, jedoch hängt dies von den verbauten Sensoren ab.
+In diesem Beispiel greift Android in den Lebenszyklus der Aktivity ein, von der die zeitintensive Berechnung ausgeht und pausiert diese. Je nach Wunsch des Nutzers wird die Applikaiton dann in den Status \glqq Pausiert\grqq überführt, oder terminiert (siehe: onStoped() bzw. onDestroyed() im Lifecycle Diagramm) und vom Garbage Collector entsorgt (siehe hierzu Lebenszyklus einer Activity im nächsten Abschnitt). Die Zeit T innerhalb derer eine Applikation nicht auf Benutzereingaben reagiert und deren Ablauf der genannte Dialog erscheint ist für jedes Android Gerät konfigurierbar. Obwohl diese Eingreifmöglichkeit eine wichtige Funktion für die Kontrolle von Applikation durch den Nutzer darstellt, haben sich diverse Gerätehersteller mittlerweile entschieden die Zeit T sehr groß zu wählen, oder sogar den ANR-Dialog generell zu deaktivieren. In den Android Versionen ab Honeycomb führt das Blockieren einer Applikation bereits zur sofortigen Terminierung durch das Betriebssystem. Doch unabhängig vom ANR-Dialog bleibt der direkte Zusammenhang zwischen der Ansprechbarkeit einer Applikation und der Benutzbarkeit der Anwendung und dem Nutzererlebnis. Blockiert über zu lange Zeit eine Anwendung, so steigt damit auch die Unzufriedenheit des Nutzers über die Anwendung, besonders da er häufig die technischen Zusammenhänge, welche eine zeitintensive Verarbeitung durch aus rechtfertigen können, nicht kennt und gemäß der angesprochenen Designvorgaben auch nicht kennen muss.
 
-\subsection{Surface Accustic Wave (SAW)}
+
+\subsubsection{Komponentenmodell}
+Bisher wurde die technische Ausführung von Android Applikationen auf der Betriebssystemebene erläutert. Für die einzelnen Konzepte der Nebenläufigkeit unter Android gilt es nun jedoch näher auf die Konzeption von Applikationen mittels klar definierten Komponenten selbst ein zu gehen, bevor im Kapitel 2 die einzelnen Konzepte an konkreten Implementierungsbeispielen verdeutlicht werden. Die folgende Abbildung zeigt die Basiskomponenten aus denen Anwendungen unter dem Android Betriebssystem bestehen:
 \begin{figure}[H]
   \begin{centering}
-    \includegraphics[width=0.8\textwidth]{img/surface_accustic_wave.png}
-    \caption{Surface Accustic Wave Technologie \cite[vgl. Surface-Acoustic-Wave-Saw]{002}}
-    \label{surface_accustic_wave}
+    \includegraphics[width=0.6\textwidth]{img/Android_Komponent_Model.png}
+ %   \caption{Race_Condition beim Shared Memory  \cite[vgl. ]{002}}
+    \label{Android_Komponent_Model}
   \end{centering}
 \end{figure}
-Das technische Prinzip dieser Technologie ist vergleichbar mit dem des Infrarot-Gitters. Schallwellen werden an bestimmten Punkten des Touchbildschirms emittiert und an zwei Kanten (x;y) so reflektiert, dass ein Raster durch die Schallwellen im Berührungsbereich aufgespannt wird. An den zwei übrigen Kanten leiten Reflektoren die einzelnen Schallwellen zu einem Sensor. Die Berührung hat eine Dämpfung der Schallwellen (in x- und y-Richtung) zur Folge, die zum Zeitpunkt der Berührung den Berührungspunkt passieren. Da die Schallwellen zeitverzögert erzeugt werden, also nur immer eine Schallwelle in eine X-Richtung und nur eine in Y-Richtung, ist somit der Berührungspunkt genau zu ermitteln. Dies bedeutet jedoch auch, dass zum selben Zeitpunkt nur ein Berührungspunkt ermittelbar ist, womit Multi-Touch-Gesten durch diese Technologie nicht unterstützt werden.
+\begin{itemize}
+\item Broadcast Receiver erlauben die Registrierung von systemweiten oder applikationsinternen Events.
+\item Content Provider repräsentieren Daten als relationalen Datensatz und ermöglichen den Zugriff über Applikationsgrenzen hinaus auf diese Daten.
+\item Activities definieren das Verhalten von graphischen Benutzerschnittstellen
+\item Services können zeitintensive Hintergrundberechnungen abbilden. 
+\end{itemize}
+Bei Services ist zu beachten, dass diese, wenn nicht anders definiert in dem Main Thread laufen, was jedoch für zeitintensive Verarbeitungen zu Problemen mit dem Benutzerinterface führen kann, wie in den folgenden Abschnitten näher beschrieben wird. Services dienen lediglich als mögliche Kapselung um Hintergrundverarbeitungen klarer vom Rest der Applikation zu trennen, sowie Verarbeitungen ohne aktives Benutzerinterface durchzuführen. Die Android Developper Dokumentation weist explizit darauf hin, keine zeitaufwändigen Verarbeitungen hier zu definieren wenn der Service im Main Thread läuft, da ansonsten die Gefahr besteht, dass der Main Thread und somit auch das Benutzerinterface blockiert. Dies gilt neben Services auch für die anderen Komponenten.
 
-\subsection{Oberflächen-kapazitive Touchscreen Technologie}
+\subsubsection{Lebenszyklus einer Android Anwendung (Activity)}
+Da sich diese Arbeit primär auf Applikationen mit Benutzerinterface konzentriert, macht es Sinn kurz auf den Lebenszyklus von Activities einzugehen der bereits in Kapitel \glqq Besonderheiten im Android Umfeld bezüglich des Thread Managements\grqq kurz aufgegriffen wurde.
+Applikationen unter dem Android Betriebssystem unterscheiden sich in einigen Details deutlich von normalen Java Applikationen. Im Hinblick auf die nebenläufige Verarbeitung ist es daher von Bedeutung einen genaueren Blick auf den Lebenszyklus von Android Applikationen zu werfen. Die folgende Abbildung gibt einen Überblick über die Stati einer gestarteten Activity. Eine Objekt Instanz vom Typ android.os.Activity ist dabei der Einstiegspunkt in eine GUI-Applikation und wird vom Betriebssystem beim Start der Anwendung aufgerufen. Die einzelnen Statusübergänge, die in der Abbildung durch die jeweiligen Rückrufmethoden (onCreate(), onStart, onResume())symbolisiert werden,  sind für diese Arbeit weniger von Bedeutung. Interessanter sind die Abhängigkeiten zum Lebenszyklus des Prozesses, welcher für die Anwendung gestartet wurde, und damit die Frage nach der Lebensdauer von Threads. Die Abbildung zeigt deutlich zwei Szenarien in denen jeweils die Anwendung aus dem Sichtbarkeitsbereich des Nutzers entfernt wird (Übergang von onPaused() $\rightarrow$  onStop()). In dem ersten Szenario bleibt der Prozess nach dem Aufruf der onStop() Rückrufmethode bestehen. Das Android Betriebssystem behält damit die Reservierung des Adressraums im Speicher für diesen Prozess und ermöglicht ein schnelles Wiederaufrufen der Applikation, wenn der Nutzer dies wünscht (siehe in Abbildung Übergang von onStop() $\rightarrow$   onRestart()). Innerhalb des Prozesses definierte Nebenläufigkeit wird angehalten, d.h. die Ausführung aller Threads (auch des UI-Threads) wird unterbrochen. Die Threads selbst werden in den Status \glqq Wartend\grqq oder \glqq Schlafend\grqq überführt. Kehrt der Nutzer zu der Anwendung zurück, wird zunächst der UI-Thread wieder gestartet und in der Activity Instanz die Methode onResume() aufgerufen. Soll die nebenläufige Verarbeitung wieder gestartet werden, so empfiehlt es sich dies in der onResume() Methode zu implementieren.
 \begin{figure}[H]
   \begin{centering}
-    \includegraphics[width=0.8\textwidth]{img/oberflaechen_kapazitiv.png}
-    \caption{Oberflächen Kapazitive Technologie}
-    \label{oberflächen_kapazitiv}
+    \includegraphics[width=0.9\textwidth]{img/activity_lifecycle.png}
+ %   \caption{Race_Condition beim Shared Memory  \cite[vgl. ]{002}}
+    \label{Activity_Lifecycle}
   \end{centering}
 \end{figure}
-Die kapazitive Touchscreen-Technologie registriert Berührungen durch die Ablenkung innerhalb eines elektronischen Feldes, welches durch Elektroden an den Bildschirmkanten erzeugt wird. Sensoren an den Bildschirm-ecken messen dabei das elektronische Feld und damit jegliche durch Berührung ausgelöste Veränderung des Feldes. Der Finger fungiert dabei als Erdung, über den Elektronen aus dem Feld abfließen und somit für einen Spannungsabfall während der Berührung sorgt. Die genaue X- und Y- Koordinate errechnet sich aus den Strömen, die an den Sensoren registriert werden. Auch hier beschränkt sich die Technologie auf die Registrierung von lediglich einer Geste.
+Im zweiten Szenario wird der Adressraum dieses Prozesses für andere Anwendungen benötigt (siehe Abbildung onStop() $\rightarrow$  onCreate()). Das Betriebssystem terminiert in Folge dessen den Prozess und damit auch alle darin laufenden Threads. Für die Nebenläufigkeit auf Thread Ebene würde dies bedeuten, dass alle Threads zusammen mit dem Prozess mit terminiert werden. Kommt die Anwendung durch den Aufruf des Nutzers wieder in den Vordergrund, so wird zunächst wieder ein Prozess mit entsprechendem Adressraum vom Betriebssystem eingerichtet, der UI Thread neu erzeugt und nun in dem UI Thread die Activity neu instanziiert (dabei Aufruf onCreate()). Alle zuvor erzeugen sekundären Threads existieren nicht mehr. Die Verarbeitung im Hintergrund wurde unterbrochen und terminiert. Die Hintergrundverarbeitung lässt sich ggf. neu aus der onCreate Methode heraus neu starten.
+
+\section{Anforderungen an Applikationen}
+Abschließend zu dieser Einführung in die grundlegenden Konzepte zur Ausführung und den Bestandteilen von Android Applikationen, werden nun allgemeine Anforderungen an die Applikationen zusammengefasst, wie sie auch der Application Style Guide von Google vor gibt.
+Applikationen für das Android Betriebssystem verfügen zum großen Teil über eine graphische Benutzeroberfläche, die wenigsten sind reine Hintergrund Programme. Darum liegt auch der Fokus der Applikationen auf deren Benutzbarkeit. Entsprechend ergeben sich auch besondere Anforderungen für die Entwicklung von Nebenläufigkeit. In Android Applikationen wird die Interaktion mit dem Benutzer über den Hauptthread (= UI- Thread), abgehandelt. Sind nun innerhalb einer Applikation zeitintensive Berechnungen oder andere Vorgänge definiert, so ist darauf zu achten, dass dadurch nicht der UI-Thread blockiert wird. Dieser soll stets bereitgehalten werden um mit dem Benutzer zu interagieren. Eine nebenläufige Verarbeitung ist also so zu definieren, dass sekundäre Threads vom UI Thread aus initialisiert und gestartet werden können und im Weiteren völlig losgelöst vom UI Thread operieren. Kommt es zum Nachrichtenaustausch zwischen dem UI Thread und den sekundären Threads (Datenaustausch) darf dies für den UI Thread keine zeitaufwändige Operation darstellen, diese Nachrichten zu verarbeiten. Weiter benötigt der Nutzer auch im Einzelfall Rückmeldung über den Bearbeitungsstand aus den sekundären Threads, sowie auch im Fehlerfall entsprechende Meldungen.
+
+\section{Fokus und Eingrenzung}
+In dieser Arbeit soll sich primär darauf konzentriert werden, wie asynchrone Parallelverarbeitung realisiert werden kann und welche Gefahren sich aus der Komplexität dieser Aufgabe ergeben können. Weiter ist die Fragestellung im Fokus, wie eine Fehlerbehandlung innerhalb asynchroner Parallelverarbeitung realisiert werden kann bzw. wie unterschiedliche Meldungen an den UI -Thread übertragen werden können. Um die Problemstellung der asynchronen Parallelverarbeitung für Andorid Plattformen greifbarer zu machen werden zwei Szenarien beschrieben in denen man bei der Implementierung die asynchronen Parallelverarbeitung sinnvoll demonstrieren kann:
+\paragraph{Zugriff auf Web Ressourcen} 
+In Android Applikationen ist es häufig nötig auf Web Ressourcen zu zu greifen. Bis jedoch die gesamte Ressource geladen ist, kann es u.U. je nach Verfügbarkeit des Netzwerks zu längeren Wartezeiten kommen. Arbeitet die Applikation nun streng sequentiell, so würde sie blockieren, bis die Ressourcen geladen sind und sich dann damit zurückmelden.
+\paragraph{Zeitintensive Berechnungen}
+Neben dem Zugriff auf Netzwerkressourcen können auch einzelne Berechnungen oder Suchfunktionen längere Zeit in Anspruch nehmen. Ebenso ist hier auf eine asynchrone Parallelverarbeitung zu achten, denn genauso wie in o.g. Szenario kann hier die Anwendung bei sequentieller Abarbeitung blockieren (also keine Benutzereingaben verarbeiten) und in Folge dessen durch das Betriebssystem terminiert werden. 
+\newline
+Die im Kapitel 2 aufgeführten Implementierungsbeispiele beziehen sich primär auf das zweite Szenario, um für Präsentationszwecke unabhängiger von Netzwerkeigenschaften zu sein.
 
 
-\subsection{Projiziert Kapazitiver Touchscreen Technologie}
+\chapter{Asynchrone Parallelverarbeitung unter Android}
+Für die Realisierung von asynchroner Parallelverarbeitung werden in diesem Kapitel drei Lösungsansätze entwickelt. Jeder dieser Ansätze versucht die asynchrone Verarbeitung im Hintergrund, losgelöst vom Hauptthread der Applikation zu realisieren. Als Beispiel für die im Hintergrund zu tätigende Verarbeitung steht eine rechenintensive und damit zeitaufwändige mathematische Operation. Ziel ist mit dieser Operation ausreichend Rechenauslastung zu erzeugen, sodass im Falle einer synchronen Abarbeitung die Applikation blockieren kann.
+
+\section{Bolckierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}
+Dieser Abschnitt soll einen Einblick in das Verhalten von Applikationen unter dem Android Betriebssystem geben, wenn zeitintensive Berechnungen durchgeführt werden. Das Implementierungsbeispiel ist an das in Kapitel 1.9 beschriebene Szenario zu zeitintensiven lokalen Berechnungen angelehnt.
+Die folgende Abbildung zeigt zwei Fenster einer Android Applikation mit je einem Knopf zum Start einer bestimmten zeitintensiven mathematischen Berechnung, deren Ergebnisse auf im jeweiligen Fenster angezeigt wird.
 \begin{figure}[H]
   \begin{centering}
-    \includegraphics[width=0.8\textwidth]{img/projiziert_kapazitiv.png}
-    \caption{Projiziert Kapazitive Technologie \cite[vgl. Projected-Capacitive]{002}}
-    \label{projiziert_kapazitiv}
+    \includegraphics[width=0.9\textwidth]{img/BlockingIO_testApp_Mockup.png}
+ %   \caption{Race_Condition beim Shared Memory  \cite[vgl. ]{002}}
+    \label{BlockingIO_testApp_Mockup}
   \end{centering}
 \end{figure}
-Die projiziert- kapazitive Touchscreen-Technologie erweitert die Oberflächen-Kapazitiv-Technologie um einzelne kleinere Felder auf dem Touchbildschirm und ist die aktuellste der genannten Technologien. Der wesentliche Vorteil gegenüber der Oberflächen-Kapazitiven-Technologie ist, dass hier schon die Näherung eines Fingers ausreicht, um eine Berührung zu registrieren. Dadurch ist es möglich selbst durch dünne Handschuhe eine Berührung zu registrieren, was einen klassischen Einsatzkontext für den medizinischen Bereich darstellt. Die Abbildung zeigt, wie allein durch die Annäherung eines Fingers Teilbereiche des Feldes durch natürliche Ladung in den Fingern abgelenkt werden.
+Die mathematische Operation ist so gestaltet, dass sie im Komplexitätsgrad variabel einstellbar ist und somit auch die Verarbeitungszeit verlängert werden kann. Dabei handelt es sich um die Berechnung einer Quersumme aus einer sehr großen Primzahl. Die Ermittlung der Primzahl verlängert sich in Abhängigkeit zu der im Die mathematische Operation ist so gestaltet, dass sie im Komplexitätsgrad variabel einstellbar ist und somit auch die Verarbeitungszeit verlängert werden kann. Dabei handelt es sich um die Berechnung einer Quersumme aus einer sehr großen Primzahl. Die Ermittlung der Primzahl verlängert sich in Abhängigkeit zu der im Vorhinein definierten Mindestgröße der Primzahl (hier 1500Byte BigInteger):\newline\newline
+\texttt{BigInteger veryBig = new BigInteger(1500, new Random());\newline
+BigInteger randomPrimeNumber = veryBig.nextProbablePrime();\newline
+int summe = 0;\newline\newline
+while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO))\newline 
+\{ \newline
+       // addiere die letzte ziffer der uebergebenen zahl zur summe \newline
+       summe = summe + (randomPrimeNumber.mod(BigInteger.TEN)).intValue(); \newline\newline\newline
+       // entferne die letzte ziffer der uebergebenen zahl \newline
+       randomPrimeNumber = randomPrimeNumber.divide(BigInteger.TEN); \newline
+       \} \newline
+targetString.append(summe);\newline
+}
+Die Berechnung wird dabei angestoßen aus der Activity und allein innerhalb des UI Thread durchgeführt. In einem ersten Versuch wird die Komplexität nach und nach erhöht um zunehmend die Interaktion der Applikation mit dem Nutzer über die Benutzerschnittstelle zu blockieren. Nach einer bestimmten Blockierungszeit T ist zu beobachten, das der ANR Dialog des Betriebssystems erscheint und anbietet die Applikation zu beenden oder weiter zu warten. An dieser Stelle registriert das Betriebssystem, dass der UI-Thread als Haupt-Thread der Applikation für die Zeit T keine weitere Interaktion des Benutzers verarbeiten kann. Der Benutzer ist bis zu diesem Zeitpunkt nach Aktivierung der Berechnung nicht in der Lage die Applikation zu beenden oder zu wechseln. Daher schreitet nun das Betriebssystem ein, pausiert die Applikation und bietet dem Nutzer in einem ANR-Dialog an, die Applikation zu terminieren, oder weiter auf die Rückmeldung der Applikation zu warten.
 
-\chapter{Gestenerkennung und Steuerung von Funktionalität durch Gesten}
-\section{Signalverarbeitung und erste Gesteninterpretation durch das Android OS}
-Die Auflistung der einzelnen Technologien zum Touchbildschirm hat gezeigt, wie unterschiedlich die Umsetzungen der Berührungserkennung und deren Leistungsfähigkeit in Bezug auf die Erkennung von einfachen und mehrfachen Berührungen zur selben Zeit sind. Das Android Betriebssystem ist darauf ausgelegt, die unterschiedlichen Formen von Touchbildschirmen zu unterstützen. Je nach verbauter Technologie ist dabei die Erkennung von mehreren Berührungspunkten freigeschaltet oder nicht. Für den Entwickler einer Android Applikation ist dies jedoch völlig transparent. Im Falle einer registrierten Berührung wirft die API ein sogenanntes „MotionEvent“. Die Android API leistet hier eine erste Interpretation der Gesten, denn je nach Art der Berührung wird ein bestimmtes „MotionEvent“ gefeuert. Diese Events können abgefangen werden und liefern Berührungsparameter (Koordinaten) für eine weitere, detailliertere Interpretation der Gesten.
-Der folgende Abschnitt beschreibt die prototypische Implementierung exemplarischer Gesten und geht neben den Besonderheiten und Schwierigkeiten der Gesteninterpretation auch auf die durch die Android API angebotenen MotionEvents ein.
+\section{Parallelverarbeitung mit der Java Standard Edition (Java Concurrency)}
+In diesem Beispiel wird nun versucht die zeitintensive Berechnung aus dem letzten Abschnitt, mittels der allgemeinen Mechanismen der Java Standard Edition in eine parallele Verarbeitung auszulagern. Damit soll das Blockieren der Anwendung verhindert werden. Hierzu wird die Berechnung in eine Klasse ausgelagert, die das Interface \texttt{java.lang.Runnable} implementiert. Diese kann darauf hin einem neuen Thread zur Ausführung übergeben werden. Der folgende Auszug aus dem Quellcode zeigt dabei den Konstruktor, sowie die \texttt{run()}- Methode der Klasse.\newline\newline\newline\newline\newline\newline
+\texttt{
+/$\ast\ast$\newline
+$\ast$ The constructor.\newline
+$\ast$ @param aView a view element.\newline
+$\ast$ @param aCallbackHandler the Callback Handler for sending messages to ui-thread $\ast$/ %\newline
+public RandomPrimeNumGenerator(final View aView, final Handler aCallbackHandler)\newline
+\{ \newline
+ Log.d(TAG,\grqq Call Constructor\grqq );\newline
+ targetView = aView;\newline
+ handler = aCallbackHandler;\newline
+\} \newline
+  @Override\newline
+  public void run()\newline
+  \{ \newline
+     Log.d(TAG, \grqq Call run\grqq);\newline
+       String result = startCalculation();\newline
+       Message message = new Message();\newline
+       Bundle bundle = new Bundle();\newline
+       bundle.putCharArray(String.valueOf(targetView.getId()), result.toCharArray());\newline
+       message.setData(bundle);\newline
+       Log.d(TAG,\grqq Call handler\grqq );\newline
+       handler.sendMessage(message);\newline
+   \} \newline\newline
+} \newline
+Das hier verwendete Handler Objekt wird dem Konstruktor aus der Activity übergeben. Wird die durch den Konstruktor \texttt{RandomPrimeNumGenerator} erzeugte Runnableinstanz nun einem Thread Konstruktor übergeben und auf dieser Threadinstanz die \texttt{start()}- Methode Aufgerufen, so startet die Java Virtuelle Maschiene einen neuen Thread, der die zeitintensive Berechnungen ausführt. Der folgende Codeabschnitt ist in der Activity defininiert. Es wird somit aus dem Main Thread heraus ein neuer Thread erzeugt.\newline\newline\newline
+\texttt{
+private final Handler handler = new Handler();\newline\newline
+public void initCalculation(View aView)\newline
+  \{ \newline
+     RandomPrimeNumGenerator runnable =
+        new RandomPrimeNumGenerator(aView, handler);\newline\newline  
+     Thread newThread = new Thread(runnable);\newline
+     newThread.start();\newline
+  \} \newline
+} \newline
+
+\glqq Wartend\grqq
+
+
+
+
+
+
 
 
 \section{Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalität durch Gesten}

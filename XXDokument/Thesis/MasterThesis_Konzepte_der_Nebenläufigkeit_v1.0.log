@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.25)  28 OCT 2015 22:29
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.25)  29 OCT 2015 23:27
 entering extended mode
 **MasterThesis_Konzepte_der_Nebenläufigkeit_v1.0.tex
 
@@ -997,7 +997,7 @@ LaTeX Info: Redefining \nameref on input line 131.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<img/fh-koeln-logo.png, id=115, 98.61844pt x 71.51718pt>
+<img/fh-koeln-logo.png, id=131, 98.61844pt x 71.51718pt>
 File: img/fh-koeln-logo.png Graphic file (type png)
 
 <use img/fh-koeln-logo.png>
@@ -1054,15 +1054,6 @@ Package tocbasic Info: character protrusion at lof deactivated on input line 18
 
 LaTeX Warning: Citation `002' on page 5 undefined on input line 3.
 
-
-LaTeX Warning: Citation `002' on page 5 undefined on input line 4.
-
-
-LaTeX Warning: Citation `002' on page 5 undefined on input line 5.
-
-
-LaTeX Warning: Citation `002' on page 5 undefined on input line 7.
-
 )
 \tf@lof=\write7
  [5
@@ -1086,7 +1077,7 @@ Class scrreprt Warning: \float@addtolists detected!
 
 [6
 
-] [7] [8] [9] <img/MessageQueue.png, id=211, 463.7325pt x 368.37625pt>
+] [7] [8] [9] <img/MessageQueue.png, id=224, 463.7325pt x 368.37625pt>
 File: img/MessageQueue.png Graphic file (type png)
 
 <use img/MessageQueue.png>
@@ -1103,7 +1094,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 248--251
  []
 
 [11 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/MessageQueue.png>]
-<img/PhilosophenProblem.png, id=220, 261.97874pt x 252.945pt>
+<img/PhilosophenProblem.png, id=233, 261.97874pt x 252.945pt>
 File: img/PhilosophenProblem.png Graphic file (type png)
 
 <use img/PhilosophenProblem.png>
@@ -1123,100 +1114,52 @@ e.1.1}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.275 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/PhilosophenProblem.pn
-g>] <img/SharedMemory_RaceCondition.png, id=231, 647.41875pt x 179.67125pt>
+g>] <img/SharedMemory_RaceCondition.png, id=244, 647.41875pt x 179.67125pt>
 File: img/SharedMemory_RaceCondition.png Graphic file (type png)
 
 <use img/SharedMemory_RaceCondition.png>
 Package pdftex.def Info: img/SharedMemory_RaceCondition.png used on input line 
 278.
 (pdftex.def)             Requested size: 295.90979pt x 82.12064pt.
+ [14 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/SharedMemory_RaceCondit
+ion.png>] [15] [16]
+<img/anr-dialog.png, id=264, 281.05pt x 137.51375pt>
+File: img/anr-dialog.png Graphic file (type png)
+ <use img/anr-dialog.png>
+Package pdftex.def Info: img/anr-dialog.png used on input line 327.
+(pdftex.def)             Requested size: 221.93375pt x 108.5885pt.
 
-<img/Resistiv.png, id=232, 198.0198pt x 180.675pt>
-File: img/Resistiv.png Graphic file (type png)
- <use img/Resistiv.png>
-Package pdftex.def Info: img/Resistiv.png used on input line 298.
-(pdftex.def)             Requested size: 295.90979pt x 270.01657pt.
+[17] [18 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/anr-dialog.png>]
+<img/Android_Komponent_Model.png, id=276, 208.78pt x 110.4125pt>
+File: img/Android_Komponent_Model.png Graphic file (type png)
 
+<use img/Android_Komponent_Model.png>
+Package pdftex.def Info: img/Android_Komponent_Model.png used on input line 339
+.
+(pdftex.def)             Requested size: 221.93375pt x 117.3753pt.
+ [19 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/Android_Komponent_Model
+.png>]
+<img/activity_lifecycle.png, id=283, 524.96124pt x 675.52374pt>
+File: img/activity_lifecycle.png Graphic file (type png)
 
-LaTeX Warning: Citation `002' on page 14 undefined on input line 299.
-
-
-LaTeX Warning: Citation `002' on page 14 undefined on input line 299.
-
-[14 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/SharedMemory_RaceConditi
-on.png>] <img/surface_accustic_wave.png, id=237, 182.1204pt x 180.675pt>
-File: img/surface_accustic_wave.png Graphic file (type png)
-
-<use img/surface_accustic_wave.png>
-Package pdftex.def Info: img/surface_accustic_wave.png used on input line 308.
-(pdftex.def)             Requested size: 295.90979pt x 293.60164pt.
-
-
-LaTeX Warning: Citation `002' on page 15 undefined on input line 309.
-
-
-LaTeX Warning: Citation `002' on page 15 undefined on input line 309.
-
-[15pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.313 D
-       as technische Prinzip dieser Technologie ist vergleichbar mit dem des...
- <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/Resistiv.png>]
-<img/oberflaechen_kapazitiv.png, id=243, 268.00125pt x 207.02344pt>
-File: img/oberflaechen_kapazitiv.png Graphic file (type png)
-
-<use img/oberflaechen_kapazitiv.png>
-Package pdftex.def Info: img/oberflaechen_kapazitiv.png used on input line 318.
-
-(pdftex.def)             Requested size: 295.90979pt x 228.57938pt.
- [16pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
-3}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.323 D
-       ie kapazitive Touchscreen-Technologie registriert Berührungen durch ...
- <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/surface_accustic_wave.png>]
-<img/projiziert_kapazitiv.png, id=249, 84.03488pt x 88.83688pt>
-File: img/projiziert_kapazitiv.png Graphic file (type png)
-
-<use img/projiziert_kapazitiv.png>
-Package pdftex.def Info: img/projiziert_kapazitiv.png used on input line 329.
-(pdftex.def)             Requested size: 295.90979pt x 312.8314pt.
-
-
-LaTeX Warning: Citation `002' on page 17 undefined on input line 330.
-
-
-LaTeX Warning: Citation `002' on page 17 undefined on input line 330.
-
-[17pdfTeX warning (ext4): destination with the same identifier (name{figure.1.4
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.334 D
-       ie projiziert- kapazitive Touchscreen-Technologie erweitert die Oberf...
- <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/oberflaechen_kapazitiv.png>
-]
-Underfull \hbox (badness 5274) in paragraph at lines 334--335
-\T1/lmr/m/n/12 (+20) Die projiziert- ka-pa-zi-ti-ve Touchscreen-Technologie er-
-wei-tert die
- []
-
-[18pdfTeX warning (ext4): destination with the same identifier (name{figure.1.5
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.336 \chapter
-              {Gestenerkennung und Steuerung von Funktionalität durch Gesten} 
-<C:/projects/ReactiveAndroid/XXDokument/Thesis/img/projiziert_kapazitiv.png>]
+<use img/activity_lifecycle.png>
+Package pdftex.def Info: img/activity_lifecycle.png used on input line 357.
+(pdftex.def)             Requested size: 332.89499pt x 428.3859pt.
+ [20] [21 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/activity_lifecycle
+.png>] [22] [23]
 chapter 2.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 344.
+<img/BlockingIO_testApp_Mockup.png, id=304, 561.09625pt x 377.41pt>
+File: img/BlockingIO_testApp_Mockup.png Graphic file (type png)
+
+<use img/BlockingIO_testApp_Mockup.png>
+Package pdftex.def Info: img/BlockingIO_testApp_Mockup.png used on input line 3
+86.
+(pdftex.def)             Requested size: 332.89499pt x 223.91386pt.
+ [24
+
+]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 403.
+
 
 ("C:\Programme\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1226,169 +1169,299 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--377
+Underfull \hbox (badness 10000) in paragraph at lines 391--405
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--377
+Underfull \hbox (badness 10000) in paragraph at lines 391--405
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--377
+Overfull \hbox (43.83937pt too wide) in paragraph at lines 391--405
+\T1/lmtt/m/n/12 summe = summe + (randomPrimeNumber.mod(BigInteger.TEN)).intValu
+e(); 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 391--405
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--377
+Underfull \hbox (badness 10000) in paragraph at lines 391--405
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--377
+Overfull \hbox (6.78935pt too wide) in paragraph at lines 391--405
+\T1/lmtt/m/n/12 randomPrimeNumber = randomPrimeNumber.divide(BigInteger.TEN); 
+ []
+
+[25 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/BlockingIO_testApp_Mocku
+p.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--377
-
- []
-
-[19
-
-] [20] [21]
-
-LaTeX Warning: Citation `003' on page 22 undefined on input line 402.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 380--404
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--404
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+$\OMS/lmsy/m/n/12 $ \T1/lmtt/m/n/12 @param aCallbackHandler the Callback Handl
+er for sending
+ []
+
+
+Overfull \hbox (6.61436pt too wide) in paragraph at lines 407--443
+\T1/lmtt/m/n/12 messages to ui-thread $\OMS/lmsy/m/n/12 $\T1/lmtt/m/n/12 / pub
+lic RandomPrimeNumGenerator(final
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+\T1/lmtt/m/n/12 bundle.putCharArray(String.valueOf(targetView.getId()),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 7326) in paragraph at lines 407--443
+\T1/lmr/m/n/12 (+20) Das hier ver-wen-de-te Hand-ler Ob-jekt wird dem Kon-struk
+-tor
+ []
+
+
+Underfull \hbox (badness 3364) in paragraph at lines 407--443
+\T1/lmr/m/n/12 (+20) aus der Ac-ti-vi-ty �ber-ge-ben. Wird die durch den Kon-st
+ruk-tor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Overfull \hbox (53.10187pt too wide) in paragraph at lines 407--443
+\T1/lmtt/m/n/12 RandomPrimeNumGenerator runnable = new RandomPrimeNumGenerator(
+aView,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--443
+
+ []
+
+[26] [27]
+Underfull \hbox (badness 10000) in paragraph at lines 454--488
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--488
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--488
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--488
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--488
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--488
+
+ []
+
+[28] [29]
+
+LaTeX Warning: Citation `003' on page 30 undefined on input line 513.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--515
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--515
 \T1/lmtt/m/n/12 matrix.postTranslate(event.getX() - start.x, event.getY() -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--404
+Underfull \hbox (badness 10000) in paragraph at lines 491--515
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--404
+Underfull \hbox (badness 10000) in paragraph at lines 491--515
 
  []
 
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 408--417
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 519--528
 
  []
 
 
-Underfull \hbox (badness 1888) in paragraph at lines 408--417
+Underfull \hbox (badness 1888) in paragraph at lines 519--528
 \T1/lmr/m/n/12 (+20) ten auf dem Touch-bild-schirm er-mit-telt wer-den. In ei-n
 em Ko-or-
  []
 
 
-Underfull \hbox (badness 3148) in paragraph at lines 408--417
+Underfull \hbox (badness 3148) in paragraph at lines 519--528
 \T1/lmr/m/n/12 (+20) Stre-cke von P1(xp1|yp1) und P2(xp2|yp2) wie folgt be-rech
 -net:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--417
+Underfull \hbox (badness 10000) in paragraph at lines 519--528
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--417
+Underfull \hbox (badness 10000) in paragraph at lines 519--528
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--417
+Underfull \hbox (badness 10000) in paragraph at lines 519--528
 
  []
 
-[23] [24] <img/touchFragments.png, id=290, 911.405pt x 443.6575pt>
+[31] [32] <img/touchFragments.png, id=349, 911.405pt x 443.6575pt>
 File: img/touchFragments.png Graphic file (type png)
 
 <use img/touchFragments.png>
-Package pdftex.def Info: img/touchFragments.png used on input line 442.
+Package pdftex.def Info: img/touchFragments.png used on input line 553.
 (pdftex.def)             Requested size: 295.90979pt x 144.0448pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 435--446
+Underfull \hbox (badness 10000) in paragraph at lines 546--557
 
  []
 
 
-Underfull \hbox (badness 2556) in paragraph at lines 435--446
+Underfull \hbox (badness 2556) in paragraph at lines 546--557
 \T1/lmr/m/n/12 (+20) Wird je-doch die-sel-be View-Instanz in-ner-halb der Touch
 Listener-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 435--446
+Underfull \hbox (badness 10000) in paragraph at lines 546--557
 
  []
 
-[25] [26pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.2.6}) has been already used, duplicate ignored
+[33] [34pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.2.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.451 
+l.562 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/touchFragments.png>]
 No file MasterThesis_Konzepte_der_Nebenläufigkeit_v1.0.bbl.
-[27] ("C:\Programme\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+[35] ("C:\Programme\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (C:\projects\ReactiveAndroid\XXDokument\Thesis\listings/Touch.java
 LaTeX Font Info:    Font shape `OMS/lmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 11.
- [28
+ [36
 
 ]
-[29]
+[37]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 118.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 118.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 118.
- [30] [31] [32]
+ [38] [39] [40]
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 225.
-) [33]
+) [41]
 chapter A.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
-[34
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 608.
+[42
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 608.
 
 (C:\projects\ReactiveAndroid\XXDokument\Thesis\MasterThesis_Konzepte_der_Nebenl
 äufigkeit_v1.0.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 497.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 497.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 608.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 608.
 Package rerunfilecheck Info: File `MasterThesis_Konzepte_der_Nebenläufigkeit_v
 1.0.out' has not changed.
-(rerunfilecheck)             Checksum: 0BD3E517DC33109D625F524983921964;2502.
+(rerunfilecheck)             Checksum: B38D28BA67C088F966E87547CA70769B;2812.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 497.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 608.
  ) 
 Here is how much of TeX's memory you used:
- 15371 strings out of 494045
- 233265 string characters out of 3149914
- 500247 words of memory out of 3000000
- 17982 multiletter control sequences out of 15000+200000
- 80251 words of font info for 116 fonts, out of 3000000 for 9000
+ 15398 strings out of 494045
+ 233577 string characters out of 3149914
+ 500654 words of memory out of 3000000
+ 17986 multiletter control sequences out of 15000+200000
+ 80342 words of font info for 117 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
  43i,8n,66p,2359b,2033s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Programme/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Programme/MiKTeX 2.
@@ -1405,10 +1478,10 @@ public/lm/lmmi8.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C
 me/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Programme/MiKTeX 2.9/fonts
 /type1/public/lm/lmsy10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmtt
 10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on MasterThesis_Konzepte_der_Nebenläufigkeit_v1.0.pdf (34 pages
-, 729804 bytes).
+Output written on MasterThesis_Konzepte_der_Nebenläufigkeit_v1.0.pdf (42 pages
+, 548421 bytes).
 PDF statistics:
- 682 PDF objects out of 1000 (max. 8388607)
- 301 named destinations out of 1000 (max. 500000)
- 22798 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 745 PDF objects out of 1000 (max. 8388607)
+ 322 named destinations out of 1000 (max. 500000)
+ 22830 words of extra memory for PDF output out of 24883 (max. 10000000)
 

@@ -12,17 +12,21 @@
 \BOOKMARK [1][-]{section.1.6}{Risiken von Nebenl\344ufigkeit}{chapter.1}% 12
 \BOOKMARK [2][-]{subsection.1.6.1}{Philosophenproblem}{section.1.6}% 13
 \BOOKMARK [2][-]{subsection.1.6.2}{Race Conditions}{section.1.6}% 14
-\BOOKMARK [2][-]{subsection.1.6.3}{Resistive Touchbildschirm Technologie}{section.1.6}% 15
-\BOOKMARK [2][-]{subsection.1.6.4}{Surface Accustic Wave \(SAW\)}{section.1.6}% 16
-\BOOKMARK [2][-]{subsection.1.6.5}{Oberfl\344chen-kapazitive Touchscreen Technologie}{section.1.6}% 17
-\BOOKMARK [2][-]{subsection.1.6.6}{Projiziert Kapazitiver Touchscreen Technologie}{section.1.6}% 18
-\BOOKMARK [0][-]{chapter.2}{Gestenerkennung und Steuerung von Funktionalit\344t durch Gesten}{}% 19
-\BOOKMARK [1][-]{section.2.1}{Signalverarbeitung und erste Gesteninterpretation durch das Android OS}{chapter.2}% 20
-\BOOKMARK [1][-]{section.2.2}{Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\344t durch Gesten}{chapter.2}% 21
-\BOOKMARK [1][-]{section.2.3}{Gestengesteuertes Vergr\366\337ern und Verkleinern sowie Ver\344nderung des Fokus f\374r Darstellungsobjekte vom Typ ImageView}{chapter.2}% 22
-\BOOKMARK [1][-]{section.2.4}{Abstraktion gestengesteuerter Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{chapter.2}% 23
-\BOOKMARK [2][-]{subsection.2.4.1}{Generalisierung der Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{section.2.4}% 24
-\BOOKMARK [2][-]{subsection.2.4.2}{Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\344ten}{section.2.4}% 25
-\BOOKMARK [1][-]{section.2.5}{Fazit}{chapter.2}% 26
-\BOOKMARK [0][-]{lstnumber.1.229}{Anhang}{}% 27
-\BOOKMARK [0][-]{appendix.A}{Erkl\344rung}{}% 28
+\BOOKMARK [2][-]{subsection.1.6.3}{Speicherleck}{section.1.6}% 15
+\BOOKMARK [2][-]{subsection.1.6.4}{Reihenfolgeproblem}{section.1.6}% 16
+\BOOKMARK [1][-]{section.1.7}{Parallelverarbeitung und Besonderheiten unter Android}{chapter.1}% 17
+\BOOKMARK [2][-]{subsection.1.7.1}{Prozesse und Threads unter Android}{section.1.7}% 18
+\BOOKMARK [2][-]{subsection.1.7.2}{Besonderheiten im Android Umfeld bez\374glich des Thread Managements}{section.1.7}% 19
+\BOOKMARK [1][-]{section.1.8}{Anforderungen an Applikationen}{chapter.1}% 20
+\BOOKMARK [1][-]{section.1.9}{Fokus und Eingrenzung}{chapter.1}% 21
+\BOOKMARK [0][-]{chapter.2}{Asynchrone Parallelverarbeitung unter Android}{}% 22
+\BOOKMARK [1][-]{section.2.1}{Bolckierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}{chapter.2}% 23
+\BOOKMARK [1][-]{section.2.2}{Parallelverarbeitung mit der Java Standard Edition \(Java Concurrency\)}{chapter.2}% 24
+\BOOKMARK [1][-]{section.2.3}{Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\344t durch Gesten}{chapter.2}% 25
+\BOOKMARK [1][-]{section.2.4}{Gestengesteuertes Vergr\366\337ern und Verkleinern sowie Ver\344nderung des Fokus f\374r Darstellungsobjekte vom Typ ImageView}{chapter.2}% 26
+\BOOKMARK [1][-]{section.2.5}{Abstraktion gestengesteuerter Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{chapter.2}% 27
+\BOOKMARK [2][-]{subsection.2.5.1}{Generalisierung der Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{section.2.5}% 28
+\BOOKMARK [2][-]{subsection.2.5.2}{Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\344ten}{section.2.5}% 29
+\BOOKMARK [1][-]{section.2.6}{Fazit}{chapter.2}% 30
+\BOOKMARK [0][-]{lstnumber.1.229}{Anhang}{}% 31
+\BOOKMARK [0][-]{appendix.A}{Erkl\344rung}{}% 32
