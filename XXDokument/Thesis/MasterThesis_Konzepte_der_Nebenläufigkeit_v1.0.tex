@@ -440,7 +440,204 @@ public void initCalculation(View aView)\newline
      newThread.start();\newline
   \} \newline
 } \newline
+Die Händler Instanz, welche dem Konstruktor der Klasse \texttt{RadomPrimeNumGenerator} mitgegeben wurde, dient dabei der Kommunikation zwischen der Activity im UI-Thread und dem neuen Thread. So ist es möglich mittels einer Rückruf Methode, Informationen zurück an den UI-Thread zu spielen. Die Handler Implementierung stammt aus dem Packet android.os und ist demnach keine Funktionalität aus der Java Standard Edition. Es gibt alternativ auch andere Möglichkeiten mittels der Mechanismen aus der Java Standard Etition die Kommunikation zwischen den Threads zu realisieren. So kann eine eigene Nachrichteninfrastruktur geschaffen werden (vgl. Kapitel 1.x MessageQueue) oder es können auch Java Futures genutzt werden. Dennoch ist es für dieses Beispiel sinnvoll sich der Android-spezifischen Funktionalität zur Kommunikation über Thread Grenzen zu bedienen, denn diese wird bereits durch das Android Betriebssystem für jede Applikation bereitgestellt. Eine eigene Implementierung ist daher zwar jeder zeit möglich, aber stellt eine unnötige Redundanz dar. Diese Funktionalität wird im nächsten Abschnitt kurz erläutert um weiter auf deren korrekte Anwendung eingehen zu können.
 
+\subsection{Handler-Looper Mechanismus zur Inter-Thread-Kommunikation}
+Das Android SDK bietet für die Kommunikation zwischen Threads, die der selben Applikation angehören den Handler Looper Mechnismus an. Damit ist es möglich einen Thread an die applikationsinterne Nachrichteninfrastruktur einzuhängen und mit dem Haupt Thread, also hier dem UI Thread kommunizieren. Die Kommunikation ist dabei unidirektional. Hier gelangen Nachrichten nur von den sekundären Threads über die Nachrichtenstruktur zum UI-Thread und nicht umgekehrt. Die Nachrichtenstruktur wird in Form einer Nachrichtenwarteschlange umgesetzt (einer Instanz vom Typ MessageQueue), die nach dem First In First Out Prinzip durch ein Objekt vom Typ android.os.Looper abgearbeitet wird. Für die Instantiierung des Handlers gilt, dass er stets nur aus dem Thread erzeugt werden darf, der auch über eine valide Looper Instanz und somit über eine MessageQueue Instanz verfügt. Dies ist per Default immer der UI-Thread.
+\begin{figure}[H]
+  \begin{centering}
+    \includegraphics[width=1\textwidth]{img/handler_looper.png}
+ %   \caption{Race_Condition beim Shared Memory  \cite[vgl. ]{002}}
+    \label{handler_looper}
+  \end{centering}
+\end{figure}
+Die o.g. MessageQueue und die Looper-Instanz wird zum Initialisierungszeitpunkt der Applikation erzeugt. Sie bildet über die Kommunikation zwischen sekundären Threads und dem UI Thread hinaus, auch die Kommunikation zwischen den Basiskomponenten der Applikation ab (siehe Kapitel 1.3.3 Komponentenmodell). Darunter zählen u.a. Activities, Broadcast Receivers, etc.
+
+\subsection{Verwendung des Handler Looper Mechnismus }
+In unserem Beispiel wird ein Handler aus der Activity erzeugt, die in dem UI-Thread verarbeitet wird. Der Hander kann somit in seinem Konstruktor auf die Looper Instanz des UI Threads zugreifen und damit auch die Referenz der MessageQueue abrufen, in die er Nachrichten ablegen soll. In der run()-Methode der Klasse RandomPrimeNumGenerator wird das Ergebnis der Berechnung als gebundenes Schlüssel-Wert-Paar in einem Nachrichtenobjekt vom Typ anroid.os.Message abgelegt und der Handlerinstanz als zu versendende Nachricht übergeben.\newline\newline
+\texttt{
+@Override\newline
+public void run()\newline
+  \{\newline
+     Log.d(TAG, \grqq Call run\grqq);\newline
+       String result = startCalculation();\newline
+       Message message = new Message();\newline
+       Bundle bundle = new Bundle();\newline
+       bundle.putCharArray(String.valueOf(targetView.getId()),
+                           result.toCharArray());
+       message.setData(bundle);\newline
+       Log.d(TAG,\grqq Call handler\grqq);\newline
+       handler.sendMessage(message);\newline
+ \}\newline
+}\newline
+Die Handlerimplementierung in der Activity liefert die Rückruf Methode \texttt{handleMessage()}, die der Looper aufruft, wenn er die Nachricht unserer Handlerinstanz aus der Nachrichtenschlange nimmt.\newline\newline
+\texttt{ 
+private static Handler HANDLER = new Handler()\newline
+  \{\newline
+     @Override\newline
+     public void handleMessage(Message msg)\newline
+     \{\newline
+        updateView(msg);\newline
+     \}\newline
+  \};\newline
+}\newline
+Im Falle von mehreren Handlerinstanzen, die Nachrichten in die MessageQueue ablegen, gibt es keine Kontrolle über die Reihenfolge. Die Nachrichten werden durch den Looper in der Regel (abhängig von der MessageQueue Implementierung) nach dem First In First Out Prinzip abgearbeitet, welches für komplexere Handler – Thread Konstrukte (also mehr als ein sekundärer Thread) zu beachten ist. Die Methode updateView(msg) der Activity wird im weiteren Programmverlauf nun asynchron aufgerufen und extrahiert die Nutzdaten aus der übermittelten Nachricht, um damit die jeweiligen Interaktionselemente der Benutzerschnittstelle zu aktualisieren.\newline\newline
+\texttt{ 
+  public static void updateView(Message aMessage)\newline
+  \{ \newline
+     Log.d(\grqq RandomPrimeNumGenerator\grqq, \grqq Callback handleMessage\grqq);\newline
+     Bundle bundle = aMessage.getData();\newline
+\newline
+     if(bundle.containsKey(String.valueOf(R.id.startCalculation1)))\newline
+     \{\newline
+        char[] firstResult = (char[])bundle.get(String.valueOf(R.id.startCalculation1));\newline
+        Log.d(\grqq RandomPrimeNumGenerator\grqq, \grqq Callback view string: \grqq + String.valueOf(firstResult));\newline
+\newline
+        firstCalculationOutput.setText(String.valueOf(firstResult));\newline
+        firstCalculationOutput.invalidate();\newline
+    \}\newline
+\newline
+     if(bundle.containsKey(String.valueOf(R.id.startCalculation2)))\newline
+     \{\newline
+        char[] secondResult = (char[])bundle.get(String.valueOf(R.id.startCalculation2));\newline
+        Log.d(\grqq RandomPrimeNumGenerator\grqq, \grqq Callback view string: \grqq +                                                                                                                                                                 
+      String.valueOf(secondResult));\newline\newline
+        secondCalculationOutput.setText(String.valueOf(secondResult));\newline
+        secondCalculationOutput.invalidate();\newline
+     \}\newline
+  \}\newline
+}\newline
+\subsection{Probleme bei der Nutzung des Handler Looper Mechanismus}
+Das o.g. Implementierungsbeispiel zeigt wie Parallelverarbeitung mit der Standard Thread Erzeugung aus dem \texttt{java.util.concurrency} Paket realisiert werden kann. Jedoch besteht so wie der Handler Looper Mechnismus hier verwendet wird ein Risiko. Dadurch, dass durch den UI-Thread eine Handler Instanz erzeugt wird und diese dann im sekundären Thread genutzt wird, können Memory Leaks (Speicherlecks) entstehen die, die Stabilität des Systems gefährden können. Innerhalb von Applikationen unter Android werden in der Regel für bestimmte Ereignisse wie z.B. Konfigurationsänderungen (Drehen des Bildschirm = Veränderung des Darstellungsformates) die betreffenden Activities neu instantiiert und die alten Instanzen dem Garbage Collector übergeben. Die Folgende Graphik skizziert die Abhängigkeiten bei einem möglichen Implementierungsszenario:
+\begin{figure}[H]
+  \begin{centering}
+    \includegraphics[width=0.8\textwidth]{img/weakReference.jpeg}
+ %   \caption{Race_Condition beim Shared Memory  \cite[vgl. ]{002}}
+    \label{weakReference}
+  \end{centering}
+\end{figure}
+In diesem Fall kann die alte Activity Instanz nicht entsorgt werden, da diese immer noch eine Referenz auf das aktuell in einem zweiten Thread genutzte Handler Objekt hält. Zusätzlich wird innerhalb der Handler Klasse auf ein Element der Activity zugegriffen. Beide Referenzen hindern den Garbage Collector daran die Activity abzuräumen, solange die Verarbeitung im sekundär Thread noch läuft. Dauert die Hintergrundverarbeitung nun sehr lange, so ist es durch häufiges Drehen des Displays schnell möglich, weitere Activity Instanzen zu erzeugen und somit das System zu destabilisieren (der Hauptspeicher läuft voll). Dieser Effekt wird noch dadurch verstärkt, dass gerade die Activity alle GUI Elemente referenziert, also sehr speicherintensiv ist. Der Konstruktor der Klasse android.os.Handler versucht bereits zur Instanziierung den Entwickler vor diesem Risiko zu warnen:\newline
+\texttt{ \newline
+/$\ast\ast$\newline
+    $\ast$ Default constructor associates this handler with the queue for the current thread.\newline
+    $\ast$ If there isn't one, this handler won't be able to receive messages.\newline
+    $\ast$/\newline
+   public Handler() \{\newline
+     if (FIND\_POTENTIAL\_LEAKS) \{ \newline
+           final Class<? extends Handler> klass = getClass();\newline
+           if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) \&\& 
+                 (klass.getModifiers() \& Modifier.STATIC) == 0) \{\newline
+               Log.w(TAG, \grqq The following Handler class should be static or leaks might occur: \grqq +
+                   klass.getCanonicalName());\newline
+           \}\newline
+       \}\newline
+\newline
+       mLooper = Looper.myLooper();\newline
+       if (mLooper == null) \{\newline
+           throw new RuntimeException(
+               \grqq Can't create handler inside thread that has not called Looper.prepare()\grqq);\newline
+       \}\newline
+       mQueue = mLooper.mQueue;\newline
+      mCallback = null;\newline
+   \}\newline
+}\newline
+Hier wird deutlich, dass explizit geprüft wird, ob das Handler Objekt als statisches Objekt aus einer inneren Klasse heraus deklariert wurde. Falls nicht wird schon hier eine Warnung ausgegeben, dass an dieser Stelle ein Speicherleck droht:\newline
+\texttt{Log.w(TAG, \grqq The following Handler class should be static or leaks might occur: \grqq +
+               	class.getCanonicalName());}\newline
+Für die Handler Referenz würde somit schon die Definition als statische Instanz ausreichen. Werden jedoch dem sekundär Thread weitere Referenzen übergeben sind diese als WeakReferences zu kapseln. Diese zeigen dem Garbage Collector an, dass er bei der Evaluation z.B. einer Activity Instanz nicht die aktuelle Nutzung von WeakReferenzes untersuchen muss.
+
+\subsection{Vorsicht im Umgang mit Java Futures}
+Als Nachtrag zu dem Implementierungsbeispiel aus dem letzten Abschnitt, wird auf die berechtigte Fragestellung eingegangen, ob nicht auch Java Futures für den Informationsaustausch, bzw. die Ergebnisübergabe genutzt werden können anstatt sich dem Handler Looper Mechanismus zu bedienen. Java Futures bieten zwar grundsätzlich die Möglichkeit asynchrone Verarbeitung zu realisieren, jedoch eignen sie sich in diesem Anwendungszenario eher weniger für den Austausch von Nachrichten bzw. Rückgabe des Ergebnisses aus der Hintergrundberechnung. Denn wird für den Erhalt eines Ergebnisses vom UI Thread Future.get() aufgerufen so, wird der UI Thread durch die get()-Methode blockiert, solange angeforderte Ergebnis noch nicht vorliegt. Dies ist gerade das Verhalten was verhindert werden muss. Alternativ kann ein Konstrukt entworfen werden, in der kontinuierlich oder in bestimmten Zeitabständen versucht wird das Ergebnis abzufragen, doch diese Lösung ist weder elegant noch performant. Entsprechend eignet sich die Java Standart Implementierung des Future eher weniger für die in dieser Arbeit fokussierten Problemstellung. 
+
+\section{Parallelverarbeitung mit AndroidAsyncTask (Anroid Concurrency)}
+Im Vorangegangenen Abschnitt wurde gezeigt, das die Realisierung mittels Java Concurrency und dem Handler Looper Konstrukt durchaus einen gewissen Komplexitätsgrad und damit auch einige Gefahren für eine stabile Anwendung birgt. In diesem Abschnitt wird ein Konzept von Google vorgestellt, welches die Realisierung von nebenläufiger Verarbeitung deutlich vereinfachen soll. Der Schlüssel hierzu ist die abstrakte Klasse android.os.AsyncTask. Sie stellt eine Hilfsklasse zu dem oben beschriebenen Handler Looper Mechanismus dar und muss für die Verwendung abgeleitet werden. Dabei sind drei generische Primärparametertypen zu definieren, welche die  Nutzdatentypen zur Initialisierung, Durchführung, und Ergebnisrückgabe der Hintergrundberechnung konkretisieren.\newline
+\newline
+\texttt{private class AsyncTaskImpl extends AsyncTask<Params, Progress, Result>}
+\newline
+Für Parametertypen gilt:
+\begin{itemize}
+\item Params $\rightarrow$ betrifft alle Parameter, die Nutzdaten für die Hintergrundverarbeitung zu dessen Ausführung mittels der Methode \texttt{doInBackground(Params… params)} übertragen.
+\item Progress $\rightarrow$ betrifft alle Parameter, die während der Ausführung mittels der Rückruf Methode \texttt{onPublishProgress(Progress… progress)} den Fortschritt, bzw  den Status der Hintergrundverarbeitung an den UI-Thread transportieren.
+\item Result $\rightarrow$ betrifft alle Parameter, die das Ergebnis aus der Hintergrundverarbeitung mittels der Rückruf Methode \texttt{onPostExecute(Result …result)} an den UI-Thread übergeben.
+\end{itemize}
+
+Die Android Developper Dokumentation nennt weiter die vier wesentlichen Methoden zur Steuerung der Hintergrundverarbeitung:
+\begin{itemize}
+\item \texttt{onPreExecute()}
+\item \texttt{doInBackground(Params…params)}
+\item \texttt{onProgessUpdate(Progress… progress)}
+\item \texttt{onPostExecute(Result… result)}
+\end{itemize}
+Die Methoden teilen das Ausführungsmodell der Verarbeitung im AsynchTask in klar voneinander abgetrennte Abschnitte (siehe auch Sequenzdiagramm in Abbildung xx). Die Methodennamen geben einen ersten Hinweis auf die jeweiligen Aufrufzeitpunkte, die in der Klasse AsyncTask fest definiert sind. So wird die Methode\newline \newline
+\texttt{onPreExecute()}\newline
+vor der Hintergrundverarbeitung bereits im Konstruktor der Klasse AsyncTask aufgerufen. Hier kann entsprechend alle Logik integriert werden, die noch vor der eigentlichen Hintergrundverarbeitung stattfinden soll. Der hier definierte Code wird noch auf dem UI-Thread ausgeführt. Dies bietet sich an für Initialisierungen wie z.B. für eine Prozessanzeige.\newline
+Die Methode\newline \newline
+\texttt{doInBackground()}\newline\newline
+ist als abstrakte Methode gekennzeichnet und muss bei der Vererbung von AsyncTask überschrieben werden. Sie kapselt die aufzurufende Logik um diese in einem separaten Thread aufrufen zu können. In unserem Beispiel wird hier die zeitintensive Berechnung definiert. Die \texttt{doInBackground()}-Methode ist eine Rückruf-Methode und wird indirekt angestoßen durch den Aufruf\newline \newline
+\texttt{asyncTaskInstance.execute(Params…params)}\newline
+Die Klasse \texttt{AndroidAsyncRandomPrimeGen} überschreibt die \texttt{doInBackground()}-Methode und integriert hier die zeitintensive Verarbeitung:
+\texttt{
+@Override\newline
+  protected AsyncTaskResult<String> doInBackground(Integer... params)\newline
+  \{\newline
+     if(params == null || params.length != 1)\newline
+    \{\newline
+        return new AsyncTaskResult<String>(new IllegalArgumentException(\grqq Not the rights params:\grqq + params));\newline
+    \}\newline
+     triggerViewId = params[0].intValue();\newline
+\newline
+     StringBuilder targetString = new StringBuilder(10);\newline
+     for(int i = 0; i < 10; i++)\newline
+    \{\newline
+\newline
+BigInteger veryBig = new BigInteger(1500, new Random());  //Zeitintensive Berechnung \newline
+           //siehe Bsp BlockingEingabeAusgabeBsp...\newline
+     return new AsyncTaskResult<String>(targetString.toString());\newline
+ \}\newline
+}\newline
+Die oben beschriebenen Übergabeparametertypen werden in diesem Codebeispiel zur Methode \texttt{doInBackground()} als Integer konkretisiert und spezifizieren in der Implementierung die ID der View, welche die Berechnung angestoßen hat. An Hand dessen wird später die Ziel-View ermittelt, die das Ergebnis darstellen soll. Das Ergebnis der Berechnung wird hier als konkreter \texttt{AsyncTasResult<String>} Typ zurückgegeben, damit dieser String an die \texttt{onPostExecute(Result … result)} Methode weitergegeben werden kann. Analog zur Hintergrundverarbeitung bietet Google mit der Methode \texttt{onProgressUpdate()} die Möglichkeit aus der laufenden Berechnung im sekundären Thread, Informationen oder Nachrichten wie z.B. Statusmeldungen an den UI Thread zu senden. Die Methode \texttt{onPostExecute()} wird nach Abschluss der Hintergrundoperationen dann wieder auf dem UI-Thread ausgeführt. Sie bietet sich an, um finale Aktualisierungen auf Basis der Ergebnisse aus der Hintergrundverarbeitung durchzuführen. In unserem Beispiel könnte das Ergebnis in die jeweiligen View Objekte der Activity übertragen werden:\newline
+\newline
+\texttt{@Override\newline
+   protected void onPostExecute(AsyncTaskResult<String> result) \{\newline
+...\newline
+           //update user interface\newline
+           String realResult = result.getResult();\newline
+\newline
+           if (triggerViewId == R.id.startCalculation1) \{\newline
+               firstOutputView.setText(realResult);\newline
+               firstOutputView.invalidate();\newline
+           \}\newline
+           if (triggerViewId == R.id.startCalculation2) \{\newline
+               secondOutputView.setText(realResult);\newline
+               secondOutputView.invalidate();\newline
+           \}\newline
+       \}\newline
+}
+Da einzig und allein von den vorgestellten Methoden, die \texttt{doInBackground()} Methode in dem sekundären Thread ausgeführt wird, muss darauf geachtet werden, keine zeitintensive Logik in den anderen Methoden zu integrieren. Ansonsten besteht wieder die Gefahr der blockierenden Anwendung, analog zu dem o.g. Beispiel zur Blockierenden Anwendung. Weiter ist gemäß der Android Developer Dokumentation darauf zu achten, dass nur gering zeitaufwändige (wenige Sekunden) Operationen mittels des AsyncTask in eine Hintergrundverarbeitung ausgelagert werden sollten. Woran das liegt und welche Konsequenzen sich aus längeren Operationen ergeben wird hier nicht genannt. Die Android Developper Dokumentation gibt hierzu lediglich einen groben Überblick wie dieser optimal zu nutzen ist und für welche Problemstellungen sich die Verwendung der Klasse AsyncTask eignet. Es bleiben also weitere Fragen offen:
+\begin{itemize}
+\item Wie funktioniert nun der AsyncTask Mechanismus konkret?
+\item Gemäß der Dokumentation wird die Inter-Thread Kommunikation mittels des oben vorgestellten Handler-Looper Mechanismus (siehe auch Parallelverarbeitung mit Java SE) realisiert. Doch wie wird diese Kommunikation im Detail für die genannten Rückrufmethoden über Thread Grenzen hinaus umgesetzt?
+\item Wie und wann wird der Hintergrund Thread erstellt?
+\item Wie funktionieren die Executor Instanzen insbesondere der \texttt{THREAD-POOL-EXECUTOR} der in der Android Developper Dokumentation lediglich kurz genannt wird?
+\end{itemize}
+Diesen Fragen widmet sich der Folgende Abschnitt in dem genauer auf die konkrete Implementierung der Klasse andorid.os.AsyncTask eingegangen wird.
+
+\subsection{Ausführungsmodell von Android AsyncTask in Bezug auf Multi Threading}
+Im letzten Abschnitt wurde auf die allgemeine Funktionsweise der Klasse android.os.AsyncTask eingegangen, ohne genauer zu hinterfragen wie die einzelnen Mechanismen im Hintergrund funktionieren. Dabei blieben noch einige Fragen offen, deren Klärung nun ein genauerer Blick in die Implementierung der abstrakten Klasse AndroidAsyncTask erfordert. In einem ersten Schritt wird zunächst das Ausführungsmodell gemäß der im letzten Abschnitt vorgestellten Beispielimplementierung im Detail vorgestellt. Hierzu dient das folgende Sequenzdiagramm:
+\begin{figure}[H]
+  \begin{centering}
+    \includegraphics[height=1\textwidth]{img/asyncTask_seqenzdiagramm.png}
+ %   \caption{Race_Condition beim Shared Memory  \cite[vgl. ]{002}}
+    \label{asyncTask_seqenzdiagramm}
+  \end{centering}
+\end{figure}
+Das dargestellte Sequenzdiagramm gibt einen ersten Einblick in die interne Funktionsweise der Klasse AsyncTask. Es ordnet die einzelnen Vorgänge zur Initialisierung, Durchführung und Beendigung der Hintergrundberechung im Android AsycnTask dem jeweiligen Thread zu.  Es ist zu entnehmen, dass die Initialisierungen durch den Aufruf des Konstruktors angestoßen werden und im UI-Thead stattfinden. Zu diesen Initialisierungen gehören:\newline
+\begin{itemize}
+\item Erzeugung der Standart Executor Instanz, die die Ausführung in Thread steuert
+\item Erzeugung einer Worker Instanz, welche die Hintergrundverarbeitung kapselt
+\item Erzeugung einer Queue Instanz welche die später zu verarbeitenden Aufgaben hintereinander anreiht
+\item Erzeugung eines Handlers der die asynchrone Kommunikation zwischen dem Hintergrund Thread und dem UI Thread gemäß des Handler Looper Mechanismus (siehe Abschnitt zu Handler Looper Mechanismus Kapitel 2.x) regelt.
+\end{itemize}
 \glqq Wartend\grqq
 
 
