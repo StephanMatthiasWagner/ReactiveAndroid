@@ -28,11 +28,24 @@
 \BOOKMARK [2][-]{subsection.2.2.4}{Vorsicht im Umgang mit Java Futures}{section.2.2}% 28
 \BOOKMARK [1][-]{section.2.3}{Parallelverarbeitung mit AndroidAsyncTask \(Anroid Concurrency\)}{chapter.2}% 29
 \BOOKMARK [2][-]{subsection.2.3.1}{Ausf\374hrungsmodell von Android AsyncTask in Bezug auf Multi Threading}{section.2.3}% 30
-\BOOKMARK [1][-]{section.2.4}{Erkennung und Interpretation von Gesten sowie Steuerung jeweiliger Funktionalit\344t durch Gesten}{chapter.2}% 31
-\BOOKMARK [1][-]{section.2.5}{Gestengesteuertes Vergr\366\337ern und Verkleinern sowie Ver\344nderung des Fokus f\374r Darstellungsobjekte vom Typ ImageView}{chapter.2}% 32
-\BOOKMARK [1][-]{section.2.6}{Abstraktion gestengesteuerter Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{chapter.2}% 33
-\BOOKMARK [2][-]{subsection.2.6.1}{Generalisierung der Funktionalit\344ten zum Skalieren und Fokussieren von Darstellungselementen}{section.2.6}% 34
-\BOOKMARK [2][-]{subsection.2.6.2}{Ausblick zur Integration der generischen Implementierung zu gestengesteuerten Funktionalit\344ten}{section.2.6}% 35
-\BOOKMARK [1][-]{section.2.7}{Fazit}{chapter.2}% 36
-\BOOKMARK [0][-]{lstnumber.1.229}{Anhang}{}% 37
-\BOOKMARK [0][-]{appendix.A}{Erkl\344rung}{}% 38
+\BOOKMARK [2][-]{subsection.2.3.2}{Serielle Ausf\374hrung in Android AsyncTask}{section.2.3}% 31
+\BOOKMARK [1][-]{section.2.4}{Parallelverarbeitung mit RXJava}{chapter.2}% 32
+\BOOKMARK [2][-]{subsection.2.4.1}{Imperative und Deklarative Programmierung}{section.2.4}% 33
+\BOOKMARK [2][-]{subsection.2.4.2}{Reaktive Programmierung \046 Reactive Manifesto}{section.2.4}% 34
+\BOOKMARK [2][-]{subsection.2.4.3}{RX JAVA Entstehung}{section.2.4}% 35
+\BOOKMARK [2][-]{subsection.2.4.4}{RXJava Funktionsweise}{section.2.4}% 36
+\BOOKMARK [2][-]{subsection.2.4.5}{RXJava in Android}{section.2.4}% 37
+\BOOKMARK [1][-]{section.2.5}{Zusammenfassung}{chapter.2}% 38
+\BOOKMARK [0][-]{chapter.3}{Konzepte der Nebenl\344ufigkeit im kritischen Diskurs}{}% 39
+\BOOKMARK [1][-]{section.3.1}{Chancen und Risiken des Java Concurrency Konzepts}{chapter.3}% 40
+\BOOKMARK [1][-]{section.3.2}{Android Concurrency}{chapter.3}% 41
+\BOOKMARK [1][-]{section.3.3}{RXConcurrency}{chapter.3}% 42
+\BOOKMARK [1][-]{section.3.4}{Szenariobasierte Analyse}{chapter.3}% 43
+\BOOKMARK [2][-]{subsection.3.4.1}{Szenario A}{section.3.4}% 44
+\BOOKMARK [2][-]{subsection.3.4.2}{Szenario B}{section.3.4}% 45
+\BOOKMARK [2][-]{subsection.3.4.3}{Szenario C}{section.3.4}% 46
+\BOOKMARK [2][-]{subsection.3.4.4}{SzenarioD}{section.3.4}% 47
+\BOOKMARK [1][-]{section.3.5}{Fazit}{chapter.3}% 48
+\BOOKMARK [1][-]{section.3.6}{Ausblick}{chapter.3}% 49
+\BOOKMARK [0][-]{lstnumber.1.229}{Anhang}{}% 50
+\BOOKMARK [0][-]{appendix.A}{Erkl\344rung}{}% 51
