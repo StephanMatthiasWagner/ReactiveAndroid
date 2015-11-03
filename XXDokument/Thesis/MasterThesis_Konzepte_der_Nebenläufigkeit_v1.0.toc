@@ -52,11 +52,11 @@
 \contentsline {section}{\numberline {3.2}Android Concurrency}{66}{section.3.2}
 \contentsline {section}{\numberline {3.3}RXConcurrency}{67}{section.3.3}
 \contentsline {section}{\numberline {3.4}Szenariobasierte Analyse}{68}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Szenario A}{70}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Szenario B}{71}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Szenario C}{72}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}SzenarioD}{73}{subsection.3.4.4}
+\contentsline {paragraph}{\nonumberline Szenario A:}{71}{section*.11}
+\contentsline {paragraph}{\nonumberline Szenario B:}{71}{section*.12}
+\contentsline {paragraph}{\nonumberline Szenario C:}{72}{section*.13}
+\contentsline {paragraph}{\nonumberline SzenarioD:}{73}{section*.14}
 \contentsline {section}{\numberline {3.5}Fazit}{75}{section.3.5}
-\contentsline {section}{\numberline {3.6}Ausblick}{75}{section.3.6}
-\contentsline {chapter}{Anhang}{81}{lstnumber.1.229}
-\contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{82}{appendix.A}
+\contentsline {section}{\numberline {3.6}Ausblick}{76}{section.3.6}
+\contentsline {chapter}{Anhang}{82}{lstnumber.1.229}
+\contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{83}{appendix.A}
