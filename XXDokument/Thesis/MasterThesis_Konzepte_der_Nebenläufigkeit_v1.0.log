@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.25)  3 NOV 2015 22:27
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.25)  3 NOV 2015 23:01
 entering extended mode
 **MasterThesis_Konzepte_der_Nebenläufigkeit_v1.0.tex
 
@@ -2096,16 +2096,13 @@ Package rerunfilecheck Info: File `MasterThesis_Konzepte_der_Nebenläufigkeit_v
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1153.
  ) 
 Here is how much of TeX's memory you used:
- 15522 strings out of 494045
- 235691 string characters out of 3149914
+ 15521 strings out of 494045
+ 235681 string characters out of 3149914
  501364 words of memory out of 3000000
- 18042 multiletter control sequences out of 15000+200000
+ 18041 multiletter control sequences out of 15000+200000
  80342 words of font info for 117 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
  43i,8n,66p,2359b,2033s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2119,7 +2116,7 @@ iKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Programme/MiKTeX 2.9/fonts/typ
 e1/public/lm/lmsy10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.p
 fb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
 Output written on MasterThesis_Konzepte_der_Nebenläufigkeit_v1.0.pdf (83 pages
-, 932138 bytes).
+, 932199 bytes).
 PDF statistics:
  994 PDF objects out of 1000 (max. 8388607)
  383 named destinations out of 1000 (max. 500000)
