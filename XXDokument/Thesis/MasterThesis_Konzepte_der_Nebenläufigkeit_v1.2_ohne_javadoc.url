@@ -1,9 +1,15 @@
 %%% jurabib url repository
+\expandafter\urldef\csname jburl@androidConcurrencyCriticalCompare\endcsname\url{http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/}
 \expandafter\urldef\csname jburl@reactiveManifesto\endcsname\url{http://www.reactivemanifesto.org/}
+\expandafter\urldef\csname jburl@rxInitiative\endcsname\url{https://jaxenter.de/neue-initiative-fur-reactive-streams-holt-alle-parteien-an-einen-tisch-1252}
 \expandafter\urldef\csname jburl@androidDevDocu\endcsname\url{http://developer.android.com/reference/android/app/Activity.html}
 \expandafter\urldef\csname jburl@declarativCriticalJurnal\endcsname\url{http://www.informatik-aktuell.de/entwicklung/methoden/deklarative-programmierung-ist-deklarativ-wirklich-instruktiv.html}
 \expandafter\urldef\csname jburl@funcProgrJava\endcsname\url{http://www.angelikalanger.com/Articles/EffectiveJava/70.Java8.FunctionalProg/70.Java8.FunctionalProg.html}
+\expandafter\urldef\csname jburl@rxJavaTutorial\endcsname\url{http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/}
+\expandafter\urldef\csname jburl@rxJavaCaseStudi\endcsname\url{http://www.infoq.com/news/2014/11/android-rxjava-at-soundcloud}
 \expandafter\urldef\csname jburl@philosofen\endcsname\url{https://www.dpunkt.de/java/Programmieren_mit_Java/Multithreading/11.html}
+\expandafter\urldef\csname jburl@futureToObservable\endcsname\url{http://www.markhneedham.com/blog/2013/12/28/rxjava-from-future-to-observable/}
 \expandafter\urldef\csname jburl@heiseReactiveManifesto\endcsname\url{http://www.heise.de/developer/meldung/Ein-Manifest-fuer-Reactive-Programming-1945096.html}
 \expandafter\urldef\csname jburl@rxAllgDoku\endcsname\url{http://reactivex.io/intro.html}
+\expandafter\urldef\csname jburl@rxOnAndroidTips\endcsname\url{http://futurice.com/blog/top-7-tips-for-rxjava-on-android}
 \expandafter\urldef\csname jburl@handlerLooperBlock\endcsname\url{http://www.aviyehuda.com/blog/2010/12/20/android-multithreading-in-a-ui-environment/}

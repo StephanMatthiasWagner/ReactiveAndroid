@@ -20,6 +20,24 @@
   {android5}
 
 \backrefparscanfalse
+\bibitem[{{Corrigall, Devin}\jbdy {2014}}%
+         {}%
+         {{0}{}{misc}{2014}{}{}{}{}%
+          {}}%
+         {{ASYNCHRONOUS ANDROID PROGRAMMING – THE GOOD, THE BAD, AND THE
+  UGLY}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{androidConcurrencyCriticalCompare}
+ \jburldef
+  {androidConcurrencyCriticalCompare}{http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/}%
+ \jbbibargs {\bibnf {{Corrigall, Devin}} {} {} {} {}\bibYear {2014}} {
+  {Corrigall, Devin}} {au} {sexless} {\bibtfont {ASYNCHRONOUS ANDROID
+  PROGRAMMING – THE GOOD, THE BAD, AND THE UGLY}\bibatsep {}  \apyformat
+  {Webseite} \jburluse {androidConcurrencyCriticalCompare}\bibbudcsep
+  {}\urldatecomment 12.11.2015} {\bibhowcited} \jbdoitem {{{Corrigall,
+  Devin}}{}{}{}{}} {} {} \bibAnnoteFile {androidConcurrencyCriticalCompare}
+
+\backrefparscanfalse
 \bibitem[{{Eckel, Bruce und Boner, Jonas}\jbdy {2014}}%
          {}%
          {{0}{}{misc}{2014}{}{}{}{}%
@@ -34,6 +52,24 @@
   {reactiveManifesto}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
   \jbdoitem {{{Eckel, Bruce und Boner, Jonas}}{}{}{}{}} {} {} \bibAnnoteFile
   {reactiveManifesto}
+
+\backrefparscanfalse
+\bibitem[{{Fröhling, Claudia}\jbdy {2014}}%
+         {}%
+         {{0}{}{misc}{2014}{}{}{}{}%
+          {}}%
+         {{Neue Initiative für Reactive Streams holt alle Parteien an einen
+  Tisch}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{rxInitiative}
+ \jburldef
+  {rxInitiative}{https://jaxenter.de/neue-initiative-fur-reactive-streams-holt-alle-parteien-an-einen-tisch-1252}%
+ \jbbibargs {\bibnf {{Fröhling, Claudia}} {} {} {} {}\bibYear {2014}} {
+  {Fröhling, Claudia}} {au} {sexless} {\bibtfont {Neue Initiative für
+  Reactive Streams holt alle Parteien an einen Tisch}\bibatsep {}  \apyformat
+  {Webseite} \jburluse {rxInitiative}\bibbudcsep {}\urldatecomment 12.11.2015}
+  {\bibhowcited} \jbdoitem {{{Fröhling, Claudia}}{}{}{}{}} {} {}
+  \bibAnnoteFile {rxInitiative}
 
 \backrefparscanfalse
 \bibitem[{{Goetz, Brian [et al.]}\jbdy {2006}}%
@@ -104,6 +140,22 @@
   \bibAnnoteFile {funcProgrJava}
 
 \backrefparscanfalse
+\bibitem[{{Law, Dan}\jbdy {2014}}%
+         {}%
+         {{0}{}{misc}{2014}{}{}{}{}%
+          {}}%
+         {{Grokking RxJava}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{rxJavaTutorial}
+ \jburldef
+  {rxJavaTutorial}{http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/}%
+ \jbbibargs {\bibnf {{Law, Dan}} {} {} {} {}\bibYear {2014}} { {Law, Dan}} {au}
+  {sexless} {\bibtfont {Grokking RxJava}\bibatsep {}  \apyformat {Webseite}
+  \jburluse {rxJavaTutorial}\bibbudcsep {}\urldatecomment 12.11.2015}
+  {\bibhowcited} \jbdoitem {{{Law, Dan}}{}{}{}{}} {} {} \bibAnnoteFile
+  {rxJavaTutorial}
+
+\backrefparscanfalse
 \bibitem[{{Loogen, Rita}\jbdy {2002}}%
          {}%
          {{0}{}{misc}{2002}{}{}{}{}%
@@ -117,6 +169,22 @@
   {Phillipps-Universität, Marburg} } {\bibhowcited}  \jbendnote
   {Phillipps-Universität, Marburg} \jbdoitem {{{Loogen, Rita}}{}{}{}{}} {} {}
   \bibAnnoteFile {declarativProgrammingScript}
+
+\backrefparscanfalse
+\bibitem[{{McComb, Matt}\jbdy {2014}}%
+         {}%
+         {{0}{}{misc}{2014}{}{}{}{}%
+          {}}%
+         {{Tackling Complexity in Android Apps with RxJava at SoundCloud}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{rxJavaCaseStudi}
+ \jburldef
+  {rxJavaCaseStudi}{http://www.infoq.com/news/2014/11/android-rxjava-at-soundcloud}%
+ \jbbibargs {\bibnf {{McComb, Matt}} {} {} {} {}\bibYear {2014}} { {McComb,
+  Matt}} {au} {sexless} {\bibtfont {Tackling Complexity in Android Apps with
+  RxJava at SoundCloud}\bibatsep {}  \apyformat {Webseite} \jburluse
+  {rxJavaCaseStudi}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
+  \jbdoitem {{{McComb, Matt}}{}{}{}{}} {} {} \bibAnnoteFile {rxJavaCaseStudi}
 
 \backrefparscanfalse
 \bibitem[{{Middendorf, Stefan [et al.]}\jbdy {3. Auflage 2002}}%
@@ -137,6 +205,22 @@
   12.11.2015} {\bibhowcited}  \jbendnote {dpunkt Verlag GmbH, Heidelberg}
   \jbdoitem {{{Middendorf, Stefan [et al.]}}{}{}{}{}} {} {} \bibAnnoteFile
   {philosofen}
+
+\backrefparscanfalse
+\bibitem[{{Needham, Mark}\jbdy {2014}}%
+         {}%
+         {{0}{}{misc}{2014}{}{}{}{}%
+          {}}%
+         {{RxJava: From Future to Observable}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{futureToObservable}
+ \jburldef
+  {futureToObservable}{http://www.markhneedham.com/blog/2013/12/28/rxjava-from-future-to-observable/}%
+ \jbbibargs {\bibnf {{Needham, Mark}} {} {} {} {}\bibYear {2014}} { {Needham,
+  Mark}} {au} {sexless} {\bibtfont {RxJava: From Future to Observable}\bibatsep
+  {}  \apyformat {Webseite} \jburluse {futureToObservable}\bibbudcsep
+  {}\urldatecomment 12.11.2015} {\bibhowcited} \jbdoitem {{{Needham,
+  Mark}}{}{}{}{}} {} {} \bibAnnoteFile {futureToObservable}
 
 \backrefparscanfalse
 \bibitem[{{Neumann, Alexander}\jbdy {2013}}%
@@ -169,6 +253,22 @@
   \jburluse {rxAllgDoku}\bibbudcsep {}\urldatecomment 12.11.2015}
   {\bibhowcited} \jbdoitem {{{RXCommunity}}{}{}{}{}} {} {} \bibAnnoteFile
   {rxAllgDoku}
+
+\backrefparscanfalse
+\bibitem[{{Tuominen, Timo}\jbdy {2014}}%
+         {}%
+         {{0}{}{misc}{2014}{}{}{}{}%
+          {}}%
+         {{Top 7 Tips for RxJava on Android}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{rxOnAndroidTips}
+ \jburldef
+  {rxOnAndroidTips}{http://futurice.com/blog/top-7-tips-for-rxjava-on-android}%
+ \jbbibargs {\bibnf {{Tuominen, Timo}} {} {} {} {}\bibYear {2014}} { {Tuominen,
+  Timo}} {au} {sexless} {\bibtfont {Top 7 Tips for RxJava on Android}\bibatsep
+  {}  \apyformat {Webseite} \jburluse {rxOnAndroidTips}\bibbudcsep
+  {}\urldatecomment 12.11.2015} {\bibhowcited} \jbdoitem {{{Tuominen,
+  Timo}}{}{}{}{}} {} {} \bibAnnoteFile {rxOnAndroidTips}
 
 \backrefparscanfalse
 \bibitem[{{Vogt, Carsten}\jbdy {2012}}%

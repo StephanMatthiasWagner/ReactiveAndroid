@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.25)  12 NOV 2015 22:30
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.25)  12 NOV 2015 23:10
 entering extended mode
 **MasterThesis_Konzepte_der_Nebenläufigkeit_v1.2_ohne_javadoc.tex
 
@@ -999,7 +999,7 @@ LaTeX Info: Redefining \nameref on input line 131.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<img/fh-koeln-logo.png, id=195, 98.61844pt x 71.51718pt>
+<img/fh-koeln-logo.png, id=187, 98.61844pt x 71.51718pt>
 File: img/fh-koeln-logo.png Graphic file (type png)
 
 <use img/fh-koeln-logo.png>
@@ -1043,22 +1043,18 @@ Package tocbasic Info: character protrusion at toc deactivated on input line 18
 8.
 
 (C:\projects\ReactiveAndroid\XXDokument\Thesis\MasterThesis_Konzepte_der_Nebenl
-äufigkeit_v1.2_ohne_javadoc.toc [3
-
-])
+äufigkeit_v1.2_ohne_javadoc.toc)
 \tf@toc=\write6
- [4]
+ [3
+
+]
 Package tocbasic Info: character protrusion at lof deactivated on input line 18
 9.
 
 (C:\projects\ReactiveAndroid\XXDokument\Thesis\MasterThesis_Konzepte_der_Nebenl
-äufigkeit_v1.2_ohne_javadoc.lof
-Package microtype Info: Character `029' is missing
-(microtype)             in font `T1/lmr/m/sc/12'.
-(microtype)             Ignoring protrusion settings for this character.
-)
+äufigkeit_v1.2_ohne_javadoc.lof)
 \tf@lof=\write7
- [5
+ [4
 
 ]
 chapter 1.
@@ -1077,15 +1073,15 @@ Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              a package that still implements the
 (scrreprt)              deprecated \float@addtolist interface .
 
-[6
+[5
 
-] [7] [8] [9] <img/MessageQueue.png, id=340, 463.7325pt x 368.37625pt>
+] [6] [7] [8] <img/MessageQueue.png, id=231, 463.7325pt x 368.37625pt>
 File: img/MessageQueue.png Graphic file (type png)
 
 <use img/MessageQueue.png>
 Package pdftex.def Info: img/MessageQueue.png used on input line 238.
 (pdftex.def)             Requested size: 295.90979pt x 235.0686pt.
- [10]
+ [9]
 Underfull \hbox (badness 10000) in paragraph at lines 248--251
 
  []
@@ -1095,7 +1091,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 248--251
 
  []
 
-[11pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1103,55 +1099,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 248--251
 l.252 D
        ie letzten beiden Abschnitte haben einen Überblick über Technologie...
  <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/MessageQueue.png>]
-<img/PhilosophenProblem.png, id=349, 261.97874pt x 252.945pt>
+<img/PhilosophenProblem.png, id=241, 261.97874pt x 252.945pt>
 File: img/PhilosophenProblem.png Graphic file (type png)
 
 <use img/PhilosophenProblem.png>
 Package pdftex.def Info: img/PhilosophenProblem.png used on input line 263.
 (pdftex.def)             Requested size: 221.93375pt x 214.28638pt.
- [12] [13pdfTeX warning (ext4): destination with the same identifier (name{figu
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/12'.
+(microtype)             Ignoring protrusion settings for this character.
+ [11] [12pdfTeX warning (ext4): destination with the same identifier (name{figu
 re.1.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.274 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/PhilosophenProblem.pn
-g>] <img/SharedMemory_RaceCondition.png, id=363, 647.41875pt x 179.67125pt>
+g>] <img/SharedMemory_RaceCondition.png, id=257, 647.41875pt x 179.67125pt>
 File: img/SharedMemory_RaceCondition.png Graphic file (type png)
 
 <use img/SharedMemory_RaceCondition.png>
 Package pdftex.def Info: img/SharedMemory_RaceCondition.png used on input line 
 277.
 (pdftex.def)             Requested size: 295.90979pt x 82.12064pt.
- [14pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.288 \subsection
                  {Reihenfolgeproblem} <C:/projects/ReactiveAndroid/XXDokument/T
-hesis/img/SharedMemory_RaceCondition.png>] [15] [16]
-<img/anr-dialog.png, id=383, 281.05pt x 137.51375pt>
+hesis/img/SharedMemory_RaceCondition.png>] [14] [15]
+<img/anr-dialog.png, id=279, 281.05pt x 137.51375pt>
 File: img/anr-dialog.png Graphic file (type png)
  <use img/anr-dialog.png>
 Package pdftex.def Info: img/anr-dialog.png used on input line 323.
 (pdftex.def)             Requested size: 221.93375pt x 108.5885pt.
 
-[17] [18pdfTeX warning (ext4): destination with the same identifier (name{figur
+[16] [17pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.1.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.329 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/anr-dialog.png>]
-<img/Android_Komponent_Model.png, id=395, 208.78pt x 110.4125pt>
+<img/Android_Komponent_Model.png, id=292, 208.78pt x 110.4125pt>
 File: img/Android_Komponent_Model.png Graphic file (type png)
 
 <use img/Android_Komponent_Model.png>
 Package pdftex.def Info: img/Android_Komponent_Model.png used on input line 335
 .
 (pdftex.def)             Requested size: 221.93375pt x 117.3753pt.
- [19pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
+ [18pdfTeX warning (ext4): destination with the same identifier (name{figure.1.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1159,29 +1158,29 @@ Package pdftex.def Info: img/Android_Komponent_Model.png used on input line 335
 l.344 \item S
              ervices können zeitintensive Hintergrundberechnungen abbilden. <C
 :/projects/ReactiveAndroid/XXDokument/Thesis/img/Android_Komponent_Model.png>]
-<img/activity_lifecycle.png, id=402, 524.96124pt x 675.52374pt>
+<img/activity_lifecycle.png, id=299, 524.96124pt x 675.52374pt>
 File: img/activity_lifecycle.png Graphic file (type png)
 
 <use img/activity_lifecycle.png>
 Package pdftex.def Info: img/activity_lifecycle.png used on input line 353.
 (pdftex.def)             Requested size: 332.89499pt x 428.3859pt.
- [20] [21] [22pdfTeX warning (ext4): destination with the same identifier (name
+ [19] [20] [21pdfTeX warning (ext4): destination with the same identifier (name
 {figure.1.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.359 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/activity_lifecycle.pn
-g>] [23] [24]
+g>] [22] [23]
 chapter 2.
-<img/BlockingIO_testApp_Mockup.png, id=429, 561.09625pt x 377.41pt>
+<img/BlockingIO_testApp_Mockup.png, id=329, 561.09625pt x 377.41pt>
 File: img/BlockingIO_testApp_Mockup.png Graphic file (type png)
 
 <use img/BlockingIO_testApp_Mockup.png>
 Package pdftex.def Info: img/BlockingIO_testApp_Mockup.png used on input line 3
 82.
 (pdftex.def)             Requested size: 332.89499pt x 223.91386pt.
- [25
+ [24
 
 ]
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 399.
@@ -1225,7 +1224,7 @@ Overfull \hbox (6.78935pt too wide) in paragraph at lines 387--401
 \T1/lmtt/m/n/12 randomPrimeNumber = randomPrimeNumber.divide(BigInteger.TEN); 
  []
 
-[26pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7
+[25pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1326,13 +1325,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 403--436
 se
  []
 
-[27] [28] <img/handler_looper.png, id=448, 893.3375pt x 577.15625pt>
+[26] [27] <img/handler_looper.png, id=349, 893.3375pt x 577.15625pt>
 File: img/handler_looper.png Graphic file (type png)
 
 <use img/handler_looper.png>
 Package pdftex.def Info: img/handler_looper.png used on input line 441.
 (pdftex.def)             Requested size: 369.88583pt x 238.96936pt.
- [29]
+ [28]
 Underfull \hbox (badness 10000) in paragraph at lines 449--502
 
  []
@@ -1437,21 +1436,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 449--502
 
  []
 
-[30pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8
+[29pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.502 \subsection
                  {Probleme bei der Nutzung des Handler Looper Mechanismus} <C:/
-projects/ReactiveAndroid/XXDokument/Thesis/img/handler_looper.png>] [31]
-[32] <img/weakReference.jpeg, id=469, 232.61906pt x 294.34969pt>
+projects/ReactiveAndroid/XXDokument/Thesis/img/handler_looper.png>] [30]
+[31] <img/weakReference.jpeg, id=372, 232.61906pt x 294.34969pt>
 File: img/weakReference.jpeg Graphic file (type jpg)
 
 <use img/weakReference.jpeg>
 Package pdftex.def Info: img/weakReference.jpeg used on input line 506.
 (pdftex.def)             Requested size: 258.91895pt x 327.66173pt.
- [33]
+ [32]
 Underfull \hbox (badness 10000) in paragraph at lines 511--536
 
  []
@@ -1492,14 +1491,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 511--536
 \T1/lmtt/m/n/12 Log.w(TAG, The following Handler class should be static or
  []
 
-[34pdfTeX warning (ext4): destination with the same identifier (name{figure.2.9
+[33pdfTeX warning (ext4): destination with the same identifier (name{figure.2.9
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.536 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/weakReference.jpeg>]
-[35]
+[34]
 Underfull \hbox (badness 10000) in paragraph at lines 541--546
 
  []
@@ -1510,7 +1509,7 @@ Overfull \hbox (16.05185pt too wide) in paragraph at lines 541--546
 
  []
 
-[36]
+[35]
 Underfull \hbox (badness 4492) in paragraph at lines 549--550
 []\T1/lmr/m/n/12 (+20) Result $\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 (+20) be-trif
 ft al-le Pa-ra-me-ter, die das Er-geb-nis aus
@@ -1627,13 +1626,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 558--608
 , die
  []
 
-[37] [38] [39]
+[36] [37] [38]
 Underfull \hbox (badness 1874) in paragraph at lines 612--613
 []\T1/lmr/m/n/12 (+20) Wie funk-tio-nie-ren die Exe-cu-tor In-stan-zen ins-be-s
 on-de-re der
  []
 
-<img/asyncTask_seqenzdiagramm.png, id=499, 704.6325pt x 694.84593pt>
+<img/asyncTask_seqenzdiagramm.png, id=403, 704.6325pt x 694.84593pt>
 File: img/asyncTask_seqenzdiagramm.png Graphic file (type png)
 
 <use img/asyncTask_seqenzdiagramm.png>
@@ -1645,12 +1644,12 @@ Overfull \hbox (5.2019pt too wide) in paragraph at lines 620--621
  [][] 
  []
 
-[40]
+[39]
 Underfull \hbox (badness 10000) in paragraph at lines 625--626
 
  []
 
-[41pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+[40pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 0}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1677,14 +1676,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 632--660
 
  []
 
-[42] [43]
-<img/ActivitydiagrammAsyncTaskSerialExecutor.png, id=517, 536.0025pt x 1053.937
+[41] [42]
+<img/ActivitydiagrammAsyncTaskSerialExecutor.png, id=421, 536.0025pt x 1053.937
 5pt>
 File: img/ActivitydiagrammAsyncTaskSerialExecutor.png Graphic file (type png)
  <use img/ActivitydiagrammAsyncTaskSerialExecutor.png>
 Package pdftex.def Info: img/ActivitydiagrammAsyncTaskSerialExecutor.png used o
 n input line 707.
 (pdftex.def)             Requested size: 258.91895pt x 509.10062pt.
+
+Underfull \hbox (badness 1817) in paragraph at lines 708--708
+[][]\T1/lmr/m/n/12 (+20) Aktivit�tsdiagramm zum Se-ria-lE-xe-cu-tor in An-dro-i
+d
+ []
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 667--711
 
@@ -1738,26 +1743,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 667--711
 
  []
 
-[44] [45] [46] [47pdfTeX warning (ext4): destination with the same identifier (
+[43] [44] [45] [46pdfTeX warning (ext4): destination with the same identifier (
 name{figure.2.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.715 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/ActivitydiagrammAsync
-TaskSerialExecutor.png>] [48]
+TaskSerialExecutor.png>] [47]
 Overfull \hbox (5.65428pt too wide) in paragraph at lines 722--723
 [] []\T1/lmss/bx/n/12 Deklarative Pro-gram-me[][] \T1/lmr/m/n/12 (-20) stel-len
  eher ab-strak-teProblembeschreibungen
  []
 
-[49] <img/rx-languages.png, id=547, 1027.84pt x 220.825pt>
+[48] <img/rx-languages.png, id=452, 1027.84pt x 220.825pt>
 File: img/rx-languages.png Graphic file (type png)
 
 <use img/rx-languages.png>
 Package pdftex.def Info: img/rx-languages.png used on input line 731.
 (pdftex.def)             Requested size: 332.89499pt x 71.52129pt.
- [50] [51pdfTeX warning (ext4): destination with the same identifier (name{figu
+ [49] [50pdfTeX warning (ext4): destination with the same identifier (name{figu
 re.2.12}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1836,7 +1841,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 738--800
 
  []
 
-[52] [53] [54]
+[51] [52] [53]
 Underfull \hbox (badness 10000) in paragraph at lines 805--814
 
  []
@@ -1851,13 +1856,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 805--814
 
  []
 
-[55] [56] <img/ObserverWorkerChain.jpeg, id=581, 437.38406pt x 382.42876pt>
+[54] [55] <img/ObserverWorkerChain.jpeg, id=488, 437.38406pt x 382.42876pt>
 File: img/ObserverWorkerChain.jpeg Graphic file (type jpg)
 
 <use img/ObserverWorkerChain.jpeg>
 Package pdftex.def Info: img/ObserverWorkerChain.jpeg used on input line 881.
 (pdftex.def)             Requested size: 332.89499pt x 291.06902pt.
- [57]
+ [56]
 Underfull \hbox (badness 10000) in paragraph at lines 889--1029
 
  []
@@ -2040,23 +2045,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 889--1029
 
  []
 
-[58pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+[57pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.1029 
         <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/ObserverWorkerChain.
-jpeg>] [59] [60] [61] [62]
+jpeg>] [58] [59] [60] [61]
 Underfull \hbox (badness 10000) in paragraph at lines 1031--1036
 
  []
 
-[63] [64] [65]
+[62] [63] [64]
 chapter 3.
-[66
+[65
 
-] [67] [68]
+] [66] [67]
 Underfull \hbox (badness 10000) in paragraph at lines 1055--1061
 
  []
@@ -2076,123 +2081,147 @@ Underfull \hbox (badness 10000) in paragraph at lines 1055--1061
 
  []
 
-[69] <img/szenarioBasedAnalysis.png, id=636, 588.1975pt x 816.04875pt>
+[68] <img/szenarioBasedAnalysis.png, id=544, 588.1975pt x 816.04875pt>
 File: img/szenarioBasedAnalysis.png Graphic file (type png)
 
 <use img/szenarioBasedAnalysis.png>
 Package pdftex.def Info: img/szenarioBasedAnalysis.png used on input line 1064.
 
 (pdftex.def)             Requested size: 369.88583pt x 513.1671pt.
- [70] [71pdfTeX warning (ext4): destination with the same identifier (name{figu
+ [69] [70pdfTeX warning (ext4): destination with the same identifier (name{figu
 re.3.14}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.1069 \newpage
                 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/szenarioBase
-dAnalysis.png>] [72] [73] [74] [75] [76]
+dAnalysis.png>] [71] [72] [73] [74] [75]
 (C:\projects\ReactiveAndroid\XXDokument\Thesis\MasterThesis_Konzepte_der_Nebenl
-äufigkeit_v1.2_ohne_javadoc.bbl [77]
+äufigkeit_v1.2_ohne_javadoc.bbl [76]
 chapter without number
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
 (Font)              using `T1/lmr/bx/n' instead on input line 19.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--68
+Underfull \hbox (badness 1701) in paragraph at lines 38--39
+[]\T1/lmr/bx/sc/12 Corrigall, De-vin (2014): \T1/lmr/m/n/12 (+20) ASYN-CHRO-NOU
+S AN-DRO-ID PRO-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+\T1/lmr/m/n/12 (+20) GRAM-MING  THE GOOD, THE BAD, AND THE
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+\T1/lmr/m/n/12 (+20) UGLY. Web-sei-te []URL: [][]$\T1/lmtt/m/n/12 http : / / co
+de . hootsuite . com /$
+ []
+
+
+Overfull \hbox (64.27994pt too wide) in paragraph at lines 38--39
+$\T1/lmtt/m/n/12 asynchronous-[]android-[]programming-[]the-[]good-[]the-[]bad-
+[]and-[]the-[]ugly/$[][][] \T1/lmr/m/n/12 (-20) --
+ []
+
+
+Overfull \hbox (139.37997pt too wide) in paragraph at lines 71--73
+$\T1/lmtt/m/n/12 neue-[]initiative-[]fur-[]reactive-[]streams-[]holt-[]alle-[]p
+arteien-[]an-[]einen-[]tisch-[]1252$[][][] \T1/lmr/m/n/12 (-20) --
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--104
 [][]$\T1/lmtt/m/n/12 http : / / developer . android . com / reference / android
  / app /$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--87
+Underfull \hbox (badness 10000) in paragraph at lines 121--123
 []\T1/lmr/bx/sc/12 Lampe, J�r-gen (2014): \T1/lmr/m/n/12 (+20) Ist de-kla-ra-ti
 v wirk-lich in-struk-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--87
+Underfull \hbox (badness 10000) in paragraph at lines 121--123
 \T1/lmr/m/n/12 (+20) tiv. Web-si-te, Alk-me-ne Verlags- und Me-dien-ge-sell-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--87
+Underfull \hbox (badness 10000) in paragraph at lines 121--123
 \T1/lmr/m/n/12 (+20) schaft mbH, Frank-furt am Main []URL: [][]$\T1/lmtt/m/n/12
  http : / /$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--87
+Underfull \hbox (badness 10000) in paragraph at lines 121--123
 $\T1/lmtt/m/n/12 www . informatik-[]aktuell . de / entwicklung / methoden /$
  []
 
 
-Overfull \hbox (40.50967pt too wide) in paragraph at lines 85--87
+Overfull \hbox (40.50967pt too wide) in paragraph at lines 121--123
 $\T1/lmtt/m/n/12 deklarative-[]programmierung-[]ist-[]deklarativ-[]wirklich-[]i
 nstruktiv .$
  []
 
 
-Underfull \hbox (badness 1968) in paragraph at lines 103--105
+Underfull \hbox (badness 1968) in paragraph at lines 139--141
 []\T1/lmr/bx/sc/12 Langer, An-ge-li-ka und Kreft, Klaus (2013): \T1/lmr/m/n/12 
 (+20) Ef-fec-ti-ve Ja-va
  []
 
 
-Underfull \hbox (badness 2229) in paragraph at lines 103--105
+Underfull \hbox (badness 2229) in paragraph at lines 139--141
 \T1/lmr/m/n/12 (+20) - Ja-va 8 - Func-tio-nal Pro-gram-ming in Ja-va. Web-sei-t
 e &
  []
 
 
-Underfull \hbox (badness 6236) in paragraph at lines 103--105
+Underfull \hbox (badness 6236) in paragraph at lines 139--141
 \T1/lmr/m/n/12 (+20) Jur-nal: Ja-va Ma-ga-zin []URL: [][]$\T1/lmtt/m/n/12 http 
 : / / www . angelikalanger .$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--105
+Underfull \hbox (badness 10000) in paragraph at lines 139--141
 $\T1/lmtt/m/n/12 com / Articles / EffectiveJava / 70 . Java8 . FunctionalProg /
  70 .$
  []
 
+[77
 
-Underfull \hbox (badness 3449) in paragraph at lines 138--140
+]
+Underfull \hbox (badness 3449) in paragraph at lines 206--208
 \T1/lmr/m/n/12 (+20) Stan-dard Edi-ti-on. Web-si-te, dpunkt Ver-lag GmbH, Hei-d
 el-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--157
+Underfull \hbox (badness 10000) in paragraph at lines 239--241
 $\T1/lmtt/m/n/12 meldung / Ein-[]Manifest-[]fuer-[]Reactive-[]Programming-[]194
 5096 .$
  []
 
-[78
 
-]) [79] ("C:\Programme\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-(C:\projects\ReactiveAndroid\XXDokument\Thesis\listings/Touch.java
-LaTeX Font Info:    Font shape `OMS/lmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 11.
- [80
+Underfull \hbox (badness 4441) in paragraph at lines 271--272
+[]\T1/lmr/bx/sc/12 Tuominen, Ti-mo (2014): \T1/lmr/m/n/12 (+20) Top 7 Tips for 
+RxJa-va on An-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
+\T1/lmr/m/n/12 (+20) dro-id. Web-sei-te []URL: [][]$\T1/lmtt/m/n/12 http : / / 
+futurice . com / blog /$
+ []
+
+[78]) [79] [80
 
 ]
-[81]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 118.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 118.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 118.
- [82] [83] [84]
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 225.
-) [85]
 chapter A.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1145.
-[86
+[81
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1145.
@@ -2202,37 +2231,44 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 1145.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1145.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1145.
 
-Package rerunfilecheck Info: File `MasterThesis_Konzepte_der_Nebenläufigkeit_v
-1.2_ohne_javadoc.out' has not changed.
-(rerunfilecheck)             Checksum: 91D225AB4D4060311D739E8989334174;3844.
 
+
+Package rerunfilecheck Warning: File `MasterThesis_Konzepte_der_Nebenläufigkei
+t_v1.2_ohne_javadoc.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `MasterThesis_Konzepte_der_Nebenläu
+figkeit_v1.2_ohne_javadoc.out':
+(rerunfilecheck)             Before: 09BF1DFCA3E6C13AFE53F46BF4E0A4A2;3745
+(rerunfilecheck)             After:  4154C65D5DA652422DBDE0F78B40E964;3840.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1145.
  ) 
 Here is how much of TeX's memory you used:
- 15669 strings out of 494045
- 238802 string characters out of 3149914
- 509841 words of memory out of 3000000
- 18145 multiletter control sequences out of 15000+200000
- 83743 words of font info for 124 fonts, out of 3000000 for 9000
+ 14960 strings out of 494045
+ 230662 string characters out of 3149914
+ 445468 words of memory out of 3000000
+ 17703 multiletter control sequences out of 15000+200000
+ 60452 words of font info for 98 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
- 49i,8n,66p,2372b,2033s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 46i,8n,66p,2372b,716s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Programme/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Programme/MiKTeX 2.
 9/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Programme/MiKTeX 2.9/fonts/type1/public/
-lm/lmbx10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Pro
-gramme/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb><C:/Programme/MiKTeX 2.9/fo
-nts/type1/public/lm/lmr10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lm
-r12.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Programme/
-MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/Programme/MiKTeX 2.9/fonts/type
-1/public/lm/lmssbx10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.
-pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Programme/MiK
-TeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
+lm/lmbx12.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb><C:/Pr
+ogramme/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Programme/MiKTeX 2.9/fon
+ts/type1/public/lm/lmr17.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lms
+sbx10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program
+me/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
 Output written on MasterThesis_Konzepte_der_Nebenläufigkeit_v1.2_ohne_javadoc.
-pdf (86 pages, 985469 bytes).
+pdf (81 pages, 824406 bytes).
 PDF statistics:
- 1099 PDF objects out of 1200 (max. 8388607)
- 412 named destinations out of 1000 (max. 500000)
- 25036 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 723 PDF objects out of 1000 (max. 8388607)
+ 183 named destinations out of 1000 (max. 500000)
+ 16828 words of extra memory for PDF output out of 17280 (max. 10000000)
 
