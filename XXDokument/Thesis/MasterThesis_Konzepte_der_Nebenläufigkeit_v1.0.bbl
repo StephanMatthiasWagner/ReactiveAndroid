@@ -1,0 +1,204 @@
+%
+% This bibliography was produced by using jureco.bst
+%
+\begin{thebibliography}{}
+
+\backrefparscanfalse
+\bibitem[{{Becker, Arno und Pant, Marcus}\jbdy {4.Auflage 2015}}%
+         {}%
+         {{0}{}{misc}{4.Auflage 2015}{}{}{}{}%
+          {}}%
+         {{Android5}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{android5}
+ \jbbibargs {\bibnf {{Becker, Arno und Pant, Marcus}} {} {} {} {}\bibYear
+  {4.Auflage 2015}} { {Becker, Arno und Pant, Marcus}} {au} {sexless}
+  {\bibtfont {Android5}\bibatsep {}  \apyformat {Buch} \jbnote {1} {dpunkt
+  Verlag GmbH, Heidelberg, ISBN: 978-3-86490-260-4} } {\bibhowcited}
+  \jbendnote {dpunkt Verlag GmbH, Heidelberg, ISBN: 978-3-86490-260-4}
+  \jbdoitem {{{Becker, Arno und Pant, Marcus}}{}{}{}{}} {} {} \bibAnnoteFile
+  {android5}
+
+\backrefparscanfalse
+\bibitem[{{Eckel, Bruce und Boner, Jonas}\jbdy {2014}}%
+         {}%
+         {{0}{}{misc}{2014}{}{}{}{}%
+          {}}%
+         {{The Reactive Manifesto}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{reactiveManifesto}
+ \jburldef {reactiveManifesto}{http://www.reactivemanifesto.org/}%
+ \jbbibargs {\bibnf {{Eckel, Bruce und Boner, Jonas}} {} {} {} {}\bibYear
+  {2014}} { {Eckel, Bruce und Boner, Jonas}} {au} {sexless} {\bibtfont {The
+  Reactive Manifesto}\bibatsep {}  \apyformat {Webseite} \jburluse
+  {reactiveManifesto}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
+  \jbdoitem {{{Eckel, Bruce und Boner, Jonas}}{}{}{}{}} {} {} \bibAnnoteFile
+  {reactiveManifesto}
+
+\backrefparscanfalse
+\bibitem[{{Goetz, Brian [et al.]}\jbdy {2006}}%
+         {}%
+         {{0}{}{misc}{2006}{}{}{}{}%
+          {}}%
+         {{JAVA Cocurrency in Practice}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{javaConInPrac}
+ \jbbibargs {\bibnf {{Goetz, Brian [et al.]}} {} {} {} {}\bibYear {2006}} {
+  {Goetz, Brian [et al.]}} {au} {sexless} {\bibtfont {JAVA Cocurrency in
+  Practice}\bibatsep {}  \apyformat {Buch} \jbnote {1} {Pearson Education Inc.
+  London, ISBN: 0-321-34960-1} } {\bibhowcited}  \jbendnote {Pearson Education
+  Inc. London, ISBN: 0-321-34960-1} \jbdoitem {{{Goetz, Brian [et
+  al.]}}{}{}{}{}} {} {} \bibAnnoteFile {javaConInPrac}
+
+\backrefparscanfalse
+\bibitem[{{Google Inc}\jbdy {2010}}%
+         {}%
+         {{0}{}{misc}{2010}{}{}{}{}%
+          {}}%
+         {{Android Api Dokumentation}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{androidDevDocu}
+ \jburldef
+  {androidDevDocu}{http://developer.android.com/reference/android/app/Activity.html}%
+ \jbbibargs {\bibnf {{Google Inc}} {} {} {} {}\bibYear {2010}} { {Google Inc}}
+  {au} {sexless} {\bibtfont {Android Api Dokumentation}\bibatsep {}  \apyformat
+  {Webseite} \jburluse {androidDevDocu}\bibbudcsep {}\urldatecomment
+  12.11.2015} {\bibhowcited} \jbdoitem {{{Google Inc}}{}{}{}{}} {} {}
+  \bibAnnoteFile {androidDevDocu}
+
+\backrefparscanfalse
+\bibitem[{{Lampe, Jürgen}\jbdy {2014}}%
+         {}%
+         {{0}{}{misc}{2014}{}{}{}{}%
+          {}}%
+         {{Ist deklarativ wirklich instruktiv}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{declarativCriticalJurnal}
+ \jburldef
+  {declarativCriticalJurnal}{http://www.informatik-aktuell.de/entwicklung/methoden/deklarative-programmierung-ist-deklarativ-wirklich-instruktiv.html}%
+ \jbbibargs {\bibnf {{Lampe, Jürgen}} {} {} {} {}\bibYear {2014}} { {Lampe,
+  Jürgen}} {au} {sexless} {\bibtfont {Ist deklarativ wirklich
+  instruktiv}\bibatsep {}  \apyformat {Website} \jbnote {1} {Alkmene Verlags-
+  und Mediengesellschaft mbH, Frankfurt am Main}  \jburluse
+  {declarativCriticalJurnal}\bibbudcsep {}\urldatecomment 12.11.2015}
+  {\bibhowcited}  \jbendnote {Alkmene Verlags- und Mediengesellschaft mbH,
+  Frankfurt am Main} \jbdoitem {{{Lampe, Jürgen}}{}{}{}{}} {} {}
+  \bibAnnoteFile {declarativCriticalJurnal}
+
+\backrefparscanfalse
+\bibitem[{{Langer, Angelika und Kreft, Klaus}\jbdy {2013}}%
+         {}%
+         {{0}{}{misc}{2013}{}{}{}{}%
+          {}}%
+         {{Effective Java - Java 8 - Functional Programming in Java}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{funcProgrJava}
+ \jburldef
+  {funcProgrJava}{http://www.angelikalanger.com/Articles/EffectiveJava/70.Java8.FunctionalProg/70.Java8.FunctionalProg.html}%
+ \jbbibargs {\bibnf {{Langer, Angelika und Kreft, Klaus}} {} {} {} {}\bibYear
+  {2013}} { {Langer, Angelika und Kreft, Klaus}} {au} {sexless} {\bibtfont
+  {Effective Java - Java 8 - Functional Programming in Java}\bibatsep {}
+  \apyformat {Webseite \& Jurnal: Java Magazin} \jburluse
+  {funcProgrJava}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
+  \jbdoitem {{{Langer, Angelika und Kreft, Klaus}}{}{}{}{}} {} {}
+  \bibAnnoteFile {funcProgrJava}
+
+\backrefparscanfalse
+\bibitem[{{Loogen, Rita}\jbdy {2002}}%
+         {}%
+         {{0}{}{misc}{2002}{}{}{}{}%
+          {}}%
+         {{Praktische Informatik III (Skript): Deklarative Programmierung}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{declarativProgrammingScript}
+ \jbbibargs {\bibnf {{Loogen, Rita}} {} {} {} {}\bibYear {2002}} { {Loogen,
+  Rita}} {au} {sexless} {\bibtfont {Praktische Informatik III (Skript):
+  Deklarative Programmierung}\bibatsep {}  \apyformat {PDF} \jbnote {1}
+  {Phillipps-Universität, Marburg} } {\bibhowcited}  \jbendnote
+  {Phillipps-Universität, Marburg} \jbdoitem {{{Loogen, Rita}}{}{}{}{}} {} {}
+  \bibAnnoteFile {declarativProgrammingScript}
+
+\backrefparscanfalse
+\bibitem[{{Middendorf, Stefan [et al.]}\jbdy {3. Auflage 2002}}%
+         {}%
+         {{0}{}{misc}{3. Auflage 2002}{}{}{}{}%
+          {}}%
+         {{JavaTM Programmierhandbuch und Referenz für die JavaTM-2-Plattform,
+  Standard Edition}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{philosofen}
+ \jburldef
+  {philosofen}{https://www.dpunkt.de/java/Programmieren_mit_Java/Multithreading/11.html}%
+ \jbbibargs {\bibnf {{Middendorf, Stefan [et al.]}} {} {} {} {}\bibYear {3.
+  Auflage 2002}} { {Middendorf, Stefan [et al.]}} {au} {sexless} {\bibtfont
+  {JavaTM Programmierhandbuch und Referenz für die JavaTM-2-Plattform,
+  Standard Edition}\bibatsep {}  \apyformat {Website} \jbnote {1} {dpunkt
+  Verlag GmbH, Heidelberg}  \jburluse {philosofen}\bibbudcsep {}\urldatecomment
+  12.11.2015} {\bibhowcited}  \jbendnote {dpunkt Verlag GmbH, Heidelberg}
+  \jbdoitem {{{Middendorf, Stefan [et al.]}}{}{}{}{}} {} {} \bibAnnoteFile
+  {philosofen}
+
+\backrefparscanfalse
+\bibitem[{{Neumann, Alexander}\jbdy {2013}}%
+         {}%
+         {{0}{}{misc}{2013}{}{}{}{}%
+          {}}%
+         {{Ein Manifest für Reactive Programming}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{heiseReactiveManifesto}
+ \jburldef
+  {heiseReactiveManifesto}{http://www.heise.de/developer/meldung/Ein-Manifest-fuer-Reactive-Programming-1945096.html}%
+ \jbbibargs {\bibnf {{Neumann, Alexander}} {} {} {} {}\bibYear {2013}} {
+  {Neumann, Alexander}} {au} {sexless} {\bibtfont {Ein Manifest für Reactive
+  Programming}\bibatsep {}  \apyformat {Webseite} \jburluse
+  {heiseReactiveManifesto}\bibbudcsep {}\urldatecomment 12.11.2015}
+  {\bibhowcited} \jbdoitem {{{Neumann, Alexander}}{}{}{}{}} {} {}
+  \bibAnnoteFile {heiseReactiveManifesto}
+
+\backrefparscanfalse
+\bibitem[{{RXCommunity}}%
+         {}%
+         {{0}{}{misc}{}{}{}{}{}%
+          {}}%
+         {{ReactiveX}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{rxAllgDoku}
+ \jburldef {rxAllgDoku}{http://reactivex.io/intro.html}%
+ \jbbibargs {\bibnf {{RXCommunity}} {} {} {} {}\bibYear {}} { {RXCommunity}}
+  {au} {sexless} {\bibtfont {ReactiveX}\bibatsep {}  \apyformat {Webseite}
+  \jburluse {rxAllgDoku}\bibbudcsep {}\urldatecomment 12.11.2015}
+  {\bibhowcited} \jbdoitem {{{RXCommunity}}{}{}{}{}} {} {} \bibAnnoteFile
+  {rxAllgDoku}
+
+\backrefparscanfalse
+\bibitem[{{Vogt, Carsten}\jbdy {2012}}%
+         {}%
+         {{0}{}{misc}{2012}{}{}{}{}%
+          {}}%
+         {{Nebenläufige Programmierung}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{nebenlaeufigeProg}
+ \jbbibargs {\bibnf {{Vogt, Carsten}} {} {} {} {}\bibYear {2012}} { {Vogt,
+  Carsten}} {au} {sexless} {\bibtfont {Nebenläufige Programmierung}\bibatsep
+  {}  \apyformat {Buch} \jbnote {1} {Carl Hanser Verlag, München, ISBN:
+  978-3-446-42755-6} } {\bibhowcited}  \jbendnote {Carl Hanser Verlag,
+  München, ISBN: 978-3-446-42755-6} \jbdoitem {{{Vogt, Carsten}}{}{}{}{}} {}
+  {} \bibAnnoteFile {nebenlaeufigeProg}
+
+\backrefparscanfalse
+\bibitem[{{Yehuda, A.}\jbdy {2015}}%
+         {}%
+         {{0}{}{misc}{2015}{}{}{}{}%
+          {}}%
+         {{Android – Multithreading in a UI environment}%
+          {}{}{2}{}{}{}{}{}}%
+        ]{handlerLooperBlock}
+ \jburldef
+  {handlerLooperBlock}{http://www.aviyehuda.com/blog/2010/12/20/android-multithreading-in-a-ui-environment/}%
+ \jbbibargs {\bibnf {{Yehuda, A.}} {} {} {} {}\bibYear {2015}} { {Yehuda, A.}}
+  {au} {sexless} {\bibtfont {Android – Multithreading in a UI
+  environment}\bibatsep {}  \apyformat {Webseite} \jburluse
+  {handlerLooperBlock}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
+  \jbdoitem {{{Yehuda, A.}}{}{}{}{}} {} {} \bibAnnoteFile {handlerLooperBlock}
+
+\end{thebibliography}
