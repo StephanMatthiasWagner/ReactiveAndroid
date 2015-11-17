@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.25)  12 NOV 2015 23:13
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.25)  17 NOV 2015 22:15
 entering extended mode
 **MasterThesis_Konzepte_der_Nebenläufigkeit_v1.2_ohne_javadoc.tex
 
@@ -1056,6 +1056,10 @@ Package tocbasic Info: character protrusion at lof deactivated on input line 18
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
+
+
+Package jurabib Warning: No year for `rxAllgDoku'!.
+
 )
 \tf@lof=\write7
  [5
@@ -1079,7 +1083,7 @@ Class scrreprt Warning: \float@addtolists detected!
 
 [6
 
-] [7] [8] [9] <img/MessageQueue.png, id=340, 463.7325pt x 368.37625pt>
+] [7] [8] [9] <img/MessageQueue.png, id=347, 463.7325pt x 368.37625pt>
 File: img/MessageQueue.png Graphic file (type png)
 
 <use img/MessageQueue.png>
@@ -1103,7 +1107,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 248--251
 l.252 D
        ie letzten beiden Abschnitte haben einen Überblick über Technologie...
  <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/MessageQueue.png>]
-<img/PhilosophenProblem.png, id=349, 261.97874pt x 252.945pt>
+<img/PhilosophenProblem.png, id=356, 261.97874pt x 252.945pt>
 File: img/PhilosophenProblem.png Graphic file (type png)
 
 <use img/PhilosophenProblem.png>
@@ -1116,7 +1120,7 @@ re.1.2}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.274 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/PhilosophenProblem.pn
-g>] <img/SharedMemory_RaceCondition.png, id=363, 647.41875pt x 179.67125pt>
+g>] <img/SharedMemory_RaceCondition.png, id=370, 647.41875pt x 179.67125pt>
 File: img/SharedMemory_RaceCondition.png Graphic file (type png)
 
 <use img/SharedMemory_RaceCondition.png>
@@ -1131,7 +1135,7 @@ Package pdftex.def Info: img/SharedMemory_RaceCondition.png used on input line
 l.288 \subsection
                  {Reihenfolgeproblem} <C:/projects/ReactiveAndroid/XXDokument/T
 hesis/img/SharedMemory_RaceCondition.png>] [15] [16]
-<img/anr-dialog.png, id=383, 281.05pt x 137.51375pt>
+<img/anr-dialog.png, id=390, 281.05pt x 137.51375pt>
 File: img/anr-dialog.png Graphic file (type png)
  <use img/anr-dialog.png>
 Package pdftex.def Info: img/anr-dialog.png used on input line 323.
@@ -1144,7 +1148,7 @@ e.1.4}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.329 
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/anr-dialog.png>]
-<img/Android_Komponent_Model.png, id=395, 208.78pt x 110.4125pt>
+<img/Android_Komponent_Model.png, id=402, 208.78pt x 110.4125pt>
 File: img/Android_Komponent_Model.png Graphic file (type png)
 
 <use img/Android_Komponent_Model.png>
@@ -1159,7 +1163,7 @@ Package pdftex.def Info: img/Android_Komponent_Model.png used on input line 335
 l.344 \item S
              ervices können zeitintensive Hintergrundberechnungen abbilden. <C
 :/projects/ReactiveAndroid/XXDokument/Thesis/img/Android_Komponent_Model.png>]
-<img/activity_lifecycle.png, id=402, 524.96124pt x 675.52374pt>
+<img/activity_lifecycle.png, id=409, 524.96124pt x 675.52374pt>
 File: img/activity_lifecycle.png Graphic file (type png)
 
 <use img/activity_lifecycle.png>
@@ -1174,7 +1178,7 @@ l.359
        <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/activity_lifecycle.pn
 g>] [23] [24]
 chapter 2.
-<img/BlockingIO_testApp_Mockup.png, id=429, 561.09625pt x 377.41pt>
+<img/BlockingIO_testApp_Mockup.png, id=436, 561.09625pt x 377.41pt>
 File: img/BlockingIO_testApp_Mockup.png Graphic file (type png)
 
 <use img/BlockingIO_testApp_Mockup.png>
@@ -1326,13 +1330,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 403--436
 se
  []
 
-[27] [28] <img/handler_looper.png, id=448, 893.3375pt x 577.15625pt>
+[27] [28] <img/handler_looper.png, id=455, 893.3375pt x 577.15625pt>
 File: img/handler_looper.png Graphic file (type png)
 
 <use img/handler_looper.png>
 Package pdftex.def Info: img/handler_looper.png used on input line 441.
 (pdftex.def)             Requested size: 369.88583pt x 238.96936pt.
- [29]
+ [29] [30pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.2.8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.448 \subsection
+                 {Verwendung des Handler Looper Mechnismus } <C:/projects/React
+iveAndroid/XXDokument/Thesis/img/handler_looper.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 449--502
 
  []
@@ -1437,15 +1448,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 449--502
 
  []
 
-[30pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.502 \subsection
-                 {Probleme bei der Nutzung des Handler Looper Mechanismus} <C:/
-projects/ReactiveAndroid/XXDokument/Thesis/img/handler_looper.png>] [31]
-[32] <img/weakReference.jpeg, id=469, 232.61906pt x 294.34969pt>
+[31] [32] <img/weakReference.jpeg, id=476, 232.61906pt x 294.34969pt>
 File: img/weakReference.jpeg Graphic file (type jpg)
 
 <use img/weakReference.jpeg>
@@ -1633,7 +1636,7 @@ Underfull \hbox (badness 1874) in paragraph at lines 612--613
 on-de-re der
  []
 
-<img/asyncTask_seqenzdiagramm.png, id=499, 704.6325pt x 694.84593pt>
+<img/asyncTask_seqenzdiagramm.png, id=506, 704.6325pt x 694.84593pt>
 File: img/asyncTask_seqenzdiagramm.png Graphic file (type png)
 
 <use img/asyncTask_seqenzdiagramm.png>
@@ -1678,7 +1681,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 632--660
  []
 
 [42] [43]
-<img/ActivitydiagrammAsyncTaskSerialExecutor.png, id=517, 536.0025pt x 1053.937
+<img/ActivitydiagrammAsyncTaskSerialExecutor.png, id=524, 536.0025pt x 1053.937
 5pt>
 File: img/ActivitydiagrammAsyncTaskSerialExecutor.png Graphic file (type png)
  <use img/ActivitydiagrammAsyncTaskSerialExecutor.png>
@@ -1751,348 +1754,363 @@ Overfull \hbox (5.65428pt too wide) in paragraph at lines 722--723
  eher ab-strak-teProblembeschreibungen
  []
 
-[49] <img/rx-languages.png, id=547, 1027.84pt x 220.825pt>
+[49] <img/Observable.png, id=554, 607.26875pt x 286.06876pt>
+File: img/Observable.png Graphic file (type png)
+
+<use img/Observable.png>
+Package pdftex.def Info: img/Observable.png used on input line 729.
+(pdftex.def)             Requested size: 332.89499pt x 156.81885pt.
+ [50]
+<img/rx-languages.png, id=567, 1027.84pt x 220.825pt>
 File: img/rx-languages.png Graphic file (type png)
 
 <use img/rx-languages.png>
-Package pdftex.def Info: img/rx-languages.png used on input line 731.
+Package pdftex.def Info: img/rx-languages.png used on input line 741.
 (pdftex.def)             Requested size: 332.89499pt x 71.52129pt.
- [50] [51pdfTeX warning (ext4): destination with the same identifier (name{figu
-re.2.12}) has been already used, duplicate ignored
+ [51pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+12}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.737 \subsection
-                 {RXJava Funktionsweise} <C:/projects/ReactiveAndroid/XXDokumen
-t/Thesis/img/rx-languages.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+l.745 \end{figure}
+                   <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/Observabl
+e.png>] [52]
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Overfull \hbox (61.12938pt too wide) in paragraph at lines 738--800
+Overfull \hbox (61.12938pt too wide) in paragraph at lines 748--810
 \T1/lmtt/m/n/12 static Subscriber<String> myFirstSubscriber = new Subscriber<St
 ring>()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Overfull \hbox (5.24559pt too wide) in paragraph at lines 738--800
+Overfull \hbox (5.24559pt too wide) in paragraph at lines 748--810
 \T1/lmtt/m/n/12 System.out.println("There was an error on first subscriber:"+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Overfull \hbox (48.77937pt too wide) in paragraph at lines 738--800
+Overfull \hbox (48.77937pt too wide) in paragraph at lines 748--810
 \T1/lmtt/m/n/12 static Subscriber<String> mySndSubscriber = new Subscriber<Stri
 ng>()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--800
+Underfull \hbox (badness 10000) in paragraph at lines 748--810
 
  []
 
-[52] [53] [54]
-Underfull \hbox (badness 10000) in paragraph at lines 805--814
+[53pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.810 \begin{itemize}
+                      <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/rx-lan
+guages.png>] [54] [55]
+Underfull \hbox (badness 10000) in paragraph at lines 815--824
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 805--814
+Underfull \hbox (badness 10000) in paragraph at lines 815--824
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 805--814
+Underfull \hbox (badness 10000) in paragraph at lines 815--824
 
  []
 
-[55] [56] <img/ObserverWorkerChain.jpeg, id=581, 437.38406pt x 382.42876pt>
+[56] [57] [58]
+<img/ObserverWorkerChain.jpeg, id=607, 437.38406pt x 382.42876pt>
 File: img/ObserverWorkerChain.jpeg Graphic file (type jpg)
 
 <use img/ObserverWorkerChain.jpeg>
-Package pdftex.def Info: img/ObserverWorkerChain.jpeg used on input line 881.
+Package pdftex.def Info: img/ObserverWorkerChain.jpeg used on input line 891.
 (pdftex.def)             Requested size: 332.89499pt x 291.06902pt.
- [57]
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+ [59]
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 \T1/lmtt/m/n/12 private Subscription getSubscription(Subscriber<String>
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Overfull \hbox (43.83937pt too wide) in paragraph at lines 889--1029
+Overfull \hbox (43.83937pt too wide) in paragraph at lines 899--1039
 \T1/lmtt/m/n/12 summe = summe + (randomPrimeNumber.mod(BigInteger.TEN)).intValu
 e(); 
  []
 
 
-Overfull \hbox (6.78935pt too wide) in paragraph at lines 889--1029
+Overfull \hbox (6.78935pt too wide) in paragraph at lines 899--1039
 \T1/lmtt/m/n/12 randomPrimeNumber = randomPrimeNumber.divide(BigInteger.TEN); 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Overfull \hbox (24.07936pt too wide) in paragraph at lines 889--1029
+Overfull \hbox (24.07936pt too wide) in paragraph at lines 899--1039
 \T1/lmtt/m/n/12 return primMessageObservable.filter(new Func1<String, Boolean>(
 )
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 \T1/lmtt/m/n/12 sub.onNext(Observable emits CrossSum for iteration: + i
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Overfull \hbox (6.78935pt too wide) in paragraph at lines 889--1029
+Overfull \hbox (6.78935pt too wide) in paragraph at lines 899--1039
 \T1/lmtt/m/n/12 String lastOutput = firstObserverOutput.getText().toString(); 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Overfull \hbox (12.96436pt too wide) in paragraph at lines 889--1029
+Overfull \hbox (12.96436pt too wide) in paragraph at lines 899--1039
 \T1/lmtt/m/n/12 String lastOutput = secondObserverOutput.getText().toString(); 
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--1029
+Underfull \hbox (badness 10000) in paragraph at lines 899--1039
 
  []
 
-[58pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
-3}) has been already used, duplicate ignored
+[60pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1029 
+l.1039 
         <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/ObserverWorkerChain.
-jpeg>] [59] [60] [61] [62]
-Underfull \hbox (badness 10000) in paragraph at lines 1031--1036
+jpeg>] [61] [62] [63] [64]
+Underfull \hbox (badness 10000) in paragraph at lines 1041--1046
 
  []
 
-[63] [64] [65]
+[65] [66] [67]
 chapter 3.
-[66
+[68
 
-] [67] [68]
-Underfull \hbox (badness 10000) in paragraph at lines 1055--1061
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1055--1061
+] [69] [70]
+Underfull \hbox (badness 10000) in paragraph at lines 1065--1071
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1055--1061
+Underfull \hbox (badness 10000) in paragraph at lines 1065--1071
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1055--1061
+Underfull \hbox (badness 10000) in paragraph at lines 1065--1071
 
  []
 
-[69] <img/szenarioBasedAnalysis.png, id=636, 588.1975pt x 816.04875pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 1065--1071
+
+ []
+
+[71] <img/szenarioBasedAnalysis.png, id=662, 588.1975pt x 816.04875pt>
 File: img/szenarioBasedAnalysis.png Graphic file (type png)
 
 <use img/szenarioBasedAnalysis.png>
-Package pdftex.def Info: img/szenarioBasedAnalysis.png used on input line 1064.
+Package pdftex.def Info: img/szenarioBasedAnalysis.png used on input line 1074.
 
 (pdftex.def)             Requested size: 369.88583pt x 513.1671pt.
- [70] [71pdfTeX warning (ext4): destination with the same identifier (name{figu
-re.3.14}) has been already used, duplicate ignored
+ [72] [73pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.3.15}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1069 \newpage
+l.1079 \newpage
                 <C:/projects/ReactiveAndroid/XXDokument/Thesis/img/szenarioBase
-dAnalysis.png>] [72] [73] [74] [75] [76]
+dAnalysis.png>] [74] [75] [76] [77] [78]
 (C:\projects\ReactiveAndroid\XXDokument\Thesis\MasterThesis_Konzepte_der_Nebenl
-äufigkeit_v1.2_ohne_javadoc.bbl [77]
+äufigkeit_v1.2_ohne_javadoc.bbl [79]
 chapter without number
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
@@ -2185,7 +2203,7 @@ $\T1/lmtt/m/n/12 com / Articles / EffectiveJava / 70 . Java8 . FunctionalProg /
  70 .$
  []
 
-[78
+[80
 
 ]
 Underfull \hbox (badness 3449) in paragraph at lines 206--208
@@ -2211,38 +2229,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 271--272
 futurice . com / blog /$
  []
 
-[79]) [80] [81
+[81]) [82] [83
 
 ]
 chapter A.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1145.
-[82
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1155.
+[84
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1145.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1155.
 
 (C:\projects\ReactiveAndroid\XXDokument\Thesis\MasterThesis_Konzepte_der_Nebenl
 äufigkeit_v1.2_ohne_javadoc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1145.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1145.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1155.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1155.
 
 Package rerunfilecheck Info: File `MasterThesis_Konzepte_der_Nebenläufigkeit_v
 1.2_ohne_javadoc.out' has not changed.
-(rerunfilecheck)             Checksum: 4154C65D5DA652422DBDE0F78B40E964;3840.
+(rerunfilecheck)             Checksum: C35831AE1F53080E14F33C26F493AB42;3840.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1145.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1155.
  ) 
 Here is how much of TeX's memory you used:
- 14965 strings out of 494045
- 230720 string characters out of 3149914
- 446468 words of memory out of 3000000
- 17705 multiletter control sequences out of 15000+200000
+ 14990 strings out of 494045
+ 231201 string characters out of 3149914
+ 446612 words of memory out of 3000000
+ 17725 multiletter control sequences out of 15000+200000
  60553 words of font info for 99 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
  49i,8n,66p,2372b,716s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2254,9 +2269,9 @@ ts/type1/public/lm/lmr17.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lms
 sbx10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program
 me/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
 Output written on MasterThesis_Konzepte_der_Nebenläufigkeit_v1.2_ohne_javadoc.
-pdf (82 pages, 843606 bytes).
+pdf (84 pages, 975061 bytes).
 PDF statistics:
- 812 PDF objects out of 1000 (max. 8388607)
- 184 named destinations out of 1000 (max. 500000)
- 16844 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 836 PDF objects out of 1000 (max. 8388607)
+ 188 named destinations out of 1000 (max. 500000)
+ 16849 words of extra memory for PDF output out of 17280 (max. 10000000)
 

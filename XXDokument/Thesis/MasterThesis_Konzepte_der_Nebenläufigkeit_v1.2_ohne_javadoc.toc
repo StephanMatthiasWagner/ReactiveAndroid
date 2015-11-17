@@ -42,22 +42,23 @@
 \contentsline {subsection}{\numberline {2.4.1}Imperative und Deklarative Programmierung}{49}{subsection.2.4.1}
 \contentsline {paragraph}{\nonumberline Imperative Programmierung}{49}{section*.9}
 \contentsline {paragraph}{\nonumberline Deklarative Programme}{49}{section*.10}
+\contentsline {paragraph}{\nonumberline Funktionale Programmierung}{50}{section*.11}
 \contentsline {subsection}{\numberline {2.4.2}Reaktive Programmierung \& Reactive Manifesto}{50}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}RX JAVA Entstehung}{51}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}RXJava Funktionsweise}{52}{subsection.2.4.4}
-\contentsline {subsection}{\numberline {2.4.5}RXJava in Android}{58}{subsection.2.4.5}
-\contentsline {section}{\numberline {2.5}Zusammenfassung}{64}{section.2.5}
-\contentsline {chapter}{\numberline {3}Konzepte der Nebenl\IeC {\"a}ufigkeit im kritischen Diskurs}{66}{chapter.3}
-\contentsline {section}{\numberline {3.1}Chancen und Risiken des Java Concurrency Konzepts}{66}{section.3.1}
-\contentsline {section}{\numberline {3.2}Android Concurrency}{67}{section.3.2}
-\contentsline {section}{\numberline {3.3}RXConcurrency}{68}{section.3.3}
-\contentsline {section}{\numberline {3.4}Szenariobasierte Analyse}{69}{section.3.4}
-\contentsline {paragraph}{\nonumberline Szenario A:}{72}{section*.11}
-\contentsline {paragraph}{\nonumberline Szenario B:}{72}{section*.12}
-\contentsline {paragraph}{\nonumberline Szenario C:}{73}{section*.13}
-\contentsline {paragraph}{\nonumberline SzenarioD:}{74}{section*.14}
-\contentsline {section}{\numberline {3.5}Fazit}{76}{section.3.5}
-\contentsline {section}{\numberline {3.6}Ausblick}{77}{section.3.6}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{78}{chapter*.15}
-\contentsline {chapter}{Anhang}{81}{chapter*.16}
-\contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{82}{appendix.A}
+\contentsline {subsection}{\numberline {2.4.3}RX JAVA Entstehung}{52}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}RXJava Funktionsweise}{53}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}RXJava in Android}{60}{subsection.2.4.5}
+\contentsline {section}{\numberline {2.5}Zusammenfassung}{66}{section.2.5}
+\contentsline {chapter}{\numberline {3}Konzepte der Nebenl\IeC {\"a}ufigkeit im kritischen Diskurs}{68}{chapter.3}
+\contentsline {section}{\numberline {3.1}Chancen und Risiken des Java Concurrency Konzepts}{68}{section.3.1}
+\contentsline {section}{\numberline {3.2}Android Concurrency}{69}{section.3.2}
+\contentsline {section}{\numberline {3.3}RXConcurrency}{70}{section.3.3}
+\contentsline {section}{\numberline {3.4}Szenariobasierte Analyse}{71}{section.3.4}
+\contentsline {paragraph}{\nonumberline Szenario A:}{74}{section*.12}
+\contentsline {paragraph}{\nonumberline Szenario B:}{74}{section*.13}
+\contentsline {paragraph}{\nonumberline Szenario C:}{75}{section*.14}
+\contentsline {paragraph}{\nonumberline SzenarioD:}{76}{section*.15}
+\contentsline {section}{\numberline {3.5}Fazit}{78}{section.3.5}
+\contentsline {section}{\numberline {3.6}Ausblick}{79}{section.3.6}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{80}{chapter*.16}
+\contentsline {chapter}{Anhang}{83}{chapter*.17}
+\contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{84}{appendix.A}
