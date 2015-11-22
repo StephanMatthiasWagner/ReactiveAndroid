@@ -1,304 +1,142 @@
-%
-% This bibliography was produced by using jureco.bst
-%
-\begin{thebibliography}{}
+\begin{thebibliography}{18}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\backrefparscanfalse
-\bibitem[{{Becker, Arno und Pant, Marcus}\jbdy {4.Auflage 2015}}%
-         {}%
-         {{0}{}{misc}{4.Auflage 2015}{}{}{}{}%
-          {}}%
-         {{Android5}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{android5}
- \jbbibargs {\bibnf {{Becker, Arno und Pant, Marcus}} {} {} {} {}\bibYear
-  {4.Auflage 2015}} { {Becker, Arno und Pant, Marcus}} {au} {sexless}
-  {\bibtfont {Android5}\bibatsep {}  \apyformat {Buch} \jbnote {1} {dpunkt
-  Verlag GmbH, Heidelberg, ISBN: 978-3-86490-260-4} } {\bibhowcited}
-  \jbendnote {dpunkt Verlag GmbH, Heidelberg, ISBN: 978-3-86490-260-4}
-  \jbdoitem {{{Becker, Arno und Pant, Marcus}}{}{}{}{}} {} {} \bibAnnoteFile
-  {android5}
+\bibitem[{Becker, Arno und Pant, Marcus}(4.Auflage 2015)]{android5}
+{Becker, Arno und Pant, Marcus}.
+\newblock \emph{Android5}.
+\newblock dpunkt Verlag GmbH, Heidelberg, 4.Auflage 2015.
+\newblock ISBN 978-3-86490-260-4.
 
-\backrefparscanfalse
-\bibitem[{{Corrigall, Devin}\jbdy {2014}}%
-         {}%
-         {{0}{}{misc}{2014}{}{}{}{}%
-          {}}%
-         {{ASYNCHRONOUS ANDROID PROGRAMMING – THE GOOD, THE BAD, AND THE
-  UGLY}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{androidConcurrencyCriticalCompare}
- \jburldef
-  {androidConcurrencyCriticalCompare}{http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/}%
- \jbbibargs {\bibnf {{Corrigall, Devin}} {} {} {} {}\bibYear {2014}} {
-  {Corrigall, Devin}} {au} {sexless} {\bibtfont {ASYNCHRONOUS ANDROID
-  PROGRAMMING – THE GOOD, THE BAD, AND THE UGLY}\bibatsep {}  \apyformat
-  {Webseite} \jburluse {androidConcurrencyCriticalCompare}\bibbudcsep
-  {}\urldatecomment 12.11.2015} {\bibhowcited} \jbdoitem {{{Corrigall,
-  Devin}}{}{}{}{}} {} {} \bibAnnoteFile {androidConcurrencyCriticalCompare}
+\bibitem[{Corrigall, Devin}(2014)]{androidConcurrencyCriticalCompare}
+{Corrigall, Devin}.
+\newblock \emph{Asynchronous Android Programming}.
+\newblock 2014.
+\newblock {Webseite", URL:
+  http://code.hootsuite.com/asynchronous-android-programming-the-good-the-bad-and-the-ugly/,
+  Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Eckel, Bruce und Boner, Jonas}\jbdy {2014}}%
-         {}%
-         {{0}{}{misc}{2014}{}{}{}{}%
-          {}}%
-         {{The Reactive Manifesto}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{reactiveManifesto}
- \jburldef {reactiveManifesto}{http://www.reactivemanifesto.org/}%
- \jbbibargs {\bibnf {{Eckel, Bruce und Boner, Jonas}} {} {} {} {}\bibYear
-  {2014}} { {Eckel, Bruce und Boner, Jonas}} {au} {sexless} {\bibtfont {The
-  Reactive Manifesto}\bibatsep {}  \apyformat {Webseite} \jburluse
-  {reactiveManifesto}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
-  \jbdoitem {{{Eckel, Bruce und Boner, Jonas}}{}{}{}{}} {} {} \bibAnnoteFile
-  {reactiveManifesto}
+\bibitem[{Eckel, Bruce und Boner, Jonas}(2014)]{reactiveManifesto}
+{Eckel, Bruce und Boner, Jonas}.
+\newblock \emph{The Reactive Manifesto}.
+\newblock 2014.
+\newblock {Webseite, URL: http://www.reactivemanifesto.org/, Aufrufdatum:
+  12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Fröhling, Claudia}\jbdy {2014}}%
-         {}%
-         {{0}{}{misc}{2014}{}{}{}{}%
-          {}}%
-         {{Neue Initiative für Reactive Streams holt alle Parteien an einen
-  Tisch}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{rxInitiative}
- \jburldef
-  {rxInitiative}{https://jaxenter.de/neue-initiative-fur-reactive-streams-holt-alle-parteien-an-einen-tisch-1252}%
- \jbbibargs {\bibnf {{Fröhling, Claudia}} {} {} {} {}\bibYear {2014}} {
-  {Fröhling, Claudia}} {au} {sexless} {\bibtfont {Neue Initiative für
-  Reactive Streams holt alle Parteien an einen Tisch}\bibatsep {}  \apyformat
-  {Webseite} \jburluse {rxInitiative}\bibbudcsep {}\urldatecomment 12.11.2015}
-  {\bibhowcited} \jbdoitem {{{Fröhling, Claudia}}{}{}{}{}} {} {}
-  \bibAnnoteFile {rxInitiative}
+\bibitem[{Fröhling, Claudia}(2014)]{rxInitiative}
+{Fröhling, Claudia}.
+\newblock \emph{Neue Initiative für Reactive Streams holt alle Parteien an
+  einen Tisch}.
+\newblock 2014.
+\newblock {Webseite, URL:
+  https://jaxenter.de/neue-initiative-fur-reactive-streams-holt-alle-parteien-an-einen-tisch-1252,
+  Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Goetz, Brian [et al.]}\jbdy {2006}}%
-         {}%
-         {{0}{}{misc}{2006}{}{}{}{}%
-          {}}%
-         {{JAVA Cocurrency in Practice}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{javaConInPrac}
- \jbbibargs {\bibnf {{Goetz, Brian [et al.]}} {} {} {} {}\bibYear {2006}} {
-  {Goetz, Brian [et al.]}} {au} {sexless} {\bibtfont {JAVA Cocurrency in
-  Practice}\bibatsep {}  \apyformat {Buch} \jbnote {1} {Pearson Education Inc.
-  London, ISBN: 0-321-34960-1} } {\bibhowcited}  \jbendnote {Pearson Education
-  Inc. London, ISBN: 0-321-34960-1} \jbdoitem {{{Goetz, Brian [et
-  al.]}}{}{}{}{}} {} {} \bibAnnoteFile {javaConInPrac}
+\bibitem[{Goetz, Brian et. al}(2006)]{javaConInPrac}
+{Goetz, Brian et. al}.
+\newblock \emph{JAVA Cocurrency in Practice}.
+\newblock Pearson Education Inc., London, 2006.
+\newblock ISBN 0-321-34960-1.
 
-\backrefparscanfalse
-\bibitem[{{Google Inc}\jbdy {2010}}%
-         {}%
-         {{0}{}{misc}{2010}{}{}{}{}%
-          {}}%
-         {{Android Api Dokumentation}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{androidDevDocu}
- \jburldef
-  {androidDevDocu}{http://developer.android.com/reference/android/app/Activity.html}%
- \jbbibargs {\bibnf {{Google Inc}} {} {} {} {}\bibYear {2010}} { {Google Inc}}
-  {au} {sexless} {\bibtfont {Android Api Dokumentation}\bibatsep {}  \apyformat
-  {Webseite} \jburluse {androidDevDocu}\bibbudcsep {}\urldatecomment
-  12.11.2015} {\bibhowcited} \jbdoitem {{{Google Inc}}{}{}{}{}} {} {}
-  \bibAnnoteFile {androidDevDocu}
+\bibitem[{Google Inc}(2012)]{androidDevDocu}
+{Google Inc}.
+\newblock \emph{Android Api Dokumentation}.
+\newblock Google Inc, 2012.
+\newblock {Webseite, URL: http://developer.android.com/
+  reference/android/app/Activity.html, Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Lampe, Jürgen}\jbdy {2014}}%
-         {}%
-         {{0}{}{misc}{2014}{}{}{}{}%
-          {}}%
-         {{Ist deklarativ wirklich instruktiv}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{declarativCriticalJurnal}
- \jburldef
-  {declarativCriticalJurnal}{http://www.informatik-aktuell.de/entwicklung/methoden/deklarative-programmierung-ist-deklarativ-wirklich-instruktiv.html}%
- \jbbibargs {\bibnf {{Lampe, Jürgen}} {} {} {} {}\bibYear {2014}} { {Lampe,
-  Jürgen}} {au} {sexless} {\bibtfont {Ist deklarativ wirklich
-  instruktiv}\bibatsep {}  \apyformat {Website} \jbnote {1} {Alkmene Verlags-
-  und Mediengesellschaft mbH, Frankfurt am Main}  \jburluse
-  {declarativCriticalJurnal}\bibbudcsep {}\urldatecomment 12.11.2015}
-  {\bibhowcited}  \jbendnote {Alkmene Verlags- und Mediengesellschaft mbH,
-  Frankfurt am Main} \jbdoitem {{{Lampe, Jürgen}}{}{}{}{}} {} {}
-  \bibAnnoteFile {declarativCriticalJurnal}
+\bibitem[{Lampe, Jürgen}(2014)]{declarativCriticalJurnal}
+{Lampe, Jürgen}.
+\newblock \emph{Ist deklarativ wirklich instruktiv}.
+\newblock Alkmene Verlags- und Mediengesellschaft mbH, Frankfurt am Main, Mai
+  2014.
+\newblock {Website, URL: http://www.informatik-aktuell.de/entwicklung/
+  methoden/deklarative-programmierung-ist-deklarativ-wirklich-instruktiv.html,
+  Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Langer, Angelika und Kreft, Klaus}\jbdy {2013}}%
-         {}%
-         {{0}{}{misc}{2013}{}{}{}{}%
-          {}}%
-         {{Effective Java - Java 8 - Functional Programming in Java}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{funcProgrJava}
- \jburldef
-  {funcProgrJava}{http://www.angelikalanger.com/Articles/EffectiveJava/70.Java8.FunctionalProg/70.Java8.FunctionalProg.html}%
- \jbbibargs {\bibnf {{Langer, Angelika und Kreft, Klaus}} {} {} {} {}\bibYear
-  {2013}} { {Langer, Angelika und Kreft, Klaus}} {au} {sexless} {\bibtfont
-  {Effective Java - Java 8 - Functional Programming in Java}\bibatsep {}
-  \apyformat {Webseite \& Jurnal: Java Magazin} \jburluse
-  {funcProgrJava}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
-  \jbdoitem {{{Langer, Angelika und Kreft, Klaus}}{}{}{}{}} {} {}
-  \bibAnnoteFile {funcProgrJava}
+\bibitem[{Langer, Angelika und Kreft, Klaus}(2013)]{funcProgrJava}
+{Langer, Angelika und Kreft, Klaus}.
+\newblock \emph{Effective Java - Java 8 - Functional Programming in Java}.
+\newblock September 2013.
+\newblock {Webseite \& Jurnal: Java Magazin, URL:
+  http://www.angelikalanger.com/Articles/ EffectiveJava/70.Java8.
+  FunctionalProg/70.Java8. FunctionalProg.html, Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Law, Dan}\jbdy {2014}}%
-         {}%
-         {{0}{}{misc}{2014}{}{}{}{}%
-          {}}%
-         {{Grokking RxJava}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{rxJavaTutorial}
- \jburldef
-  {rxJavaTutorial}{http://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/}%
- \jbbibargs {\bibnf {{Law, Dan}} {} {} {} {}\bibYear {2014}} { {Law, Dan}} {au}
-  {sexless} {\bibtfont {Grokking RxJava}\bibatsep {}  \apyformat {Webseite}
-  \jburluse {rxJavaTutorial}\bibbudcsep {}\urldatecomment 12.11.2015}
-  {\bibhowcited} \jbdoitem {{{Law, Dan}}{}{}{}{}} {} {} \bibAnnoteFile
-  {rxJavaTutorial}
+\bibitem[{Law, Dan}(2014)]{rxJavaTutorial}
+{Law, Dan}.
+\newblock \emph{Grokking RxJava}.
+\newblock 2014.
+\newblock {Webseite, URL: http://blog.danlew.net/
+  2014/09/15/grokking-rxjava-part-1/, Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Loogen, Rita}\jbdy {2002}}%
-         {}%
-         {{0}{}{misc}{2002}{}{}{}{}%
-          {}}%
-         {{Praktische Informatik III (Skript): Deklarative Programmierung}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{declarativProgrammingScript}
- \jbbibargs {\bibnf {{Loogen, Rita}} {} {} {} {}\bibYear {2002}} { {Loogen,
-  Rita}} {au} {sexless} {\bibtfont {Praktische Informatik III (Skript):
-  Deklarative Programmierung}\bibatsep {}  \apyformat {PDF} \jbnote {1}
-  {Phillipps-Universität, Marburg} } {\bibhowcited}  \jbendnote
-  {Phillipps-Universität, Marburg} \jbdoitem {{{Loogen, Rita}}{}{}{}{}} {} {}
-  \bibAnnoteFile {declarativProgrammingScript}
+\bibitem[{Loogen, Rita}(2002)]{declarativProgrammingScript}
+{Loogen, Rita}.
+\newblock \emph{Praktische Informatik III (Skript): Deklarative
+  Programmierung}.
+\newblock 2002.
+\newblock {Phillipps-Universität, Marburg}.
 
-\backrefparscanfalse
-\bibitem[{{McComb, Matt}\jbdy {2014}}%
-         {}%
-         {{0}{}{misc}{2014}{}{}{}{}%
-          {}}%
-         {{Tackling Complexity in Android Apps with RxJava at SoundCloud}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{rxJavaCaseStudi}
- \jburldef
-  {rxJavaCaseStudi}{http://www.infoq.com/news/2014/11/android-rxjava-at-soundcloud}%
- \jbbibargs {\bibnf {{McComb, Matt}} {} {} {} {}\bibYear {2014}} { {McComb,
-  Matt}} {au} {sexless} {\bibtfont {Tackling Complexity in Android Apps with
-  RxJava at SoundCloud}\bibatsep {}  \apyformat {Webseite} \jburluse
-  {rxJavaCaseStudi}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
-  \jbdoitem {{{McComb, Matt}}{}{}{}{}} {} {} \bibAnnoteFile {rxJavaCaseStudi}
+\bibitem[{McComb, Matt}(2014)]{rxJavaCaseStudi}
+{McComb, Matt}.
+\newblock \emph{Tackling Complexity in Android Apps with RxJava at SoundCloud}.
+\newblock 2014.
+\newblock {Webseite, URL: http://www.infoq.com/ news/2014/11/
+  android-rxjava-at-soundcloud, Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Middendorf, Stefan [et al.]}\jbdy {3. Auflage 2002}}%
-         {}%
-         {{0}{}{misc}{3. Auflage 2002}{}{}{}{}%
-          {}}%
-         {{JavaTM Programmierhandbuch und Referenz für die JavaTM-2-Plattform,
-  Standard Edition}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{philosofen}
- \jburldef
-  {philosofen}{https://www.dpunkt.de/java/Programmieren_mit_Java/Multithreading/11.html}%
- \jbbibargs {\bibnf {{Middendorf, Stefan [et al.]}} {} {} {} {}\bibYear {3.
-  Auflage 2002}} { {Middendorf, Stefan [et al.]}} {au} {sexless} {\bibtfont
-  {JavaTM Programmierhandbuch und Referenz für die JavaTM-2-Plattform,
-  Standard Edition}\bibatsep {}  \apyformat {Website} \jbnote {1} {dpunkt
-  Verlag GmbH, Heidelberg}  \jburluse {philosofen}\bibbudcsep {}\urldatecomment
-  12.11.2015} {\bibhowcited}  \jbendnote {dpunkt Verlag GmbH, Heidelberg}
-  \jbdoitem {{{Middendorf, Stefan [et al.]}}{}{}{}{}} {} {} \bibAnnoteFile
-  {philosofen}
+\bibitem[{Middendorf, Stefan et al.}(3. Auflage 2002)]{philosofen}
+{Middendorf, Stefan et al.}
+\newblock \emph{JavaTM Programmierhandbuch und Referenz für die
+  JavaTM-2-Plattform, Standard Edition}.
+\newblock dpunkt Verlag GmbH, Heidelberg, 3. Auflage 2002.
+\newblock {Webseite, URL:
+  https://www.dpunkt.de/java/Programmieren-mit-Java/Multithreading/11.html,
+  Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Needham, Mark}\jbdy {2014}}%
-         {}%
-         {{0}{}{misc}{2014}{}{}{}{}%
-          {}}%
-         {{RxJava: From Future to Observable}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{futureToObservable}
- \jburldef
-  {futureToObservable}{http://www.markhneedham.com/blog/2013/12/28/rxjava-from-future-to-observable/}%
- \jbbibargs {\bibnf {{Needham, Mark}} {} {} {} {}\bibYear {2014}} { {Needham,
-  Mark}} {au} {sexless} {\bibtfont {RxJava: From Future to Observable}\bibatsep
-  {}  \apyformat {Webseite} \jburluse {futureToObservable}\bibbudcsep
-  {}\urldatecomment 12.11.2015} {\bibhowcited} \jbdoitem {{{Needham,
-  Mark}}{}{}{}{}} {} {} \bibAnnoteFile {futureToObservable}
+\bibitem[{Needham, Mark}(2014)]{futureToObservable}
+{Needham, Mark}.
+\newblock \emph{RxJava: From Future to Observable}.
+\newblock 2014.
+\newblock {Webseite, URL:
+  http://www.markhneedham.com/blog/2013/12/28/rxjava-from-future-to-observable/,
+  Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Neumann, Alexander}\jbdy {2013}}%
-         {}%
-         {{0}{}{misc}{2013}{}{}{}{}%
-          {}}%
-         {{Ein Manifest für Reactive Programming}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{heiseReactiveManifesto}
- \jburldef
-  {heiseReactiveManifesto}{http://www.heise.de/developer/meldung/Ein-Manifest-fuer-Reactive-Programming-1945096.html}%
- \jbbibargs {\bibnf {{Neumann, Alexander}} {} {} {} {}\bibYear {2013}} {
-  {Neumann, Alexander}} {au} {sexless} {\bibtfont {Ein Manifest für Reactive
-  Programming}\bibatsep {}  \apyformat {Webseite} \jburluse
-  {heiseReactiveManifesto}\bibbudcsep {}\urldatecomment 12.11.2015}
-  {\bibhowcited} \jbdoitem {{{Neumann, Alexander}}{}{}{}{}} {} {}
-  \bibAnnoteFile {heiseReactiveManifesto}
+\bibitem[{Neumann, Alexander}(2013)]{heiseReactiveManifesto}
+{Neumann, Alexander}.
+\newblock \emph{Ein Manifest für Reactive Programming}.
+\newblock 2013.
+\newblock {Webseite, URL:
+  http://www.heise.de/developer/meldung/Ein-Manifest-fuer-Reactive-Programming-1945096.html,
+  Aufrufdatum: 12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{RXCommunity}}%
-         {}%
-         {{0}{}{misc}{}{}{}{}{}%
-          {}}%
-         {{ReactiveX}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{rxAllgDoku}
- \jburldef {rxAllgDoku}{http://reactivex.io/intro.html}%
- \jbbibargs {\bibnf {{RXCommunity}} {} {} {} {}\bibYear {}} { {RXCommunity}}
-  {au} {sexless} {\bibtfont {ReactiveX}\bibatsep {}  \apyformat {Webseite}
-  \jburluse {rxAllgDoku}\bibbudcsep {}\urldatecomment 12.11.2015}
-  {\bibhowcited} \jbdoitem {{{RXCommunity}}{}{}{}{}} {} {} \bibAnnoteFile
-  {rxAllgDoku}
+\bibitem[{RXCommunity}()]{rxAllgDoku}
+{RXCommunity}.
+\newblock \emph{ReactiveX}.
+\newblock {Webseite, URL: http://reactivex.io/intro.html, Aufrufdatum:
+  12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Tuominen, Timo}\jbdy {2014}}%
-         {}%
-         {{0}{}{misc}{2014}{}{}{}{}%
-          {}}%
-         {{Top 7 Tips for RxJava on Android}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{rxOnAndroidTips}
- \jburldef
-  {rxOnAndroidTips}{http://futurice.com/blog/top-7-tips-for-rxjava-on-android}%
- \jbbibargs {\bibnf {{Tuominen, Timo}} {} {} {} {}\bibYear {2014}} { {Tuominen,
-  Timo}} {au} {sexless} {\bibtfont {Top 7 Tips for RxJava on Android}\bibatsep
-  {}  \apyformat {Webseite} \jburluse {rxOnAndroidTips}\bibbudcsep
-  {}\urldatecomment 12.11.2015} {\bibhowcited} \jbdoitem {{{Tuominen,
-  Timo}}{}{}{}{}} {} {} \bibAnnoteFile {rxOnAndroidTips}
+\bibitem[{Tuominen, Timo}(2014)]{rxOnAndroidTips}
+{Tuominen, Timo}.
+\newblock \emph{Top 7 Tips for RxJava on Android}.
+\newblock 2014.
+\newblock {Webseite, URL:
+  http://futurice.com/blog/top-7-tips-for-rxjava-on-android, Aufrufdatum:
+  12.11.2015}.
 
-\backrefparscanfalse
-\bibitem[{{Vogt, Carsten}\jbdy {2012}}%
-         {}%
-         {{0}{}{misc}{2012}{}{}{}{}%
-          {}}%
-         {{Nebenläufige Programmierung}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{nebenlaeufigeProg}
- \jbbibargs {\bibnf {{Vogt, Carsten}} {} {} {} {}\bibYear {2012}} { {Vogt,
-  Carsten}} {au} {sexless} {\bibtfont {Nebenläufige Programmierung}\bibatsep
-  {}  \apyformat {Buch} \jbnote {1} {Carl Hanser Verlag, München, ISBN:
-  978-3-446-42755-6} } {\bibhowcited}  \jbendnote {Carl Hanser Verlag,
-  München, ISBN: 978-3-446-42755-6} \jbdoitem {{{Vogt, Carsten}}{}{}{}{}} {}
-  {} \bibAnnoteFile {nebenlaeufigeProg}
+\bibitem[{Vogt, Carsten}(2012)]{nebenlaeufigeProg}
+{Vogt, Carsten}.
+\newblock \emph{Nebenläufige Programmierung}.
+\newblock Carl Hanser Verlag, München, 2012.
+\newblock ISBN {978-3-446-42755-6}.
 
-\backrefparscanfalse
-\bibitem[{{Yehuda, A.}\jbdy {2015}}%
-         {}%
-         {{0}{}{misc}{2015}{}{}{}{}%
-          {}}%
-         {{Android – Multithreading in a UI environment}%
-          {}{}{2}{}{}{}{}{}}%
-        ]{handlerLooperBlock}
- \jburldef
-  {handlerLooperBlock}{http://www.aviyehuda.com/blog/2010/12/20/android-multithreading-in-a-ui-environment/}%
- \jbbibargs {\bibnf {{Yehuda, A.}} {} {} {} {}\bibYear {2015}} { {Yehuda, A.}}
-  {au} {sexless} {\bibtfont {Android – Multithreading in a UI
-  environment}\bibatsep {}  \apyformat {Webseite} \jburluse
-  {handlerLooperBlock}\bibbudcsep {}\urldatecomment 12.11.2015} {\bibhowcited}
-  \jbdoitem {{{Yehuda, A.}}{}{}{}{}} {} {} \bibAnnoteFile {handlerLooperBlock}
+\bibitem[{Yehuda, A.}(2015)]{handlerLooperBlock}
+{Yehuda, A.}
+\newblock \emph{Android – Multithreading in a UI environment}.
+\newblock Avi Yehuda, November 2015.
+\newblock {Webseite, URL: http://www.aviyehuda.com/blog/
+  2010/12/20/android-multithreading-in-a-ui-environment/, Aufrufdatum =
+  12.11.2015}.
 
 \end{thebibliography}
