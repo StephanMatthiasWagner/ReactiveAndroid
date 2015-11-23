@@ -30,20 +30,20 @@
 \contentsline {paragraph}{\nonumberline Zeitintensive Berechnungen}{24}{section*.8}
 \contentsline {chapter}{\numberline {2}Asynchrone Parallelverarbeitung unter Android}{25}{chapter.2}
 \contentsline {section}{\numberline {2.1}Bolckierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}{25}{section.2.1}
-\contentsline {section}{\numberline {2.2}Parallelverarbeitung mit der Java Standard Edition (Java Concurrency)}{27}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Handler-Looper Mechanismus zur Inter-Thread-Kommunikation}{29}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.2}Parallelverarbeitung mit der Java Standard Edition (Java Concurrency)}{28}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Handler-Looper Mechanismus zur Inter-Thread-Kommunikation}{30}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Verwendung des Handler Looper Mechnismus}{31}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Probleme bei der Nutzung des Handler Looper Mechanismus}{33}{subsection.2.2.3}
 \contentsline {subsection}{\numberline {2.2.4}Vorsicht im Umgang mit Java Futures}{36}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Parallelverarbeitung mit AndroidAsyncTask (Anroid Concurrency)}{36}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Ausf\IeC {\"u}hrungsmodell von Android AsyncTask in Bezug auf Multi Threading}{40}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Serielle Ausf\IeC {\"u}hrung in Android AsyncTask}{44}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.3}Parallelverarbeitung mit AndroidAsyncTask (Anroid Concurrency)}{37}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Ausf\IeC {\"u}hrungsmodell von Android AsyncTask in Bezug auf Multi Threading}{41}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Serielle Ausf\IeC {\"u}hrung in Android AsyncTask}{45}{subsection.2.3.2}
 \contentsline {section}{\numberline {2.4}Parallelverarbeitung mit RXJava}{49}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Imperative und Deklarative Programmierung}{49}{subsection.2.4.1}
 \contentsline {paragraph}{\nonumberline Imperative Programmierung}{49}{section*.9}
-\contentsline {paragraph}{\nonumberline Deklarative Programme}{49}{section*.10}
+\contentsline {paragraph}{\nonumberline Deklarative Programme}{50}{section*.10}
 \contentsline {paragraph}{\nonumberline Funktionale Programmierung}{50}{section*.11}
-\contentsline {subsection}{\numberline {2.4.2}Reaktive Programmierung \& Reactive Manifesto}{50}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.2}Reaktive Programmierung \& Reactive Manifesto}{51}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}RX JAVA Entstehung}{52}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2.4.4}RXJava Funktionsweise}{53}{subsection.2.4.4}
 \contentsline {subsection}{\numberline {2.4.5}RXJava in Android}{60}{subsection.2.4.5}
