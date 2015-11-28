@@ -111,6 +111,16 @@
 \newcommand{\MSc}{\mbox{M.\,Sc.}\xspace}
 \newcommand{\BSc}{\mbox{B.\,Sc.}\xspace}
 
+%% Schönerer quellcode
+\usepackage{listings}
+\usepackage{pxfonts}
+
+\lstset{language=JAVA,
+    basicstyle=\ttfamily,
+    keywordstyle=\bfseries,
+    showstringspaces=false,
+    morekeywords={include}
+}
 
 %% Schönere Tabellen
 \usepackage{booktabs}
@@ -393,18 +403,22 @@ Die folgende Abbildung zeigt zwei Fenster einer Android Applikation mit je einem
 Die mathematische Operation ist so gestaltet, dass sie im Komplexitätsgrad variabel einstellbar ist und somit auch die Verarbeitungszeit verlängert werden kann. Dabei handelt es sich um die Berechnung einer Quersumme aus einer sehr großen Primzahl. Die Ermittlung der Primzahl verlängert sich in Abhängigkeit zu der im Die mathematische Operation ist so gestaltet, dass sie im Komplexitätsgrad variabel einstellbar ist und somit auch die Verarbeitungszeit verlängert werden kann. Dabei handelt es sich um die Berechnung einer Quersumme aus einer sehr großen Primzahl. Die Ermittlung der Primzahl verlängert sich in Abhängigkeit zu der im Vorhinein definierten Mindestgröße der Primzahl (hier 1500Byte BigInteger):\newline
 \begin{lstlisting}
 
-BigInteger veryBig = new BigInteger(1500, new Random());
-BigInteger randomPrimeNumber = veryBig.nextProbablePrime();
+BigInteger veryBig = new BigInteger(1500, 
+									new Random());
+BigInteger randomPrimeNumber = veryBig
+			.nextProbablePrime();
 int summe = 0;
-while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO)) 
+while (0 != randomPrimeNumber
+			.compareTo(BigInteger.ZERO)) 
 { 
        // addiere die letzte ziffer der 
        // uebergebenen zahl zur summe 
-       summe = summe + (randomPrimeNumber.
-			mod(BigInteger.TEN)).intValue(); 
+       summe = summe + (randomPrimeNumber
+			.mod(BigInteger.TEN))
+			.intValue(); 
        					
        				
-       // entferne die letzte ziffer der uebergebenen zahl 
+       // entferne die letzte ziffer 
        randomPrimeNumber = randomPrimeNumber.
        		divide(BigInteger.TEN); 
        } 
@@ -412,53 +426,46 @@ targetString.append(summe);
 }
 \end{lstlisting}
 
-\texttt{BigInteger veryBig = new BigInteger(1500, new Random());\newline
-BigInteger randomPrimeNumber = veryBig.nextProbablePrime();\newline
-int summe = 0;\newline\newline
-while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO))\newline 
-\{ \newline
-       // addiere die letzte ziffer der uebergebenen zahl zur summe \newline
-       summe = summe + (randomPrimeNumber.mod(BigInteger.TEN)).intValue(); \newline\newline\newline
-       // entferne die letzte ziffer der uebergebenen zahl \newline
-       randomPrimeNumber = randomPrimeNumber.divide(BigInteger.TEN); \newline
-       \} \newline
-targetString.append(summe);\newline
-}\newline
 Die Berechnung wird dabei angestoßen aus der Activity und allein innerhalb des UI Thread durchgeführt. In einem ersten Versuch wird die Komplexität nach und nach erhöht um zunehmend die Interaktion der Applikation mit dem Nutzer über die Benutzerschnittstelle zu blockieren. Nach einer bestimmten Blockierungszeit T ist zu beobachten, das der ANR Dialog des Betriebssystems erscheint und anbietet die Applikation zu beenden oder weiter zu warten. An dieser Stelle registriert das Betriebssystem, dass der UI-Thread als Haupt-Thread der Applikation für die Zeit T keine weitere Interaktion des Benutzers verarbeiten kann. Der Benutzer ist bis zu diesem Zeitpunkt nach Aktivierung der Berechnung nicht in der Lage die Applikation zu beenden oder zu wechseln. Daher schreitet nun das Betriebssystem ein, pausiert die Applikation und bietet dem Nutzer in einem ANR-Dialog an, die Applikation zu terminieren, oder weiter auf die Rückmeldung der Applikation zu warten.
 
 \section{Parallelverarbeitung mit der Java Standard Edition (Java Concurrency)}
-In diesem Abschnitt wird versucht die zeitintensive Berechnung aus dem letzten Abschnitt, mittels der allgemeinen Mechanismen der Java Standard Edition in eine parallele Verarbeitung auszulagern. Damit soll das Blockieren der Anwendung verhindert werden. Hierzu wird die Berechnung in eine Klasse ausgelagert, die das Interface \texttt{java.lang.Runnable} implementiert. Diese kann daraufhin einem neuen Thread zur Ausführung übergeben werden. Der folgende Auszug aus dem Quellcode zeigt dabei den Konstruktor, sowie die \texttt{run()}- Methode der Klasse.\newline\newline\newline\newline\newline\newline
-\texttt{
-public RandomPrimeNumGenerator(final View aView, final Handler aCallbackHandler)\newline
-\{ \newline
- Log.d(TAG,\grqq Call Constructor\grqq );\newline
- targetView = aView;\newline
- handler = aCallbackHandler;\newline
-\} \newline
-  @Override\newline
-  public void run()\newline
-  \{ \newline
-     Log.d(TAG, \grqq Call run\grqq);\newline
-       String result = startCalculation();\newline
-       Message message = new Message();\newline
-       Bundle bundle = new Bundle();\newline
-       bundle.putCharArray(String.valueOf(targetView.getId()), result.toCharArray());\newline
-       message.setData(bundle);\newline
-       Log.d(TAG,\grqq Call handler\grqq );\newline
-       handler.sendMessage(message);\newline
-   \} \newline\newline
-} \newline
-Das hier verwendete Handler Objekt wird dem Konstruktor aus der Activity übergeben. Wird die durch den Konstruktor \texttt{RandomPrimeNumGenerator} erzeugte Runnableinstanz nun einem Thread Konstruktor übergeben und auf dieser Threadinstanz die \texttt{start()}- Methode Aufgerufen, so startet die Java Virtuelle Maschiene einen neuen Thread, der die zeitintensive Berechnungen ausführt. Der folgende Codeabschnitt ist in der Activity defininiert. Es wird somit aus dem Main Thread heraus ein neuer Thread erzeugt.\newline\newline\newline
-\texttt{
-private final Handler handler = new Handler();\newline\newline
-public void initCalculation(View aView)\newline
-  \{ \newline
+In diesem Abschnitt wird versucht die zeitintensive Berechnung aus dem letzten Abschnitt, mittels der allgemeinen Mechanismen der Java Standard Edition in eine parallele Verarbeitung auszulagern. Damit soll das Blockieren der Anwendung verhindert werden. Hierzu wird die Berechnung in eine Klasse ausgelagert, die das Interface \texttt{java.lang.Runnable} implementiert. Diese kann daraufhin einem neuen Thread zur Ausführung übergeben werden. Der folgende Auszug aus dem Quellcode zeigt dabei den Konstruktor, sowie die \texttt{run()}- Methode der Klasse.\newline
+\begin{lstlisting}
+public RandomPrimeNumGenerator(final View aView,
+		 final Handler aCallbackHandler)
+{ 
+ Log.d(TAG,"Call Constructor" );
+ targetView = aView;
+ handler = aCallbackHandler;
+} 
+  @Override
+  public void run()
+  {
+     Log.d(TAG, "Call run");
+       String result = startCalculation();
+       Message message = new Message();
+       Bundle bundle = new Bundle();
+       bundle
+       	.putCharArray(String
+       		.valueOf(targetView.getId())
+       			, result.toCharArray());
+       message.setData(bundle);
+       Log.d(TAG,"Call handler" );
+       handler.sendMessage(message);
+   } 
+\end{lstlisting}
+Das hier verwendete Handler Objekt wird dem Konstruktor aus der Activity übergeben. Wird die durch den Konstruktor \texttt{RandomPrimeNumGenerator} erzeugte Runnableinstanz nun einem Thread Konstruktor übergeben und auf dieser Threadinstanz die \texttt{start()}- Methode Aufgerufen, so startet die Java Virtuelle Maschiene einen neuen Thread, der die zeitintensive Berechnungen ausführt. Der folgende Codeabschnitt ist in der Activity defininiert. Es wird somit aus dem Main Thread heraus ein neuer Thread erzeugt.\newline
+\begin{lstlisting}
+private final Handler handler = new Handler();
+public void initCalculation(View aView)
+  { 
      RandomPrimeNumGenerator runnable =
-        new RandomPrimeNumGenerator(aView, handler);\newline\newline  
-     Thread newThread = new Thread(runnable);\newline
-     newThread.start();\newline
-  \} \newline
-} \newline
+        new RandomPrimeNumGenerator(aView, handler);  
+     Thread newThread = new Thread(runnable);
+     newThread.start();
+  } 
+
+\end{lstlisting}
 Die Händler Instanz, welche dem Konstruktor der Klasse \texttt{RadomPrimeNumGenerator} mitgegeben wurde, dient dabei der Kommunikation zwischen der Activity im UI-Thread und dem neuen Thread. So ist es möglich mittels einer Rückruf Methode, Informationen zurück an den UI-Thread zu spielen. Die Handler Implementierung stammt aus dem Packet android.os und ist demnach keine Funktionalität aus der Java Standard Edition. Es gibt alternativ auch andere Möglichkeiten mittels der Mechanismen aus der Java Standard Edition die Kommunikation zwischen den Threads zu realisieren. So kann eine eigene Nachrichteninfrastruktur geschaffen werden (vgl. Kapitel 1.5.2 MessageQueue) oder es können auch Java Futures genutzt werden. Dennoch ist es für dieses Beispiel sinnvoll sich der Android-spezifischen Funktionalität zur Kommunikation über Thread Grenzen zu bedienen, denn diese wird bereits durch das Android Betriebssystem für jede Applikation bereitgestellt. Eine eigene Implementierung ist daher zwar jeder zeit möglich, stellt aber eine unnötige Redundanz dar. Diese Funktionalität wird im nächsten Abschnitt kurz erläutert um weiter auf deren korrekte Anwendung eingehen zu können.
 
 \subsection{Handler-Looper Mechanismus zur Inter-Thread-Kommunikation}
@@ -473,59 +480,75 @@ Das Android SDK bietet für die Kommunikation zwischen Threads, die der selben A
 Die o.g. MessageQueue und die Looper-Instanz wird zum Initialisierungszeitpunkt der Applikation erzeugt. Sie bildet über die Kommunikation zwischen sekundären Threads und dem UI Thread hinaus, auch die Kommunikation zwischen den Basiskomponenten der Applikation ab (siehe Kapitel 1.7.2.2 Komponentenmodell). Darunter zählen u.a. Activities, Broadcast Receivers, etc.
 
 \subsection{Verwendung des Handler Looper Mechnismus }
-In unserem Beispiel wird ein Handler aus der Activity erzeugt, die in dem UI-Thread verarbeitet wird. Der Hander kann somit in seinem Konstruktor auf die Looper Instanz des UI Threads zugreifen und damit auch die Referenz der MessageQueue abrufen, in die er Nachrichten ablegen soll. In der run()-Methode der Klasse RandomPrimeNumGenerator wird das Ergebnis der Berechnung als gebundenes Schlüssel-Wert-Paar in einem Nachrichtenobjekt vom Typ anroid.os.Message abgelegt und der Handlerinstanz als zu versendende Nachricht übergeben.\newline\newline
-\texttt{
-@Override\newline
-public void run()\newline
-  \{\newline
-     Log.d(TAG, \grqq Call run\grqq);\newline
-       String result = startCalculation();\newline
-       Message message = new Message();\newline
-       Bundle bundle = new Bundle();\newline
-       bundle.putCharArray(String.valueOf(targetView.getId()),
-                           result.toCharArray());
-       message.setData(bundle);\newline
-       Log.d(TAG,\grqq Call handler\grqq);\newline
-       handler.sendMessage(message);\newline
- \}\newline
-}\newline
-Die Handlerimplementierung in der Activity liefert die Rückruf Methode \texttt{handleMessage()}, die der Looper aufruft, wenn er die Nachricht unserer Handlerinstanz aus der Nachrichtenschlange nimmt.\newline\newline
-\texttt{ 
-private static Handler HANDLER = new Handler()\newline
-  \{\newline
-     @Override\newline
-     public void handleMessage(Message msg)\newline
-     \{\newline
-        updateView(msg);\newline
-     \}\newline
-  \};\newline
-}\newline
+In unserem Beispiel wird ein Handler aus der Activity erzeugt, die in dem UI-Thread verarbeitet wird. Der Hander kann somit in seinem Konstruktor auf die Looper Instanz des UI Threads zugreifen und damit auch die Referenz der MessageQueue abrufen, in die er Nachrichten ablegen soll. In der run()-Methode der Klasse RandomPrimeNumGenerator wird das Ergebnis der Berechnung als gebundenes Schlüssel-Wert-Paar in einem Nachrichtenobjekt vom Typ anroid.os.Message abgelegt und der Handlerinstanz als zu versendende Nachricht übergeben.\newline
+\begin{lstlisting}
+@Override
+public void run()
+  {
+     Log.d(TAG, "Call run");
+       String result = startCalculation();
+       Message message = new Message();
+       Bundle bundle = new Bundle();
+       bundle.putCharArray(String.valueOf
+       				(targetView
+       					.getId())
+       			,result.toCharArray());
+       message.setData(bundle);
+       Log.d(TAG,"Call handler");
+       handler.sendMessage(message);
+ }
+\end{lstlisting}
+Die Handlerimplementierung in der Activity liefert die Rückruf Methode \texttt{handleMessage()}, die der Looper aufruft, wenn er die Nachricht unserer Handlerinstanz aus der Nachrichtenschlange nimmt.\newline \begin{lstlisting} 
+private static Handler HANDLER = new Handler()
+  {
+     @Override
+     public void handleMessage(Message msg)
+     {
+        updateView(msg);
+     }
+  };
+\end{lstlisting}
 Im Falle von mehreren Handlerinstanzen, die Nachrichten in die MessageQueue ablegen, gibt es keine Kontrolle über die Reihenfolge. Die Nachrichten werden durch den Looper in der Regel (abhängig von der MessageQueue Implementierung) nach dem First-In-First-Out-Prinzip abgearbeitet, welches für komplexere Handler – Thread Konstrukte (also mehr als ein sekundärer Thread) zu beachten ist. Die Methode \texttt{updateView(msg)} der Activity wird im weiteren Programmverlauf nun asynchron aufgerufen und extrahiert die Nutzdaten aus der übermittelten Nachricht, um damit die jeweiligen Interaktionselemente der Benutzerschnittstelle zu aktualisieren.\newline\newline
-\texttt{ 
-  public static void updateView(Message aMessage)\newline
-  \{ \newline
-     Log.d(\grqq RandomPrimeNumGenerator\grqq, \grqq Callback handleMessage\grqq);\newline
-     Bundle bundle = aMessage.getData();\newline
-\newline
-     if(bundle.containsKey(String.valueOf(R.id.startCalculation1)))\newline
-     \{\newline
-        char[] firstResult = (char[])bundle.get(String.valueOf(R.id.startCalculation1));\newline
-        Log.d(\grqq RandomPrimeNumGenerator\grqq, \grqq Callback view string: \grqq + String.valueOf(firstResult));\newline
-\newline
-        firstCalculationOutput.setText(String.valueOf(firstResult));\newline
-        firstCalculationOutput.invalidate();\newline
-    \}\newline
-\newline
-     if(bundle.containsKey(String.valueOf(R.id.startCalculation2)))\newline
-     \{\newline
-        char[] secondResult = (char[])bundle.get(String.valueOf(R.id.startCalculation2));\newline
-        Log.d(\grqq RandomPrimeNumGenerator\grqq, \grqq Callback view string: \grqq +                                                                                                                                                                 
-      String.valueOf(secondResult));\newline\newline
-        secondCalculationOutput.setText(String.valueOf(secondResult));\newline
-        secondCalculationOutput.invalidate();\newline
-     \}\newline
-  \}\newline
-}\newline
+\begin{lstlisting}
+  public static void updateView(Message aMessage)
+  { 
+     Log.d("RandomPrimeNumGenerator",
+      "Callback handleMessage");
+     Bundle bundle = aMessage.getData();
+
+     if(bundle.containsKey(String
+     		.valueOf(R.id.startCalculation1)))
+     {(
+        char[] firstResult = 
+        	char[])bundle.get(String
+        	.valueOf(R.id.startCalculation1));
+        Log.d("RandomPrimeNumGenerator",
+        "Callback view string:" + 
+        String.valueOf(firstResult));
+
+        firstCalculationOutput.
+        setText(String.valueOf(firstResult));
+        firstCalculationOutput.invalidate();
+    }
+
+     if(bundle.containsKey(String
+     	.valueOf(R.id.startCalculation2)))
+     {
+        char[] secondResult = 
+        	(char[])bundle.get(String
+        		.valueOf(
+        		R.id.startCalculation2));
+        Log.d("RandomPrimeNumGenerator", 
+        	"Callback view string:" +                                                                                                                                                                 
+      String.valueOf(secondResult));
+        secondCalculationOutput
+        	.setText(String
+        		.valueOf(secondResult));
+        secondCalculationOutput.invalidate();
+     }
+  }
+}
+\end{lstlisting}
 \subsection{Probleme bei der Nutzung des Handler Looper Mechanismus}
 Das den letzten Abschnitten vorgestellte Implementierungsbeispiel zur Java Concurrency zeigt, wie Parallelverarbeitung mit der Standard Thread Erzeugung aus der Java SE Paket realisiert werden kann. Jedoch besteht so wie der Handler Looper Mechnismus hier verwendet wird ein Risiko. Dadurch, dass der UI-Thread eine Handler Instanz erzeugt und diese dann im sekundären Thread genutzt wird, können Memory Leaks (Speicherlecks) entstehen die, die Stabilität des Systems gefährden können. Innerhalb von Applikationen unter Android werden in der Regel für bestimmte Ereignisse wie z.B. Konfigurationsänderungen (Drehen des Bildschirm = Veränderung des Darstellungsformates) die betreffenden Activities neu instantiiert und die alten Instanzen dem Garbage Collector übergeben. Die Folgende Graphik skizziert die Abhängigkeiten bei einem möglichen Implementierungsszenario:
 \begin{figure}[H]
@@ -536,29 +559,41 @@ Das den letzten Abschnitten vorgestellte Implementierungsbeispiel zur Java Concu
   \end{centering}
 \end{figure}
 In diesem Fall kann die alte Activity Instanz nicht entsorgt werden, da diese immer noch eine Referenz auf das aktuell in einem zweiten Thread genutzte Handler Objekt hält. Zusätzlich wird innerhalb der Handler Klasse auf ein Element der Activity zugegriffen(\texttt{textView}). Beide Referenzen hindern den Garbage Collector daran die Activity abzuräumen, solange die Verarbeitung im sekundär Thread noch läuft. Dauert die Hintergrundverarbeitung nun sehr lange, so ist es durch häufiges Drehen des Displays schnell möglich, weitere Activity Instanzen zu erzeugen und somit das System zu destabilisieren (der Hauptspeicher läuft voll). Dieser Effekt wird noch dadurch verstärkt, dass gerade die Activity alle GUI Elemente referenziert, also sehr speicherintensiv ist. Der Konstruktor der Klasse android.os.Handler versucht bereits zur Instanziierung den Entwickler vor diesem Risiko zu warnen:\newline
-\texttt{ \newline
-   public Handler() \{\newline
-     if (FIND\_POTENTIAL\_LEAKS) \{ \newline
-           final Class<? extends Handler> klass = getClass();\newline
-           if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) \&\& 
-                 (klass.getModifiers() \& Modifier.STATIC) == 0) \{\newline
-               Log.w(TAG, \grqq The following Handler class should be static or leaks might occur: \grqq +
-                   klass.getCanonicalName());\newline
-           \}\newline
-       \}\newline
-\newline
-       mLooper = Looper.myLooper();\newline
-       if (mLooper == null) \{\newline
+\begin{lstlisting}
+   public Handler() {
+     if (FIND_POTENTIAL_LEAKS) 
+     { 
+       final Class<? extends Handler> klass = 
+       					getClass();
+       if ((klass.isAnonymousClass() 
+       	|| klass.isMemberClass()
+       	|| klass.isLocalClass())
+       	&& (klass.getModifiers()
+       		& Modifier.STATIC) == 0) 
+       		{
+		Log.w(TAG, "The following Handler"+ 
+		"class should be static or leaks"+
+		"might occur:"+klass
+			.getCanonicalName());
+           }
+       }
+
+       mLooper = Looper.myLooper();
+       if (mLooper == null) \{
            throw new RuntimeException(
-               \grqq Can't create handler inside thread that has not called Looper.prepare()\grqq);\newline
-       \}\newline
-       mQueue = mLooper.mQueue;\newline
-      mCallback = null;\newline
-   \}\newline
-}\newline
+               "Can't create handler inside"+
+               "thread that has not called"+ 
+               "Looper.prepare()");
+       }
+       mQueue = mLooper.mQueue;
+       mCallback = null;
+   }
+\end{lstlisting}
 Hier wird deutlich, dass explizit geprüft wird, ob das Handler Objekt als statisches Objekt aus einer inneren Klasse heraus deklariert wurde. Falls nicht wird schon hier eine Warnung ausgegeben, dass an dieser Stelle ein Speicherleck droht:\newline
-\texttt{Log.w(TAG, \grqq The following Handler class should be static or leaks might occur: \grqq +
-               	class.getCanonicalName());}\newline
+\texttt{\newline
+Log.w(TAG, \grqq The following Handler class should be static or leaks might occur: \grqq +
+               	class.getCanonicalName());\newline
+}\newline
 Für die Handler Referenz würde somit schon die Definition als statische Instanz ausreichen. Werden jedoch dem Sekundär-Thread weitere Referenzen übergeben, so sind diese als \texttt{java.lang.ref.WeakReferences} zu kapseln. Diese zeigen dem Garbage Collector an, dass er bei der Evaluation z.B. einer Activity Instanz nicht die aktuelle Nutzung von \texttt{WeakReferenzes} untersuchen muss.
 
 \subsection{Vorsicht im Umgang mit Java Futures}
@@ -589,48 +624,61 @@ onPreExecute()\newline
 vor der Hintergrundverarbeitung bereits im Konstruktor der Klasse AsyncTask aufgerufen. Hier kann entsprechend alle Logik integriert werden, die noch vor der eigentlichen Hintergrundverarbeitung stattfinden soll. Der hier definierte Code wird noch auf dem UI-Thread ausgeführt. Dies bietet sich an für Initialisierungen wie z.B. für eine Prozessanzeige.\newline
 Die Methode\newline \newline
 \texttt{doInBackground()}\newline\newline
-ist als abstrakte Methode gekennzeichnet und muss bei der Vererbung von AsyncTask überschrieben werden. Sie kapselt die aufzurufende Logik um diese in einem separaten Thread aufrufen zu können. In unserem Beispiel wird hier die zeitintensive Berechnung definiert. Die \texttt{doInBackground()}-Methode ist eine Rückruf-Methode und wird indirekt angestoßen durch den Aufruf\newline 
+ist als abstrakte Methode gekennzeichnet und muss bei der Vererbung von AsyncTask überschrieben werden. Sie kapselt die aufzurufende Logik um diese in einem separaten Thread aufrufen zu können. In unserem Beispiel wird hier die zeitintensive Berechnung definiert. Die \texttt{doInBackground()}-Methode ist eine Rückruf-Methode und wird indirekt angestoßen durch den Aufruf:\newline 
 \texttt{\newline
 asyncTaskInstance.execute(Params…params)\newline
 }\newline
 Die Klasse \texttt{AndroidAsyncRandomPrimeGen} überschreibt die \texttt{doInBackground()}-Methode und integriert hier die zeitintensive Verarbeitung:\newline
-\texttt{\newline
-@Override\newline
-  protected AsyncTaskResult<String> doInBackground(Integer... params)\newline
-  \{\newline
-     if(params == null || params.length != 1)\newline
-    \{\newline
-        return new AsyncTaskResult<String>(new IllegalArgumentException(\grqq Not the rights params:\grqq + params));\newline
-    \}\newline
-     triggerViewId = params[0].intValue();\newline
-\newline
-     StringBuilder targetString = new StringBuilder(10);\newline
-     for(int i = 0; i < 10; i++)\newline
-    \{\newline
-\newline
-BigInteger veryBig = new BigInteger(1500, new Random());  //Zeitintensive Berechnung \newline
-           //siehe Bsp BlockierendeEingabeAusgabe...\newline
-     return new AsyncTaskResult<String>(targetString.toString());\newline
- \}\newline
-}\newline
-Die oben beschriebenen Übergabeparametertypen werden in diesem Codebeispiel zur Methode \texttt{doInBackground()} als Integer konkretisiert und spezifizieren in der Implementierung die ID der View, welche die Berechnung angestoßen hat. An Hand dessen wird später die Ziel-View ermittelt, die das Ergebnis darstellen soll. Das Ergebnis der Berechnung wird hier als konkreter \texttt{AsyncTaskResult<String>} Typ zurückgegeben, damit dieser String an die \texttt{onPostExecute(Result … result)} Methode weitergegeben werden kann. Analog zur Hintergrundverarbeitung bietet Google mit der Methode \texttt{onProgressUpdate()} die Möglichkeit aus der laufenden Berechnung im sekundären Thread, Informationen oder Nachrichten wie z.B. Statusmeldungen an den UI Thread zu senden. Die Methode \texttt{onPostExecute()} wird nach Abschluss der Hintergrundoperationen dann wieder auf dem UI-Thread ausgeführt. Sie bietet sich an, um finale Aktualisierungen auf Basis der Ergebnisse aus der Hintergrundverarbeitung durchzuführen. In unserem Beispiel könnte das Ergebnis in die jeweiligen View Objekte der Activity übertragen werden:\newline
-\newline
-\texttt{@Override\newline
-   protected void onPostExecute(AsyncTaskResult<String> result) \{\newline
-...\newline
-           //update user interface\newline
-           String realResult = result.getResult();\newline
-\newline
-           if (triggerViewId == R.id.startCalculation1) \{\newline
-               firstOutputView.setText(realResult);\newline
-               firstOutputView.invalidate();\newline
-           \}\newline
-           if (triggerViewId == R.id.startCalculation2) \{\newline
-               secondOutputView.setText(realResult);\newline
-               secondOutputView.invalidate();\newline
-           \}\newline
-       \}\newline
+\begin{lstlisting}
+@Override
+protected AsyncTaskResult<String> 
+  		doInBackground(Integer... params)
+{
+    if(params == null || params.length != 1)
+    {
+    return new AsyncTaskResult<String>(
+    	new IllegalArgumentException(
+			"Not the rights params:"+ 
+					params));
+    }
+    triggerViewId = params[0].intValue();
+
+    StringBuilder targetString = 
+     	new StringBuilder(10);
+    for(int i = 0; i < 10; i++)
+    {
+    BigInteger veryBig = 
+    new BigInteger(1500, new Random());
+    //Zeitintensive Berechnung
+    //siehe Bsp: BlockierendeEingabeAusgabe
+    ...
+    }
+    return new AsyncTaskResult<String>(
+    		targetString.toString());
 }
+\end{lstlisting}
+Die oben beschriebenen Übergabeparametertypen werden in diesem Codebeispiel zur Methode \texttt{doInBackground()} als Integer konkretisiert und spezifizieren in der Implementierung die ID der View, welche die Berechnung angestoßen hat. An Hand dessen wird später die Ziel-View ermittelt, die das Ergebnis darstellen soll. Das Ergebnis der Berechnung wird hier als konkreter \texttt{AsyncTaskResult<String>} Typ zurückgegeben, damit dieser String an die \texttt{onPostExecute(Result … result)} Methode weitergegeben werden kann. Analog zur Hintergrundverarbeitung bietet Google mit der Methode \texttt{onProgressUpdate()} die Möglichkeit aus der laufenden Berechnung im sekundären Thread, Informationen oder Nachrichten wie z.B. Statusmeldungen an den UI Thread zu senden. Die Methode \texttt{onPostExecute()} wird nach Abschluss der Hintergrundoperationen dann wieder auf dem UI-Thread ausgeführt. Sie bietet sich an, um finale Aktualisierungen auf Basis der Ergebnisse aus der Hintergrundverarbeitung durchzuführen. In unserem Beispiel könnte das Ergebnis in die jeweiligen View Objekte der Activity übertragen werden:\newline
+\begin{lstlisting}
+@Override
+protected void onPostExecute(
+		AsyncTaskResult<String> result)
+{
+   ...
+   //update user interface
+   String realResult = result.getResult();
+
+   if (triggerViewId == R.id.startCalculation1) 
+   {
+	firstOutputView.setText(realResult);
+	firstOutputView.invalidate();
+   }
+   if (triggerViewId == R.id.startCalculation2) 
+   {
+	secondOutputView.setText(realResult);
+	secondOutputView.invalidate();
+   }
+}
+\end{lstlisting}
 Da einzig und allein von den vorgestellten Methoden, die \texttt{doInBackground()} Methode in dem sekundären Thread ausgeführt wird, muss darauf geachtet werden, keine zeitintensive Logik in den anderen Methoden zu integrieren. Ansonsten besteht wieder die Gefahr der blockierenden Anwendung, analog zu der Beispielimplementierung in Kapitel 2.1. Weiter ist gemäß der Android Developer Dokumentation darauf zu achten, dass nur gering zeitaufwändige (wenige Sekunden) Operationen mittels des AsyncTask in eine Hintergrundverarbeitung ausgelagert werden sollten [vgl. Abschnitt zu AsyncTask \citet{androidDevDocu}]. Woran das liegt und welche Konsequenzen sich aus längeren Operationen ergeben wird hier nicht genannt. Die Android Developper Dokumentation gibt hierzu lediglich einen groben Überblick wie dieser Mechanismus optimal zu nutzen ist und für welche Problemstellungen sich die Verwendung der Klasse AsyncTask eignet. Es bleiben also weitere Fragen offen:
 \begin{itemize}
 \item Wie funktioniert nun der AsyncTask Mechanismus konkret?
@@ -657,32 +705,44 @@ Das dargestellte Sequenzdiagramm gibt einen ersten Einblick in die interne Funkt
 \item Erzeugung eines Handlers der die asynchrone Kommunikation zwischen dem Hintergrund Thread und dem UI Thread gemäß des Handler Looper Mechanismus (siehe Abschnitt zu Handler Looper Mechanismus Kapitel 2.2.1) regelt.
 \end{itemize}
 Wird nun die \texttt{execute(Runnable r)} Methode des AsyncTask aufgerufen besteht noch die Möglichkeit weitere Initialisierungen in der Rückrufmethode \texttt{onPreExecute()} zu definieren. Auch dieser Aufruf wird noch durch den UI Thread verarbeitet. Erst mit dem Aufruf 
-\texttt{sDefaultExecutor.execute(runnable);} wird die Hintergrundberechnung eingeleitet. In dem jeweils erzeugten Thread wird weiter durch eine Worker Instanz die Rückrufmethode \texttt{doInBackground()} aufgerufen, in der die zeitintensive Verarbeitung implementiert ist. Sollen hieraus nun Statusmeldungen, Zwischenergebnisse oder sonstige Daten noch während der Berechnung im HintergrundThread an den UI Thread übermittelt werden, kommt der in Kapitel 2.2.1 vorgestellte Handler Looper Mechanismus zur Anwendung. Die Nutzdaten werden der Methode \texttt{publishProgress(Params...params)} übergeben. Diese werden weiter in eine Handler Message gepackt, welche über den Schlüssel \newline
-\texttt{private static final int MESSAGE\_POST\_PROGRESS = 0x2;}\newline
-verfügt. Damit ist es möglich in der Handler-Implementierung die Daten des Message Objektes exakt an die richtigen Rückrufmethoden weiter zu leiten. Die Message wird der MessageQueue übergeben und der Hintergrund Thread fährt mit seiner Verarbeitung fort. Gemäß den Erläuterungen zum Handler Looper Mechanismus ruft der Looper im UI-Thread, wenn er das Message Objekt aus der Queue nimmt, die spezifische Handler Implementierung auf, extrahiert die Nutzdaten und sendet diese in Abhängigkeit zum Message Schlüssel an die jeweilige Rückrufmethode. Siehe hierzu die Handler Implementierung der Klasse AsyncTask:\newline
+\texttt{sDefaultExecutor.execute(runnable);} wird die Hintergrundberechnung eingeleitet. In dem jeweils erzeugten Thread wird weiter durch eine Worker Instanz die Rückrufmethode \texttt{doInBackground()} aufgerufen, in der die zeitintensive Verarbeitung implementiert ist. Sollen hieraus nun Statusmeldungen, Zwischenergebnisse oder sonstige Daten noch während der Berechnung im HintergrundThread an den UI Thread übermittelt werden, kommt der in Kapitel 2.2.1 vorgestellte Handler Looper Mechanismus zur Anwendung. Die Nutzdaten werden der Methode \texttt{publishProgress(Params...params)} übergeben. Diese werden weiter in eine Handler Message gepackt, welche über den Schlüssel: \newline
 \texttt{\newline
-private static class InternalHandler extends Handler \{\newline
-\newline
-@SuppressWarnings({\grqq unchecked\grqq, \grqq RawUseOfParameterizedType\grqq})\newline
-@Override\newline
-public void handleMessage(Message msg) \{\newline
-AsyncTaskResult result = (AsyncTaskResult) msg.obj;\newline\newline
-switch (msg.what) \{\newline
-case MESSAGE\_POST\_RESULT:\newline
-// There is only one result\newline
-result.mTask.finish(result.mData[0]);\newline
-break;\newline
-case MESSAGE\_POST\_PROGRESS:\newline
-result.mTask.onProgressUpdate(result.mData);\newline
-break;\newline
-\}\newline
-\}\newline
-\}\newline
+private static final int MESSAGE\_POST\_PROGRESS = 0x2;\newline
 }\newline
+verfügt. Damit ist es möglich in der Handler-Implementierung die Daten des Message Objektes exakt an die richtigen Rückrufmethoden weiter zu leiten. Die Message wird der MessageQueue übergeben und der Hintergrund Thread fährt mit seiner Verarbeitung fort. Gemäß den Erläuterungen zum Handler Looper Mechanismus ruft der Looper im UI-Thread, wenn er das Message Objekt aus der Queue nimmt, die spezifische Handler Implementierung auf, extrahiert die Nutzdaten und sendet diese in Abhängigkeit zum Message Schlüssel an die jeweilige Rückrufmethode. Siehe hierzu die Handler Implementierung der Klasse AsyncTask:
+\begin{lstlisting}
+private static class InternalHandler extends Handler 
+{
+   @SuppressWarnings({"unchecked", 
+   		"RawUseOfParameterizedType"})
+   @Override
+   public void handleMessage(Message msg) 
+   {
+   	AsyncTaskResult result = 
+   		(AsyncTaskResult) msg.obj;
+   	switch (msg.what) 
+   	{
+   	   case MESSAGE_POST_RESULT:
+   	     // There is only one result
+   	     result
+   	     .mTask
+   	     .finish(result.mData[0]);
+   	     break;
+   	   case MESSAGE_POST_PROGRESS:
+   	     result
+   	     .mTask
+   	     .onProgressUpdate(result.mData);
+   	     break;
+     }
+   }
+}
+\end{lstlisting}
 Analog findet die Übergabe des Ergebnisses der Hintergrundberechnung aus dem sekundären Thread in den UI-Thread statt. Dabei wird mittels der Methode \texttt{postResult(resultOfDoInBackground)} die Nachricht erzeugt und versandt. Der Handler erkennt an Hand des Nachrichteschlüssels:\newline
 \texttt{private static final int MESSAGE\_POST\_RESULT = 0x1;}\newline
 die entsprechende Rückrufmethode für die Nachrichten Verarbeitung im UI Thread :\newline
-\texttt{onPostExecute(Result...result)}.\newline
+\texttt{\newline
+onPostExecute(Result...result)\newline
+}\newline
 Final wird der Status im Hintergrund Thread auf den Status \glqq Beendet\grqq gesetzt und dieser terminiert. Die Handler Instanz, welche spezifisch für diesen Thread erzeugt wurde, wird zusammen mit evtl. weiteren nun nicht mehr verwendeten Objekt Instanzen dem Garbage Collector übergeben.
 
 \subsection{Serielle Ausführung in Android AsyncTask}
@@ -691,43 +751,57 @@ Wir haben bisher gesehen, wie das Ausführungsmodell der Klasse Android AsyncTas
 \item DefaultExecutor $\rightarrow$ Serielle Ausführung
 \item ThreadPoolExecutor $\rightarrow$ Parallele Ausführung
 \end{itemize}
-Gemäß der Dokumentation haben wir in dem Prototyp den DefaultExecutor verwendet und werden zunächst die Funktionsweise der seriellen Ausführung analysieren. Sieht man sich den initialen Aufruf der Hintergrundverarbeitung an, so stellt folgende Methode den Einstiegspunkt in die Verarbeitung durch AsyncTask dar:\newline
-\texttt{\newline
-public final AsyncTask<Params, Progress, Result> execute(Params... params) \{\newline
-    return executeOnExecutor(sDefaultExecutor, params);\newline
-\}\newline
-}\newline
+Gemäß der Dokumentation haben wir in dem Prototyp den DefaultExecutor verwendet und werden zunächst die Funktionsweise der seriellen Ausführung analysieren. Sieht man sich den initialen Aufruf der Hintergrundverarbeitung an, so stellt folgende Methode den Einstiegspunkt in die Verarbeitung durch AsyncTask dar:\newpage
+\begin{lstlisting}
+public final AsyncTask<Params, 
+			Progress, 
+			Result> 
+			execute(Params... params)
+{
+    return executeOnExecutor(sDefaultExecutor, 
+    				params);
+}
+\end{lstlisting}
 Darin wird der Aufruf an eine spezifische \texttt{executeOnExecutor()} Methode weitergeleitet und die zu verwendende Executor Instanz spezifiziert:\newline
 \texttt{\newline
 private static volatile Executor sDefaultExecutor = SERIAL\_EXECUTOR;\newline
 }\newline
-Dabei handelt es sich nach Android Developer Dokumentation um einen Executor, der die abzuarbeitenden Tasks seriell in einem sekundären Thread abarbeitet  [vgl. Abschnitt zu AsyncTask \citet{androidDevDocu}]. Er stellt somit den Gegensatz zu der Executor Instanz THREAD-POOL-EXECUTOR dar, die es ermöglicht die Hintergrundverarbietung auf mehrere Threads zu verteilen. Jedoch wird von der Verwendung des THREAD-POOL-EXECUTOR in der Dokumentation abgeraten, da sich hier Probleme aus der nicht vorhersagbaren Reihenfolge der Abarbeitung und der Synchronisation von Ergebnissen ergeben können [vgl. Abschnitt zu AsyncTask \citet{androidDevDocu}]. Sieht man sich jedoch nun die Implementierung des empfohlenen SerialExecutors an, so erscheint es zunächst überraschend, dass sich dieser seinerseits des ThreadPoolExecutors bedient (siehe \texttt{scheduleNext()} Methode):\newline
-\texttt{\newline
-private static class SerialExecutor implements Executor \{\newline
-    final ArrayDeque<Runnable> mTasks = new ArrayDeque<Runnable>();\newline
-    Runnable mActive;\newline
-\newline
-    public synchronized void execute(final Runnable r) \{\newline
-        mTasks.offer(new Runnable() \{\newline
-            public void run() \{\newline
-                try \{\newline
-                    r.run();\newline
-                \} finally \{\newline
-                    scheduleNext();\newline
-                \}\newline
-            \}\newline
-        \});\newline
-        if (mActive == null) \{\newline
-            scheduleNext();\newline
-        \}\newline
-    \}\newline
-        protected synchronized void scheduleNext() \{\newline
-        if ((mActive = mTasks.poll()) != null) \{\newline
-            THREAD\_POOL\_EXECUTOR.execute(mActive);\newline
-        \}\newline
-    \}\newline
-\}\newline
-}\newline
+Dabei handelt es sich nach Android Developer Dokumentation um einen Executor, der die abzuarbeitenden Tasks seriell in einem sekundären Thread abarbeitet  [vgl. Abschnitt zu AsyncTask \citet{androidDevDocu}]. Er stellt somit den Gegensatz zu der Executor Instanz THREAD-POOL-EXECUTOR dar, die es ermöglicht die Hintergrundverarbietung auf mehrere Threads zu verteilen. Jedoch wird von der Verwendung des THREAD-POOL-EXECUTOR in der Dokumentation abgeraten, da sich hier Probleme aus der nicht vorhersagbaren Reihenfolge der Abarbeitung und der Synchronisation von Ergebnissen ergeben können [vgl. Abschnitt zu AsyncTask \citet{androidDevDocu}]. Sieht man sich jedoch nun die Implementierung des empfohlenen SerialExecutors an, so erscheint es zunächst überraschend, dass sich dieser seinerseits des ThreadPoolExecutors bedient (siehe \texttt{scheduleNext()} Methode):\newpage
+\begin{lstlisting}
+private static class SerialExecutor 
+			implements Executor 
+{
+   final ArrayDeque<Runnable> mTasks = 
+   		new ArrayDeque<Runnable>();
+   Runnable mActive;
+
+   public synchronized void 
+   			execute(final Runnable r) 
+   {
+    mTasks.offer(new Runnable() 
+    		{
+   			public void run() {
+			try {
+			r.run();
+			} finally {
+			scheduleNext();
+   			}
+   		}
+	});
+   if (mActive == null) 
+   {
+   	scheduleNext();
+   }
+}
+protected synchronized void scheduleNext() 
+{
+   if ((mActive = mTasks.poll()) != null) 
+   {
+   	THREAD_POOL_EXECUTOR.execute(mActive);
+   }
+}
+}
+\end{lstlisting}
 Das folgende Aktivitätsdiagramm visualisiert den oben definierten Programmablauf um diesen besser zu verstehen. Es zeigt wie der Serial-Executor zur Initialisierung eine Queue erzeugt, in der die einzelnen abzuarbeitenden Aufgaben temporär vor deren Verarbeitung abgelegt werden.
 \begin{figure}[H]
   \begin{centering}
@@ -777,65 +851,83 @@ Die Reaktive Erweiterung für die JAVA SE von Netflix bietet also eine Chance f�
 \subsection{RXJava Funktionsweise}
 Reactive Java oder RXJava stellt eine konkrete Implementierung des Beobachter Entwurfmusters der Reactive Extension dar. Darin wird beschreiben wie ein Objekt (Observable) bestimmte Elemente (Items) emittiert. Dabei kann sich ein weiteres Objekt (Observer oder Subscriber) für den Empfang der Items registrieren, womit dieses ab dem Zeitpunkt der Registrierung alle emittierten Items empfängt. Erweitert wird dies durch die Eigenschaft, nach der ein Observable die Registrierung von mehreren Subscribern zulässt und seine Items an diese emittiert. Die Bindung (Subscription) zwischen Observable und Subscriber kann jeder Zeit vom Subscriber widerrufen werden. Obsevables können gegenüber anderen Observables als Subscriber auftreten und von diesen weitere Items beziehen. Diese Items können daraufhin beliebig weiterverarbeitet werden (z.B. filtern, transformieren, gruppieren) und final für die registrierten Subscriber emittiert werden.\newline
 Die Funktionsweise von RXJava wird im Folgenden an Hand eines einfachen Beispiels demonstriert und erläutert. In dem Beispiel wird ein einfaches Concurrency Szenario modelliert. Danach werden zwei Threads parallel gestartet. Diese sollen eine zeitaufwändige Operation, je zehn mal durchführen (Suchen einer großen Primzahl, siehe Kapitel 2.1).Die jeweiligen Ausgaben der Threads stellen den Datenstrom dar, der mittels der Observables und der Subscriber von RXJava verarbeitet wird. Die Ergebnisse der Verarbeitung werden auf der Konsole ausgegeben und sollen den Programmablauf zur Laufzeit wiederspielen. Der folgende Auszug zeigt den Sourcecode einer ersten Testanwendung. Die Klasse ReactiveDemo definiert ein Observable in dem eine zeitaufwändige Primzahlenoperation definiert ist. Dieser Code sollte analog zu den Beispielimplementierungen der vorangegangenen Kapitel nicht im Main Thread ablaufen, sondern in einem sekundären Hintergrundthread.\newline
-\texttt{\newline
-static Observable<String> myObservable = Observable.create(\newline
-           new Observable.OnSubscribe<String>() \{\newline
-               @Override\newline
-               public void call(Subscriber<? super String> sub) \{\newline
-                   for (int i = 0; i < 10; i++)\newline
-      \{\newline
-                       sub.onNext(\grqq ObserverThread: Hello, world!\grqq + i);\newline
-                       BigInteger veryBig = new BigInteger(500, new Random());\newline
-                       veryBig.nextProbablePrime();\newline
-                   \}\newline
-                   sub.onCompleted();\newline
-               \}\newline
-           \}\newline
-   );\newline
-}\newline
+\begin{lstlisting}
+static Observable<String> myObservable = 
+	Observable.create(
+		new Observable.OnSubscribe<String>() 
+		{
+		 @Override
+		 public void call(Subscriber<? 
+           			super String> sub) 
+		 {
+		 for (int i = 0; i < 10; i++)
+		 {
+		   sub.onNext("ObserverThread:"+ 
+		   +"Hello, world!" + i);
+		   BigInteger veryBig = 
+		   new BigInteger(500, 
+				new Random());
+		   veryBig.nextProbablePrime();
+		 }
+		 sub.onCompleted();
+		}
+    }
+);
+\end{lstlisting}
 Das Observable stellt eine in sich geschlossene Verarbeitung einer Aufgabe dar. In diesem Fall werden dabei zehn Ergebnismengen durch folgenden Aufruf ermittelt:\newline\newline
 \texttt{sub.onNext(ergebniss vom typ t)}\newline
 \newline
 Alle Subscriber, die sich zu diesem Observable registriert haben erhalten dann mittels der Rückrufmethode das Ergebnis in der \texttt{onNext()}-Methode. Ist die Verarbeitung im Observable beendet und werden keine weiteren Items mehr emittiert, so ruft das Observable die Rückrufmethode \texttt{onCompleted()} der bei ihm registrierten Subscriber auf. Analog wird im Fehlerfall verfahren und der Fehler an die einzelnen Subscriber übermittelt. Unser Beispiel definiert zwei Subscriber die jeweils zu einer eigenen Instanz des Observable registriert werden.\newline
-\texttt{\newline
-static Subscriber<String> myFirstSubscriber = new Subscriber<String>() \{\newline
-\newline
-       @Override\newline
-       public void onNext(String s) \{\newline
-           System.out.println("1rst Thread itemProcessing:");\newline
-           System.out.println(s);\newline
-       \}\newline
-\newline
-       @Override\newline
-       public void onCompleted() \{\newline
-           firstObservableHasFinished=true;\newline
-           System.out.println("1rst item Completed");\newline
-       \}\newline
-\newline
-       @Override\newline
-       public void onError(Throwable e) \{\newline
-           System.out.println("There was an error on first subscriber:" + e);\newline
-       \}\newline
-   \};\newline
-\newline
-   static Subscriber<String> mySndSubscriber = new Subscriber<String>() \{\newline
-       @Override\newline
-       public void onNext(String s) \{\newline
-           System.out.println("  2ndThread: itemProcessing:");\newline
-           System.out.println(s);\newline
-       \}\newline
-\newline
-       @Override\newline
-       public void onCompleted() \{\newline
-           secondObservableHasFinished = true;\newline
-           System.out.println("2nd Thred: item Completed");\newline
-       \}\newline
-\newline
-       @Override\newline
-       public void onError(Throwable e) \{\newline
-       \}\newline
-   \};\newline
-}
+\begin{lstlisting}
+static Subscriber<String> myFirstSubscriber = 
+    new Subscriber<String>() 
+    {
+     @Override\newline
+     public void onNext(String s) 
+     {
+      System.out.println("1rst Thread Processing:");
+      System.out.println(s);
+     }
+
+     @Override
+     public void onCompleted() 
+     {
+      firstObservableHasFinished=true;
+      System.out.println("1rst item Completed");
+     }
+
+     @Override
+     public void onError(Throwable e) 
+     {
+      System.out.println("There was an error"+
+                      "on first subscriber:" + e);
+     }
+   };
+
+static Subscriber<String> mySndSubscriber = 
+	new Subscriber<String>() 
+{
+    @Override
+    public void onNext(String s) 
+    {
+      System.out.println("2ndThread: Processing:");
+      System.out.println(s);
+    }
+
+    @Override
+    public void onCompleted() 
+    {
+       secondObservableHasFinished = true;
+       System.out.println("2nd Thred: Completed");
+    }
+
+    @Override
+    public void onError(Throwable e) 
+    {
+      //... some error handling
+    }
+};
+\end{lstlisting}
 Die Subscriber implementieren folgende Rückruf Methoden für den Aufruf durch Observables:
 \begin{itemize}
 \item \texttt{onNext()}
@@ -843,14 +935,21 @@ Die Subscriber implementieren folgende Rückruf Methoden für den Aufruf durch O
 \item \texttt{onError()}
 \end{itemize}
 Dabei handelt es sich um vom Framework vorgegebene Standart Rückruf Methoden, die je nach Subscription von unterschiedlichen Observables angesprochen werden können. Die Subscription selbst enthält darüber hinaus noch zusätzliche Konfigurationen. So ist genau definiert, dass die Observierung durch die Subscriber selbst in dem MainThread laufen sollen (\texttt{.observeOn(Schedulers.io())}) und die Verarbeitung des Observables in einem sekundären Thread stattfindet (\texttt{subscribeOn(Schedulers.newThread())}). Das bedeutet, dass das Observabel auf zwei Threads dubliziert wird, für jeweils den Subscriber eins und 
-Subscriber zwei. Dagegen laufen beide Subscriber Instanzen auf dem Main Thread.\newline
-\texttt{\newline
-Subscription subscriptionOne =\newline myFirstObservable.subscribeOn(Schedulers.newThread())
-\newline.observeOn(Schedulers.io()).subscribe(myFirstSubscriber);\newline
-\newline
-Subscription subscriptionTwo =\newline mySecondObservable.subscribeOn(Schedulers.newThread())
-\newline.subscribe(mySecondSubscriber);\newline
-}\newline
+Subscriber zwei. Dagegen laufen beide Subscriber Instanzen auf dem Main Thread.\newpage
+\begin{lstlisting}
+Subscription subscriptionOne = 
+        myFirstObservable
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(Schedulers.io())
+        .subscribe(myFirstSubscriber);
+
+Subscription subscriptionTwo = 
+        mySecondObservable
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(Schedulers.io())
+        .subscribe(mySecondSubscriber);
+}
+\end{lstlisting}
 Bei dieser Beispiel Anwendung handelt es sich um eine einfache Java Applikation, die durch die \texttt{main()}- Methode gestartet und darin die angesprochene Verarbeitung innerhalb eines Observables in zwei sekundären Threads auslagert. Wird diese Applikation nun gestartet, so würde sie wieder terminieren, bevor die Verarbeitung in den sekundär Threads abgeschlossen ist. Dem entsprechend wird eine fortwährende Verarbeitung im Main Thread durch eine \texttt{while}- Schleife simuliert, deren Abbruchkriterium der Status Completed der Observables von beiden Sekundär Threads ist. Das Ergebnis ist Folgendes (siehe nächste Seite):\newpage
 
 
@@ -927,146 +1026,172 @@ In o.g. Abbildung tritt ein Observable selbst als Subscriber auf und erwartet vo
 
 \subsection{RXJava in Android}
 Der letzte Abschnitt hat gezeigt wie mittels RXJava im Vergleich zu den Mitteln aus der Java SE relativ leicht asynchrone Verarbeitung realisiert werden kann. Doch nun gilt es dies auch für Android Applikationen zu realisieren. Für den Einsatz von RXJava gibt es eine sinnvolle Erweiterung, welche die Entwicklung erleichtert. RXAndroid ist ein Packet, welches einfach in die Android Applikation eingebunden werden kann. Das Packet erleichtert besonders mit vordefinierten Scheduler die Entwicklung. Soll die Verarbeitung des Observables oder des Subscribers auf dem Android Main Thread laufen, so bietet die RXAndroid Erweiterung den AndroidScheduler an. Für das in dieser Arbeit betrachtete Szenario zur Nebenläufigkeit (siehe Kapitel 1.9) würde es dementsprechend Sinn machen, die zeitintensive Verarbeitung im Observable als Sekundär Thread auszulagern (\texttt{.subscribeOn(Schedulers.newThread())}) und den Subscriber, der asynchron die Ergebnismenge des Observables erhält, im Main Thread der Android Anwendung laufen zu lassen (\texttt{observeOn(AndroidSchedulers.mainThread())}). Demnach wird für unsere Beispielimplementierung die Subscription wie folgt in der Activity der Applikation definiert:\newline
-\texttt{\newline
-private Subscription getSubscription(Subscriber<String> aSubscriber) \{\newline
-       RandomPrimeNumGenerator randomPrimeNumGenerator =\newline 
-       new RandomPrimeNumGenerator();\newline
-\newline
-       return randomPrimeNumGenerator.getObservable().\newline
-       observeOn(AndroidSchedulers.mainThread())\newline
-               .subscribeOn(Schedulers.newThread())\newline
-               .subscribe(aSubscriber);\newline
-   \}\newline
-   }\newline
+\begin{lstlisting}
+private Subscription getSubscription(
+		Subscriber<String> aSubscriber) 
+{
+   RandomPrimeNumGenerator randomPrimeNumGenerator = 
+   new RandomPrimeNumGenerator();
+
+   return randomPrimeNumGenerator
+          .getObservable()
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeOn(Schedulers.newThread())
+          .subscribe(aSubscriber);
+}
+\end{lstlisting}
 Der o.g. Codeauszug zeigt eine Methode der Activity unserer Beispielimplementierung, die zu einem gegebenen Subscriberobjekt eine Subscribtion erstellt. Hierzu wird eine Instanz vom Typ \texttt{RandomPrimeNumGenerator} erzeugt die ein Observable zurückliefert und zu dem ein gegebener Subscriber registriert wird. Die im Szenario geforderte zeitintensive Verarbeitung ist durch das Observable gekapselt. Der folgende Quellcode zeigt hierzu einen Auszug aus der Klasse \texttt{RandomPrimeNumGenerator}, die dieses Observable implementiert:\newline
-   \texttt{\newline
- public RandomPrimeNumGenerator()\newline
-   \{\newline
-   primMessageObservable = Observable.create(\newline
-           new Observable.OnSubscribe<String>() \{\newline
-               @Override\newline
-               public void call(Subscriber<? super String> sub) \{\newline
-               \newline
-                   for(int i=0; i<10; i++)\newline
-                   \{\newline
-                       BigInteger veryBig = new BigInteger(500, new Random());\newline
-                       BigInteger randomPrimeNumber = veryBig.nextProbablePrime();\newline
-                       int summe = 0;\newline
-                       while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO)) \{\newline
-                           // addiere die letzte ziffer der uebergebenen zahl zur summe\newline
-                           summe = summe + (randomPrimeNumber.mod(BigInteger.TEN)).intValue();\newline
-                           // entferne die letzte ziffer der uebergebenen zahl\newline
-                           randomPrimeNumber = randomPrimeNumber.divide(BigInteger.TEN);\newline
-                       \}\newline
-\newline
-                      sub.onNext("Observable emits CrossSum for iteration: " + i );\newline
-                      sub.onNext(String.valueOf(summe));\newline
-                  \}\newline
-                   sub.onCompleted();\newline
-              \}\newline
-           \}\newline
-   );\newline
-\newline
-  public Observable<String> getObservable()\{\newline
-       return primMessageObservable.filter(new Func1<String, Boolean>() \{\newline
-                   @Override\newline
-                   public Boolean call(String item) \{\newline
-                       try \{\newline
-                           Integer.valueOf(item);\newline
-                       \} catch (NumberFormatException e) \{\newline
-                           return false;\newline
-                       \}\newline
-                       return true;\newline
-               \}\}\newline
-               );\newline
-   \}\newline
-}\newline
+\begin{lstlisting}
+public RandomPrimeNumGenerator()
+{
+  primMessageObservable = Observable.create(
+      new Observable.OnSubscribe<String>() {
+               
+      @Override
+      public void call(
+              Subscriber<? super String> sub) {
+               
+      for(int i=0; i<10; i++)
+      {
+       BigInteger veryBig = 
+              new BigInteger(500, new Random());
+       BigInteger randomPrimeNumber = 
+              veryBig.nextProbablePrime();
+       int summe = 0;
+       
+         while (0 != randomPrimeNumber.
+                     compareTo(BigInteger.ZERO)) 
+         {
+         // addiere die letzte ziffer der 
+         // uebergebenen zahl zur summe
+         summe = summe + (randomPrimeNumber
+                        .mod(BigInteger.TEN))
+                        .intValue();
+                        
+         // entferne die letzte ziffer 
+         // der uebergebenen zahl
+         randomPrimeNumber = randomPrimeNumber
+                        .divide(BigInteger.TEN);
+         }
+
+       sub.onNext("Observable emits CrossSum
+                       +"for iteration: " + i );
+       sub.onNext(String.valueOf(summe));
+       }
+       sub.onCompleted();
+       }
+       }
+   );
+
+  public Observable<String> getObservable()
+  {
+       return primMessageObservable
+            .filter(new Func1<String, Boolean>() 
+            {
+             @Override
+             public Boolean call(String item) {
+             try {
+                 Integer.valueOf(item);
+             } 
+             catch (NumberFormatException e) {
+                 return false;
+             }
+             return true;
+            }}
+            );
+  }
+\end{lstlisting}
 Das Observable emittiert also hier pro Iteration zwei Items. Zum Einen den String zur Identifikation der Iteration:\newline
 \texttt{\newline
-sub.onNext(\grqq Observable emits CrossSum for iteration: \grqq + i );\newline
+sub.onNext(\grqq Observable emits CrossSum for iteration:\grqq +i );\newline
 }\newline
 zum Anderen die berechnete Primzahl selbst:\newline
 \texttt{\newline
 sub.onNext(sub.onNext(String.valueOf(summe));\newline
 }\newline
 Der o.g. Quellcodeauszug der Activity zeigt in seiner \texttt{getObservable()} Methode, wie mittels eines Filter Observables nur das Ergebnis (hier der Integerwert) zum Subscriber weitergeleitet wird. Entspechend registriert sich der Subscriber beim Filter Observable. Die Activity definiert zwei Subscriber, die unterschiedlich aus der Gui angestoßen werden können.\newline
-\texttt{\newline
-private Subscriber<String> getFirstSubscriber() \{\newline
-\newline
-       return new Subscriber<String>() \{\newline
-           @Override\newline
-           public void onNext(String s) \{\newline
-               //Actualize the view + setting value\newline
-               String lastOutput = firstObserverOutput.getText().toString();\newline
-               firstObserverOutput.setText(lastOutput + s);\newline
-\newline
-               firstObserverOutput.invalidate();\newline
-           \}\newline
-\newline
-           @Override\newline
-           public void onCompleted() \{\newline
-               //show in view that observer is ready\newline
-           \}\newline
-\newline
-           @Override\newline
-           public void onError(Throwable e) \{\newline
-               //show in view that observer ran in an error\newline
-           \}\newline
-       \};\newline
-   \}\newline
-\newline
-   private Subscriber<String> getSecondSubscriber() \{\newline
-\newline
-       return new Subscriber<String>() \{\newline
-           @Override\newline
-           public void onNext(String s) \{\newline
-               //Actualize the view + setting value\newline
-               String lastOutput = secondObserverOutput.getText().toString();\newline
-               secondObserverOutput.setText(lastOutput + s);\newline
-\newline
-               secondObserverOutput.invalidate();\newline
-           \}\newline
-\newline
-           @Override\newline
-           public void onCompleted() \{\newline
-               //show in view that observer is ready\newline
-           \}\newline
-\newline
-           @Override\newline
-           public void onError(Throwable e) \{\newline
-               //show in view that observer ran in an error\newline
-           \}\newline
-       \};\newline
-   \}\newline
-   }\newline
-Je nach dem über welche ViewId die Initialisierung der Subscriber gestartet wird, ist zu entschieden, welche Subscriber Implementierung zu verwenden ist um eine Subscribtion zu starten.\newline
-\texttt{\newline
- public void initSubscription(View aView) \{\newline
-       if (aView.getId() == R.id.startSubscription1) \{\newline
-           firstSubscriber = getFirstSubscriber();\newline
-           subscription1 = getSubscription(firstSubscriber);\newline
-\newline
-       \}\newline
-       if (aView.getId() == R.id.startSubscription2) \{\newline
-           secondSubscriber = getSecondSubscriber();\newline
-\newline
-           subscription2 = getSubscription(secondSubscriber);\newline
-       \}\newline
-   \}\newline
-}\newline
-Die jeweilige Referenz einer Subscribtion wird in einer Klassenvariable der Activity gespeichert, um diese im Falle einer ungeplanten Terminierung der Activity-Instanz vorher noch zu beenden. Dies gilt z.B. für das Event \grqq Configuration Change\grqq nachdem standardgemäß die aktuelle Activity-Instanz zerstört und neu erstellt wird (siehe hierzu auch Kapitel 1.7.2.3 den Lebenszyklus einer Activity). Der folgende Codeauszug zeigt, wie der Aufruf \texttt{unsubscribe()} für die jeweilige Subscribtion genau das leistet. Der Empfang der Items wird abgebrochen noch bevor das Observable den Status \grqq Completed\grqq erreicht hat.\newline
-\texttt{\newline
-@Override\newline
-   public void onDestroy() \{\newline
-       if (subscription1 != null) \{\newline
-           subscription1.unsubscribe();\newline
-       \}\newline
-       if (subscription2 != null) \{\newline
-           subscription2.unsubscribe();\newline
-       \}\newline
-   \}\newline
+\begin{lstlisting}
+private Subscriber<String> getFirstSubscriber() 
+{
+ return new Subscriber<String>() {
+   @Override
+   public void onNext(String s) {
+   //Actualize the view + setting value
+   String lastOutput = firstObserverOutput.getText().toString();
+   firstObserverOutput.setText(lastOutput + s);
+
+   firstObserverOutput.invalidate();
+   }
+
+   @Override
+   public void onCompleted() {
+   //show in view that observer is ready
+   }
+
+   @Override
+   public void onError(Throwable e) {
+   //show in view that observer ran in an error
+   }
+ };
 }
 
+private Subscriber<String> getSecondSubscriber() 
+{
+ return new Subscriber<String>() 
+ {
+   @Override
+   public void onNext(String s) 
+   {
+    //Actualize the view + setting value
+    String lastOutput = secondObserverOutput
+                      .getText()
+                      .toString();
+    secondObserverOutput.setText(lastOutput+s);
+    secondObserverOutput.invalidate();
+   }
+
+   @Override
+   public void onCompleted() {
+   //show in view that observer is ready
+   }
+
+   @Override
+   public void onError(Throwable e) {
+   //show in view that observer ran in an error
+   }
+ };
+}
+\end{lstlisting}
+Je nach dem über welche ViewId die Initialisierung der Subscriber gestartet wird, ist zu entschieden, welche Subscriber Implementierung zu verwenden ist um eine Subscribtion zu starten.\newpage
+\begin{lstlisting}
+public void initSubscription(View aView)
+{
+ if (aView.getId() == R.id.startSubscription1) 
+ {
+   firstSubscriber = getFirstSubscriber();
+   subscription1 = getSubscription(firstSubscriber);
+ }
+ if (aView.getId() == R.id.startSubscription2) 
+ {
+   secondSubscriber = getSecondSubscriber();
+   subscription2 = getSubscription(secondSubscriber);
+ }
+}
+\end{lstlisting}
+Die jeweilige Referenz einer Subscribtion wird in einer Klassenvariable der Activity gespeichert, um diese im Falle einer ungeplanten Terminierung der Activity-Instanz vorher noch zu beenden. Dies gilt z.B. für das Event \grqq Configuration Change\grqq nachdem standardgemäß die aktuelle Activity-Instanz zerstört und neu erstellt wird (siehe hierzu auch Kapitel 1.7.2.3 den Lebenszyklus einer Activity). Der folgende Codeauszug zeigt, wie der Aufruf \texttt{unsubscribe()} für die jeweilige Subscribtion genau das leistet. Der Empfang der Items wird abgebrochen noch bevor das Observable den Status \grqq Completed\grqq erreicht hat.\newline
+\begin{lstlisting}
+@Override
+public void onDestroy() 
+{
+  if (subscription1 != null) 
+  {
+    subscription1.unsubscribe();
+  }
+  if (subscription2 != null) 
+  {
+    subscription2.unsubscribe();
+}}
+\end{lstlisting}
 \section{Zusammenfassung}
 In diesem Kapitel werden drei unterschiedliche Konzepte zur Realisierung von Nebenläufigkeit in Bezug auf das Android Betriebssytem vorgestellt. Um diese Konzepte vergleichbar zu machen ist ein Beispiel Szenario definiert, indem eine oder mehrere zeitaufwändige Operationen innerhalb einer Android Applikation gestartet werden. In einer ersten Beispiel Implementierung ohne jegliche Nebenläufigkeit haben wird deutlich, wie durch Starten einer zeitaufwändigen Operation die Anwendung nicht mehr auf Benutzereingaben reagiert. Je nach Wartedauer meldet sich dabei nach kurzer Zeit die Applikation mit dem Ergebnis der Operation zurück oder nach längerer Wartezeit erscheint der Application Not Responding Dialog. Dieser gibt dem Nutzer die Möglichkeit entweder weiter auf die Rückmeldung der Anwendung zu warten, oder die Anwendung abzubrechen. Um zu Untersuchen wie die jeweiligen Konzepte die Ansprechbarkeit der Anwendung gewährleisten und gleichzeig die zeitaufwändige Operation im Hintergrund durchführen, werden in den letzten Abschnitten entsprechende Beispielimplementierungen  vorgestellt.\newline
 In der ersten Implementierung wird mittels der Funktionalitäten aus der Java Standard Edition versucht, die zeitaufwändige Operation in eine Hintergrundverarbeitung (sekundär Thread) auszulagern. Um den Nachrichtenaustasch zwischen dem sekundär Thread und dem Main Thread (verantwortlich für Verarbeitung der Benutzerinteraktion) der Anwendung zu realisieren wird ein spezieller Mechnismus vorgestellt und angewandt. Dabei handelt es sich um den Handler Looper Mechanismus aus dem Android SDK. Dieser Mechanismus bietet sich dadurch an, dass er standardgemäß durch das Betriebssystem für jede Anwendung initialisiert wird, um den applikationsinternen Nachrichtenaustausch zwischen unterschiedlichen Komponenten der Anwendung zu realisieren.\newline
