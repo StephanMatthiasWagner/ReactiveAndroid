@@ -29,8 +29,8 @@
         <Button android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_startSubscription"
-                android:id="@+id/startSubscription1"
-                android:onClick="initSubscription"
+                android:id="@+id/startFirstCalculation_btn"
+                android:onClick="startCalculation"
                 android:layout_below="@id/firstSubscription"/>
 
 
@@ -40,7 +40,7 @@
                 android:id="@+id/clearOutput1"
                 android:onClick="clearOutput"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/startSubscription1"
+                android:layout_toRightOf="@id/startFirstCalculation_btn"
                 android:layout_below="@id/firstSubscription"/>
 
         <TextView android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                   android:textColor="#FFFFFF"
                   android:id="@+id/firstObserverOutput"
                   android:gravity="center_horizontal"
-                  android:layout_below="@id/startSubscription1"/>
+                  android:layout_below="@id/startFirstCalculation_btn"/>
 
     </RelativeLayout>
 
@@ -78,8 +78,8 @@
         <Button android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_startSubscription"
-                android:id="@+id/startSubscription2"
-                android:onClick="initSubscription"
+                android:id="@+id/startSecondCalculation_btn"
+                android:onClick="startCalculation"
                 android:layout_below="@id/secondSubscription"/>
 
         <Button android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
                 android:id="@+id/clearOutput2"
                 android:onClick="clearOutput"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/startSubscription2"
+                android:layout_toRightOf="@id/startSecondCalculation_btn"
                 android:layout_below="@id/secondSubscription"/>
 
         <TextView android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                   android:textColor="#FFFFFF"
                   android:id="@+id/secondObserverOutput"
                   android:gravity="center_horizontal"
-                  android:layout_below="@id/startSubscription2"/>
+                  android:layout_below="@id/startSecondCalculation_btn"/>
 
 
     </RelativeLayout>

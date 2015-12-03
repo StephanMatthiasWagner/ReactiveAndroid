@@ -13,15 +13,20 @@ import java.math.BigInteger;
 import java.util.Random;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ligatus
- * Date: 16.04.15
- * Time: 19:35
- * To change this template use File | Settings | File Templates.
+ * Java concurrency Example implementation of an android activity
+ * @author Stephan Wagner
  */
 public class MainConcurrentActivity extends Activity{
-    private static final String TAG = "MainActivity";
 
+    /**
+     * The tag for identify logging of this class.
+     */
+    private static final String TAG = "MainConcurrentActivity";
+
+    /**
+     * The key to identify the bundle of this activity if
+     * it is recreated.
+     */
     private static final String SAVED_INSTANCE_SOME_KEY = "SOME_KEY";
 
     /**
@@ -32,12 +37,41 @@ public class MainConcurrentActivity extends Activity{
     /**
      * The Constructor
      */
-    public MainConcurrentActivity() {
+    public MainConcurrentActivity()
+    {
         Log.d(TAG, "call constructor");
     }
 
+    /**
+     * TextView element that will show the calculation
+     * output of the first panel.
+     */
     private static TextView firstCalculationOutput;
+
+    /**
+     * TextView element tat will show the calculation
+     * output of the second panel
+     */
     private static TextView secondCalculationOutput;
+
+    /**
+     * The private Handler object that controls
+     * the communication between the background
+     * and the UI-thread where this activity is
+     * running.
+     */
+    private final Handler HANDLER = new Handler()
+    {
+        /**
+         * Handle incoming message and trigger
+         * update of the views in this activity
+         * @param msg MessageObject
+         */
+        @Override
+        public void handleMessage(final Message msg) {
+            updateView(msg);
+        }
+    };
 
     /**
      * Called when the activity is first created.
@@ -45,15 +79,19 @@ public class MainConcurrentActivity extends Activity{
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down then
      *                           this Bundle contains the data it most recently supplied in onSaveInstanceSt
      *
-     *
      *                           (Bundle). <b>Note: Otherwise it is null.</b>
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         Log.d(TAG, "ACTIVITY JUST CREATED");
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_SOME_KEY)) {
+        //in case of some backup state after
+        // destroyed activity instances
+        if (savedInstanceState != null
+                && savedInstanceState
+                .containsKey(SAVED_INSTANCE_SOME_KEY))
+        {
             savedInstance = savedInstanceState.getString(SAVED_INSTANCE_SOME_KEY);
         }
 
@@ -67,42 +105,36 @@ public class MainConcurrentActivity extends Activity{
 
         secondCalculationOutput = (TextView) findViewById(R.id.secondCalculationOutput);
         secondCalculationOutput.setText("This is the output of second Calculation:\n");
-        //initSubscription();
 
     }
 
-
-
+    /**
+     * Will be called in case of destroying this activity.
+     */
     @Override
-    public void onDestroy() {
-
+    public void onDestroy()
+    {
+        //maybe cancel background calculation
     }
 
-    private Handler HANDLER = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            updateView(msg);
-        }
-    };
-
-    public void initCalculation(View aView) {
-
-        /*static Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                handleMessage(msg);
-            }
-        };
-          */
+    /**
+     * Initialize the Calculation. This Method will be called
+     * by the Start Calculation Buttons from the layout.
+     * @param aView the viewId of the button that.
+     */
+    public void initCalculation(final View aView)
+    {
         RandomPrimeNumGenerator runnable = new RandomPrimeNumGenerator(aView,HANDLER);
         Thread newThread = new Thread(runnable);
         newThread.start();
-
     }
 
-
-    public static void updateView(Message aMessage) {
-        Log.d("RandomPrimeNumGenerator","Callback handleMessage");
+    /**
+     * Updates the view to display the results of the calculation.
+     * @param aMessage contains the result of the calculation as bundle.
+     */
+    public static void updateView(final Message aMessage) {
+        Log.d(TAG,"updateView");
         Bundle bundle = aMessage.getData();
 
         if(bundle.containsKey(String.valueOf(R.id.startCalculation1))){
@@ -123,7 +155,12 @@ public class MainConcurrentActivity extends Activity{
         }
     }
 
-
+    /**
+     * Clears the output field that belongs to the
+     * button calling this method.
+     * @param aView the button viewObject that called
+     *              this method.
+     */
     public void clearOutput(View aView) {
         if (aView.getId() == R.id.clearOutput1) {
             firstCalculationOutput.setText("");

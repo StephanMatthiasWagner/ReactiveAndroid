@@ -10,40 +10,48 @@ import java.math.BigInteger;
 import java.util.Random;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ligatus
- * Date: 16.04.15
- * Time: 19:12
- * To change this template use File | Settings | File Templates.
+ * RandomPrimeNumGenerator that implements a Runnable that will
+ * run in a Background Thread.
+ * @author Stephan Wagner
  */
 public class RandomPrimeNumGenerator implements Runnable {
 
+    /**
+     * Tag for identify the log messages of this runnable.
+     */
     private static final String TAG = "RandomPrimeNumGenerator";
 
 
     /**
-     *
+     *  A targetView that will that assigns the output of
+     *  the calculation to the view that will display it.
      */
     private View targetView;
 
     /**
-     *
+     *  The Handler instance that helps to realise the communication
+     *  between the background thread and the UI-Thread.
      */
     private Handler handler;
 
     /**
      * The constructor.
-     * @param aView
-     * @param aCallbackHandler
+     * @param aView as targetView.
+     * @param aCallbackHandler as MessageHandler.
      */
-    public RandomPrimeNumGenerator(final View aView, final Handler aCallbackHandler) {
+    public RandomPrimeNumGenerator(final View aView, final Handler aCallbackHandler)
+    {
         Log.d(TAG,"Call Constructor");
         targetView = aView;
         handler = aCallbackHandler;
     }
 
+    /**
+     * This method will be called by new thread.
+     */
     @Override
-    public void run() {
+    public void run()
+    {
         Log.d(TAG,"Call run");
         String result = startCalculation();
         Message message = new Message();
@@ -55,7 +63,11 @@ public class RandomPrimeNumGenerator implements Runnable {
     }
 
 
-
+    /**
+     * The time consuming calculation. This method tries
+     * to find a number of big prime numbers.
+     * @return result of the calculation as string
+     */
     private String startCalculation() {
         Log.d(TAG," startCalculation");
 
