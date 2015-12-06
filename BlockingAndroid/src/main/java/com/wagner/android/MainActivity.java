@@ -26,7 +26,8 @@ public class MainActivity extends Activity {
     /**
      * The Constructor
      */
-    public MainActivity() {
+    public MainActivity()
+    {
         Log.d(TAG, "call constructor");
     }
 
@@ -34,18 +35,20 @@ public class MainActivity extends Activity {
      * The textView of the first panel.
      */
     private TextView firstCalculationOutput;
+
     /**
      * The textView of the second panel.
      */
     private TextView secondCalculationOutput;
 
     /**
-     * Called when the activity is first created. This method initialises the layout.
-     *
+     * Called when the activity is first created.
+     * This method initialises the layout.
      * @param savedInstanceState ignored in this example
      */
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState)
+    {
         Log.d(TAG, "ACTIVITY JUST CREATED");
         super.onCreate(savedInstanceState);
 
@@ -55,28 +58,33 @@ public class MainActivity extends Activity {
         //create view with different fields
         //create button for starting with each field
 
-        firstCalculationOutput = (TextView) findViewById(R.id.firstObserverOutput);
-        firstCalculationOutput.setText("This is the output of first observer:\n");
+        firstCalculationOutput =
+                (TextView) findViewById(R.id.firstObserverOutput);
+        firstCalculationOutput
+                .setText("This is the output of first observer:\n");
 
-        secondCalculationOutput = (TextView) findViewById(R.id.secondObserverOutput);
-        secondCalculationOutput.setText("This is the output of second observer:\n");
-
-
+        secondCalculationOutput =
+                (TextView) findViewById(R.id.secondObserverOutput);
+        secondCalculationOutput.
+                setText("This is the output of second observer:\n");
     }
 
     /**
      *  Called when this activity will be destroyed.
      */
     @Override
-    public void onDestroy() {
+    public void onDestroy()
+    {
         //for later usage
     }
 
     /**
-     * Starts the time consuming calculation that will calculate large prime numbers.
+     * Starts the time consuming calculation that
+     * will calculate large prime numbers.
      * @param aView the view that triggers this method.
      */
-    public void startCalculation(View aView) {
+    public void startCalculation(View aView)
+    {
         StringBuilder targetString = new StringBuilder(10);
         for (int i = 0; i < 10; i++) {
 
@@ -107,7 +115,8 @@ public class MainActivity extends Activity {
      * @param aView the view to identify the panel
      *              that should be cleared.
      */
-    public void clearOutput(View aView) {
+    public void clearOutput(View aView)
+    {
         if (aView.getId() == R.id.clearOutput1) {
             firstCalculationOutput.setText("");
             firstCalculationOutput.invalidate();
