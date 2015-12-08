@@ -91,7 +91,10 @@ public class AndroidAsyncRandomPrimeGen
         return new AsyncTaskResult<Map<Integer,String>>(resultMap);
     }
 
-
+    /**
+     * Callback that will be called before the background thread will be created
+     * and starts processing.
+     */
     protected void onPreExecute()
     {
         // Perform setup - runs on user interface thread
@@ -114,7 +117,7 @@ public class AndroidAsyncRandomPrimeGen
      * The callbackFunction that will be used to process errors in
      * the background calculation. This Method will run on the Main
      * Thread.
-     * @param result
+     * @param result the AsyncTaskResult as Map of ViewId and ResultString
      */
     @Override
     protected void onPostExecute(AsyncTaskResult<Map<Integer, String>> result)

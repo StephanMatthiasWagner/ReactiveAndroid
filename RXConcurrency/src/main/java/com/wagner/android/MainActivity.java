@@ -14,27 +14,36 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ligatus
- * Date: 16.04.15
- * Time: 19:35
- * To change this template use File | Settings | File Templates.
+ * The RXJava example implementation of an activity.
+ * @author Stephan Wagner
  */
 public class MainActivity extends Activity {
+
+    /**
+     * The Tag to identify the logging of this class.
+     */
     private static final String TAG = "MainActivity";
 
-    private static final String SAVED_INSTANCE_SOME_KEY = "SOME_KEY";
 
     /**
-     * The Saved Instance string.
+     * The first observer output view.
      */
-    private String savedInstance;
+    private TextView firstObserverOutput;
 
     /**
-     * The subscriber.
+     * The second observer output view.
      */
-    private Subscriber<String> firstSubscriber;
-    private Subscriber<String> secondSubscriber;
+    private TextView secondObserverOutput;
+
+    /**
+     * The first Subscription.
+     */
+    private Subscription firstSubscription;
+
+    /**
+     * The second Subscription.
+     */
+    private Subscription secondSubscription;
 
     /**
      * The Constructor
@@ -42,10 +51,6 @@ public class MainActivity extends Activity {
     public MainActivity() {
         Log.d(TAG, "call constructor");
     }
-
-    private TextView firstObserverOutput;
-    private TextView secondObserverOutput;
-    private Subscription subscription;
 
     /**
      * Called when the activity is first created.
@@ -59,10 +64,6 @@ public class MainActivity extends Activity {
         Log.d(TAG, "ACTIVITY JUST CREATED");
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_SOME_KEY)) {
-            savedInstance = savedInstanceState.getString(SAVED_INSTANCE_SOME_KEY);
-        }
-
         setContentView(R.layout.activity_main);
 
         //create view with different fields
@@ -73,54 +74,74 @@ public class MainActivity extends Activity {
 
         secondObserverOutput = (TextView) findViewById(R.id.secondObserverOutput);
         secondObserverOutput.setText("This is the output of second observer:\n");
-        //initSubscription();
 
     }
 
-
+    /**
+     * If Activity will be destroyed unSubscribe from the observers
+     * to prevent memory leaks and terminate the processing in the
+     * observables.
+     */
     @Override
-    public void onDestroy() {
-        if (subscription != null) {
-            subscription.unsubscribe();
+    public void onDestroy()
+    {
+        if (firstSubscription != null)
+        {
+            firstSubscription.unsubscribe();
+        }
+
+        if (secondSubscription != null)
+        {
+            secondSubscription.unsubscribe();
         }
     }
 
+    /**
+     * Initialize the subscription to the view that called this method.
+     * @param aView the view that called this method.
+     */
     public void initSubscription(View aView) {
 
         if (aView.getId() == R.id.startSubscription1) {
-            firstSubscriber = getFirstSubscriber();
 
-            subscription = getSubscription(firstSubscriber);
+            Subscriber<String> firstSubscriber = getFirstSubscriber();
+
+            firstSubscription = getSubscription(firstSubscriber);
 
         }
         if (aView.getId() == R.id.startSubscription2) {
-            secondSubscriber = getSecondSubscriber();
 
-            subscription = getSubscription(secondSubscriber);
+            Subscriber<String> secondSubscriber = getSecondSubscriber();
+
+            secondSubscription = getSubscription(secondSubscriber);
 
         }
     }
 
+    /**
+     * Returns a subscription that specifies the Observable of RandomPrimeNumGenerator,
+     * a given subscriber and the Schedules. The observable will run on a new Thread
+     * and the subscriber will be processed on the main Thread - the ui-Thread of
+     * this activity.
+     * @param aSubscriber that will subscribe from the Observable of a new
+     *                    RandomPrimeNumGenerator instance.
+     * @return a Subscription that contains the observable and subscriber.
+     */
     private Subscription getSubscription(Subscriber<String> aSubscriber) {
         RandomPrimeNumGenerator randomPrimeNumGenerator = new RandomPrimeNumGenerator();
 
-        return randomPrimeNumGenerator.getObservable().observeOn(AndroidSchedulers.mainThread())
+        return randomPrimeNumGenerator
+                .getFilteredObservable()
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
-                .filter(new Func1<String, Boolean>() {
-                    @Override
-                    public Boolean call(String item) {
-                        try {
-                            Integer.valueOf(item);
-                        } catch (NumberFormatException e) {
-                            return false;
-                        }
-                        return true;
-                    }
-                }
-                )
                 .subscribe(aSubscriber);
     }
 
+    /**
+     * Defines the firstSubscriber with view specific Callback
+     * implementations.
+     * @return the firstSubscriber for the first output panel
+     */
     private Subscriber<String> getFirstSubscriber() {
 
         return new Subscriber<String>() {
@@ -145,6 +166,12 @@ public class MainActivity extends Activity {
         };
     }
 
+
+    /**
+     * Defines the secondSubscriber with view specific Callback
+     * implementations.
+     * @return the secondSubscriber for the first output panel
+     */
     private Subscriber<String> getSecondSubscriber() {
 
         return new Subscriber<String>() {
@@ -169,13 +196,20 @@ public class MainActivity extends Activity {
         };
     }
 
-
-    public void clearOutput(View aView) {
-        if (aView.getId() == R.id.clearOutput1) {
+    /**
+     * Clearing the output panel to the view that called
+     * this method.
+     * @param aView the view that called this method.
+     */
+    public void clearOutput(View aView)
+    {
+        if (aView.getId() == R.id.clearOutput1)
+        {
             firstObserverOutput.setText("");
             firstObserverOutput.invalidate();
         }
-        if (aView.getId() == R.id.clearOutput2) {
+        if (aView.getId() == R.id.clearOutput2)
+        {
             secondObserverOutput.setText("");
             secondObserverOutput.invalidate();
         }
