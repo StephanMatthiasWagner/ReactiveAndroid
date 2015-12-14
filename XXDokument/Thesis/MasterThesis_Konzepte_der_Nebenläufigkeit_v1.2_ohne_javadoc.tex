@@ -192,14 +192,14 @@ Fakultät für Informatik und Ingenieurwissenschaften\\[0.5cm]}
 \onehalfspacing % 1,5-facher Zeilenabstand
 
 \chapter*{Zusammenfassung}
-Diese Thesis behandelt das Thema „Konzepte der Nebenläufigkeit unter Android“. Darin wird zunächst als Einführung in die Thematik, die Nebenläufigkeit allgemein mit ihren unterschiedlichen Ausprägungen (Prozess-/Threadebene) erläutert und die Risiken die mit Nebenläufigkeit einhergeht skizziert. Dabei ist ein besonders wichtiger Punkt der Botschaftenaustausch, der mittels unterschiedlicher Techniken realisierbar ist. Auch hier birgt jede Technologie ihre individuellen Vor- und Nachteile.
-Die Nebenläufigkeit unter Android unterliegt einigen Besonderheiten, die sich teilweise aus den Restriktionen des Betriebssystems ergeben, aber auch aus den Anforderungen für die Android Applikationsentwicklung, die der StyleGuide vorgibt. So ist die grundsätzliche Anforderung, dass Applikationen ansprechbar bleiben. Eine Applikation, insbesondere eine Gui Applikation sollte somit beim Start von Operationen weder blockieren oder nicht mehr auf Benutzereingaben reagieren. Technisch bedeutet dies, dass zeitaufwändige Operationen nie auf dem Main Thread der Applikation stattfinden dürfen. Stattdessen müssen derartige Operationen in Hintergrundthreads ausgelagert werden. Im Kapitel 2 werden hierzu drei unterschiedliche Konzepte an Hand konkreten Beispielimplementierungen vorgestellt und in der jeweiligen Funktionsweise analysiert.
+Diese Thesis behandelt das Thema „Konzepte der Nebenläufigkeit unter Android“. Darin wird zunächst als Einführung die Thematik der Nebenläufigkeit allgemein mit ihren unterschiedlichen Ausprägungen (Prozess-/Threadebene) erläutert und die Risiken, die mit Nebenläufigkeit einhergehen skizziert. Dabei ist ein besonders wichtiger Punkt der Botschaftenaustausch, der mittels unterschiedlicher Techniken realisierbar ist. Auch hier birgt jede Technologie ihre individuellen Vor- und Nachteile.
+Die Nebenläufigkeit unter Android unterliegt einigen Besonderheiten, die sich teilweise aus den Restriktionen des Betriebssystems ergeben, aber auch aus den Anforderungen für die Android Applikationsentwicklung, die der StyleGuide vorgibt. So ist die grundsätzliche Anforderung, dass Applikationen ansprechbar bleiben. Eine Applikation, insbesondere eine Gui-Applikation, sollte somit beim Start von Operationen weder blockieren oder nicht mehr auf Benutzereingaben reagieren. Technisch bedeutet dies, dass zeitaufwändige Operationen nie auf dem Main-Thread der Applikation stattfinden dürfen. Stattdessen müssen derartige Operationen in Hintergrundthreads ausgelagert werden. Im Kapitel 2 werden hierzu drei unterschiedliche Konzepte an Hand konkreter Beispielimplementierungen vorgestellt und ihrer der jeweiligen Funktionsweise analysiert:
 \begin{itemize}
 \item Java Concurrency nach Java SE
 \item Android Concurrency aus dem Android SDK
 \item RXJava Framework
 \end{itemize}
-Die aus der technischen Analyse gewonnenen Erkenntnisse werden in Kapitel 3 genutzt um Chancen und Risiken der einzelnen Konzepte zu diskutieren. Um die Ergebnisse aus dem Diskurs für zukünftige Entscheidungsfindungen zu Rate ziehen zu können fließen die aus der Detailanalyse gewonnenen Ergebnisse in eine Szenarien basierte Analyse ein, um daraus Anhaltspunkte für den sinnvollen Einsatz der Konzepte abzuleiten.
+Die aus der technischen Analyse gewonnenen Erkenntnisse werden in Kapitel 3 genutzt, um Chancen und Risiken der einzelnen Konzepte zu diskutieren. Um die Ergebnisse aus dem Diskurs für zukünftige Entscheidungsfindungen zu Rate ziehen zu können, fließen die aus der Detailanalyse gewonnenen Ergebnisse in eine szenarienbasierte Analyse ein, um daraus Anhaltspunkte für den sinnvollen Einsatz der Konzepte abzuleiten.
 
 \tableofcontents
 \listoffigures
@@ -207,16 +207,16 @@ Die aus der technischen Analyse gewonnenen Erkenntnisse werden in Kapitel 3 genu
 
 \chapter{Einleitung}
 \section{Motivation}
-Mobile Endgeräte begleiten immer mehr Menschen in ihrem Alltag. Damit einher geht die intensive Nutzung von sog. Apps., womit Applikationen auf den mobilen Endgeräten bezeichnet werden. Mit der zunehmenden Leistungsfähigkeit der Geräte werden auch immer komplexere Applikationen realisierbar. Wurde zu den Anfängen der Applikationsentwicklung für mobile Endgeräte lediglich einfache Funktionalität in Applikationen integriert, werden heute mit unter teilweise sehr rechenintensive und komplexe Funktionalitäten entwickelt. Eine optimale Konzeption der Aufgabenverarbeitung innerhalb der Applikation kann dabei einen entscheidenden Faktor für die Performance und damit auch die Akzeptanz beim Nutzer darstellen. Damit gewinnt die Nebenläufigkeit auch in der Applikationsentwicklung für mobile Endgeräte an Wichtigkeit. Nebenläufigkeit oder auch Parallelverarbeitung bezeichnet in der Informatik die Eigenschaft eines Programms oder eines Systems verschiedene Aufgaben zeitgleich, also parallel zu bearbeiten. Die jeweilige Verarbeitung kann dabei in sich abgeschlossen sein, d.h. die zu verarbeitenden Aufgaben sind voneinander unabhängig, oder die Verarbeitung hängt von den Ergebnissen aus anderen Aufgaben ab. Je nach Art und Weise der Parallelverarbeitung sind verschiedene Problematiken und Risiken zu beachten. Für Nebenläufigkeit unter dem Android Betriebssystem sind zusätzliche Besonderheiten zu beachten. Dieses Betriebssystem ist auf mobile Endgeräte zugeschnitten und hat diesbezüglich spezielle Anforderungen an Applikationen die darauf laufen sollen. Die Firma Google als Hersteller vom Betriebssystem Android legt hierbei großen Wert auf die Einhaltung eines StyleGuides der die Benutzbarkeit applikationsübergreifend in einem einheitlichen Standard definiert. Darin wird die grundlegende Anforderung nach der kontinuierlichen Ansprechbarkeit von Applikationen gefordert. Die Frage ist wie kann den Anforderungen an Android Applikationen mittels unterschiedlicher Konzepte der Nebenläufigkeit begegnet werden, sodass das von Google geforderte Ziel der Ansprechbarkeit erreicht werden kann. Welche Problemstellungen, Restriktionen oder Risiken gehen mit der Verwendung bestimmter Konzepte einher und wie praktikabel sind diese für den konkreten Praxiseinsatz? 
+Mobile Endgeräte begleiten immer mehr Menschen in ihrem Alltag. Damit einher geht die intensive Nutzung von sog. Apps, womit Applikationen auf den mobilen Endgeräten bezeichnet werden. Mit der zunehmenden Leistungsfähigkeit der Geräte werden auch immer komplexere Applikationen realisierbar. Wurde zu den Anfängen der Applikationsentwicklung für mobile Endgeräte lediglich einfache Funktionalität in Applikationen integriert, werden heute mitunter teilweise sehr rechenintensive und komplexe Funktionalitäten entwickelt. Eine optimale Konzeption der Aufgabenverarbeitung innerhalb der Applikation kann dabei einen entscheidenden Faktor für die Performance und damit auch die Akzeptanz beim Nutzer darstellen. Damit gewinnt die Nebenläufigkeit auch in der Applikationsentwicklung für mobile Endgeräte an Wichtigkeit. Nebenläufigkeit oder auch Parallelverarbeitung bezeichnet in der Informatik die Eigenschaft eines Programms oder eines Systems verschiedene Aufgaben zeitgleich, also parallel zu bearbeiten. Die jeweilige Verarbeitung kann dabei in sich abgeschlossen sein, d.h. die zu verarbeitenden Aufgaben sind voneinander unabhängig, oder die Verarbeitung hängt von den Ergebnissen aus anderen Aufgaben ab. Je nach Art und Weise der Parallelverarbeitung sind verschiedene Problematiken und Risiken zu beachten. Für Nebenläufigkeit unter dem Android Betriebssystem sind zusätzliche Besonderheiten zu beachten. Dieses Betriebssystem ist auf mobile Endgeräte zugeschnitten und hat diesbezüglich spezielle Anforderungen an Applikationen, die darauf laufen sollen. Die Firma Google als Hersteller des Betriebssystems Android legt hierbei großen Wert auf die Einhaltung eines StyleGuides, der die Benutzbarkeit applikationsübergreifend in einem einheitlichen Standard definiert. Darin wird die grundlegende Anforderung nach der kontinuierlichen Ansprechbarkeit von Applikationen gefordert. Die Frage ist, wie den Anforderungen an Android-Applikationen mittels unterschiedlicher Konzepte der Nebenläufigkeit begegnet werden kann, sodass das von Google geforderte Ziel der Ansprechbarkeit erreicht werden kann. Welche Problemstellungen, Restriktionen oder Risiken gehen mit der Verwendung bestimmter Konzepte einher und wie praktikabel sind diese für den konkreten Praxiseinsatz? 
 
 \section{Zielsetzung und Vorgehen}
-In dieser Arbeit soll untersucht werden, wie konkurrierende Parallelverarbeitung in mobilen Anwendungen realisiert werden kann. Dabei besteht das Ziel, die Entwicklung von Nebenläufigkeit durch Verwendung unterschiedlicher Techniken zu vereinfachen und ggf. auf einem höheren Abstraktionsniveau ab zu bilden. Zunächst gilt es in einer kurzen Einführung in die Thematik, die grundsätzlichen Definitionen kurz zu erläutern und auf Besonderheiten der Parallelverarbeitung unter Android einzugehen. Weiter wird ein Überblick über eine Auswahl von unterschiedlichen Konzepten der Nebenläufigkeit unter Android erarbeitet. Diese werden mittels einfacher Beispiele vorgestellt und analysiert. Den Abschluss bildet ein kritischer Diskurs, um in Abhängigkeit vom Einsatzkontext eine Differenzierte Sicht auf die Anwendung der einzelnen Konzepte zu erhalten. Die Ergebnisse des Diskurses werden in einer szenarienbasierten Analyse aufgegriffen um diese greifbarer zu machen.
+In dieser Arbeit soll untersucht werden, wie konkurrierende Parallelverarbeitung in mobilen Anwendungen realisiert werden kann. Dabei besteht das Ziel, die Entwicklung von Nebenläufigkeit durch Verwendung unterschiedlicher Techniken zu vereinfachen und ggf. auf einem höheren Abstraktionsniveau abzubilden. Zunächst gilt es, in einer kurzen Einführung in die Thematik die grundsätzlichen Definitionen kurz zu erläutern und auf Besonderheiten der Parallelverarbeitung unter Android einzugehen. Weiter wird ein Überblick über eine Auswahl von unterschiedlichen Konzepten der Nebenläufigkeit unter Android erarbeitet. Diese werden mittels einfacher Beispiele vorgestellt und analysiert. Den Abschluss bildet ein kritischer Diskurs, um in Abhängigkeit vom Einsatzkontext eine Differenzierte Sicht auf die Anwendung der einzelnen Konzepte zu erhalten. Die Ergebnisse des Diskurses werden in einer szenarienbasierten Analyse aufgegriffen, um diese greifbarer zu machen.
 
 \section{Begriffsdefinition und Grundlagen der Nebenläufigkeit}
 Um sich den Konzepten der Nebenläufigkeit anzunähern, werden zunächst einige Begriffsdefinitionen benötigt. Die Nebenläufigkeit meint dabei konkret die parallele Verarbeitung von Aufgaben. Hierzu wird eine Aufgabe in Unteraufgaben aufgeteilt, um diese  weitestgehend von einander unabhängig abzuarbeiten. Die Definition wie diese Verarbeitung ablaufen soll, ist in einem Programm hinterlegt. Die Ausführung von Programmen wird von Prozessen und Threads geregelt. Diese werden im folgenden Abschnitt definiert und ein tieferes Verständnis von der Parallelverarbeitung auf Betriebssystemebene erarbeitet.
 
 \section{Prozesse und Threads}
-Die genauen Eigenschaften von Prozessen und Threads sind abhängig vom Betriebssystem auf dem sie laufen. Da in dieser Arbeit der Fokus auf Nebenläufigkeit unter Android liegt, beziehen sich die folgenden Erläuterungen zu Prozessen und Threads auf das allgemeine Unix/Linux Betriebssystem auf dem Android basiert.
+Die genauen Eigenschaften von Prozessen und Threads sind abhängig vom Betriebssystemm, auf dem sie laufen. Da in dieser Arbeit der Fokus auf Nebenläufigkeit unter Android liegt, beziehen sich die folgenden Erläuterungen zu Prozessen und Threads auf das allgemeine Unix/Linux Betriebssystem, auf dem Android basiert.
 
 \subsection{Prozess}
 Wird eine Anwendung gestartet, so erzeugt das Betriebssystem zunächst einen Prozess, der den Adressraum für sämtliche Programmdaten und Komponenten reserviert. Für Prozesse kann folgende Definition getroffen werden. Sie gilt betriebssystemübergreifend:
@@ -227,28 +227,28 @@ verantwortlich.
 \end{center}
 Die Prozesse sind (in der Regel) an einen Benutzer gebunden, welcher wiederum über bestimme Rechte u.a. im Dateisystem verfügt. Dabei sind für Linux Betriebssysteme folgende Prinzipien zu beachten:
 \begin{itemize}
-\item Hierarschische Prinzip
-\item Sandbox Prinzip
+\item Hierarchisches Prinzip
+\item Sandbox- Prinzip
 \end{itemize}
-Das hierarchische Prinzip schreibt die Abhängigkeit von Prozessen gegenüber ihren Erzeugern vor. Mit Ausnahme des Root Prozesses des Betriebssystems, werden alle Anwendungen durch einen Vater Prozess erzeugt. Die damit verbundene Vater-Kind Abhängigkeit bildet eine Baumstruktur, in der jeder Prozess seinen erzeugenden Prozess kennt. Ein Prozess kann nur aus anderen Prozessen heraus erzeugt werden. Stirbt ein Prozess, so werden die Kind Prozesse in der Regel vom Root Prozess des Betriebsystems adoptiert.\newline
-Das Sandbox Prinzip ist ein Sicherheitskonzept aus dem Kern eines Linux/Unix Betriebssystems. Darin wird sichergestellt, dass jede Anwendung nur die eigenen Daten sehen darf. So wird bei der Installation für jede Anwendung ein eigener Betriebssystem- User erzeugt, der über spezielle Rechte zu Prozessen und Dateien verfügt. Damit wird zum Ausführungszeitpunkt verhindert, dass Programmdaten für andere Programme sichtbar werden. Die Sicht jedes Prozesses einer Anwendung ist begrenzt auf die Ressourcen die dem jeweiligen Betriebssystem User zugeordnet sind.
+Das hierarchische Prinzip schreibt die Abhängigkeit von Prozessen gegenüber ihren Erzeugern vor. Mit Ausnahme des Root- Prozesses des Betriebssystems werden alle Anwendungen durch einen Vater- Prozess erzeugt. Die damit verbundene Vater- Kind- Abhängigkeit bildet eine Baumstruktur, in der jeder Prozess seinen erzeugenden Prozess kennt. Ein Prozess kann nur aus anderen Prozessen heraus erzeugt werden. Stirbt ein Prozess, so werden die Kind- Prozesse in der Regel vom Root- Prozess des Betriebsystems adoptiert.\newline
+Das Sandbox- Prinzip ist ein Sicherheitskonzept aus dem Kern eines Linux/Unix Betriebssystems. Darin wird sichergestellt, dass jede Anwendung nur die eigenen Daten sehen darf. So wird bei der Installation für jede Anwendung ein eigener Betriebssystem- User erzeugt, der über spezielle Rechte zu Prozessen und Dateien verfügt. Damit wird zum Ausführungszeitpunkt verhindert, dass Programmdaten für andere Programme sichtbar werden. Die Sicht jedes Prozesses einer Anwendung ist begrenzt auf die Ressourcen die dem jeweiligen Betriebssystem User zugeordnet sind.
 
 \subsection{Thread}
-Die Begriffe Prozesse und Threads dürfen nicht synonym verwendet werden. So kann ein Thread wie folgend Definiert werden:
+Die Begriffe \glqq Prozesse\grqq und \glqq Threads\grqq dürfen nicht synonym verwendet werden. So kann ein Thread wie folgend Definiert werden:
 \begin{center}
 Ein Thread stellt einen Ausführungsfaden
 eines Programmes dar.
 \end{center}
-Dieser besteht aus aus einem aktuellen Befehlszeiger, einem eigenen Stack und dem Inhalt der Prozessorregister. Zum Start einer Anwendung wird der sog. Main Thread erzeugt. Aus diesem lassen sich beliebig weitere Threads erzeugen. Dabei besteht keine hierarchische Bindung wie bei der Vater-Sohn Prozesshierarchie. Innerhalb eines Prozesses erzeugte Threads erhalten Zugriff auf den hier reservierten Speicher des Prozesses. Alle in einem Prozess erzeugte Threads sind von diesem abhängig. Wird demnach ein Prozess terminiert, so werden auch alle darin erzeugte Threads terminiert.
+Dieser besteht aus aus einem aktuellen Befehlszeiger, einem eigenen Stack und dem Inhalt der Prozessorregister. Zum Start einer Anwendung wird der sog. Main- Thread erzeugt. Aus diesem lassen sich beliebig weitere Threads erzeugen. Dabei besteht keine hierarchische Bindung wie bei der Vater-Sohn- Prozesshierarchie. Innerhalb eines Prozesses erzeugte Threads erhalten Zugriff auf den hier reservierten Speicher des Prozesses. Alle in einem Prozess erzeugten Threads sind von diesem abhängig. Wird demnach ein Prozess terminiert, so werden auch alle darin erzeugten Threads terminiert.
 
 \section{Botschaftenaustausch und Kommunikation}
-Der Botschaftenaustausch zwischen Prozessen unterscheidet sich vom Botschaftenaustausch zwischen Threads. Während bei der Inter Prozess Kommunikation maßgeblich das Betriebssystem am Austausch von Nachrichten zwischen Prozessen beteiligt ist, können bei der Inter Thread Kommunikation unterschiedliche Techniken unabhängig vom Betriebssystem angewandt werden. Für die Kommunikation zwischen Threads eignen sich z.B. Dateien aber auch sogenannte MessageQueues mit denen Produzenten und Konsumenten Konstrukte erzeugt werden können. Die Inter Thread Kommunikation bleibt begrenzt auf die Threads innerhalb einer Anwendung. Die Inter Prozess Kommunikation dagegen, definiert die Kommunikation über Programm- und Systemgrenzen hinaus. Innerhalb eines Betriebssystems wird in der Regel der Speicherbereich jedes Prozesses in sich gekapselt und vor anderen Prozessen verborgen (s.o. Sandbox-Prinzip). Daher werden Mechanismen seitens des Betriebssystems benötigt (Botschaftenaustausch über Socket, etc..) um die Kommunikation zu gewährleisten. Diese Mechanismen sind aufwendig und eignen sich dadurch weniger für eine effiziente Parallelverarbeitung. Daher konzentriert sich diese Arbeit auf die Kommunikation auf Thread Ebene, und die Inter- Prozess Kommunikation wird nicht weiter thematisiert. Die folgenden Abschnitte geben einen Einblick auf gängige Techniken zur Realisierung von Inter- Thread Kommunikation.
+Der Botschaftenaustausch zwischen Prozessen unterscheidet sich vom Botschaftenaustausch zwischen Threads. Während bei der Inter- Prozess- Kommunikation maßgeblich das Betriebssystem am Austausch von Nachrichten zwischen Prozessen beteiligt ist, können bei der Inter- Thread- Kommunikation unterschiedliche Techniken unabhängig vom Betriebssystem angewandt werden. Für die Kommunikation zwischen Threads eignen sich z.B. Dateien, aber auch sogenannte MessageQueues, mit denen Produzenten- und Konsumentenkonstrukte erzeugt werden können. Die Inter- Thread- Kommunikation bleibt begrenzt auf die Threads innerhalb einer Anwendung. Die Inter- Prozess- Kommunikation dagegen definiert die Kommunikation über Programm- und Systemgrenzen hinaus. Innerhalb eines Betriebssystems wird in der Regel der Speicherbereich jedes Prozesses in sich gekapselt und vor anderen Prozessen verborgen (s.o. Sandbox-Prinzip). Daher werden Mechanismen seitens des Betriebssystems benötigt (Botschaftenaustausch über Socket, etc...), um die Kommunikation zu gewährleisten. Diese Mechanismen sind aufwendig und eignen sich dadurch weniger für eine effiziente Parallelverarbeitung. Daher konzentriert sich diese Arbeit auf die Kommunikation auf Thread- Ebene, und die Inter- Prozess- Kommunikation wird nicht weiter thematisiert. Die folgenden Abschnitte geben einen Einblick auf gängige Techniken zur Realisierung von Inter- Thread- Kommunikation.
 
 \subsection{Geteilte Datei/ Speicher}
-Einer der einfachsten technischen Mittel für den Daten- /Botschaftenaustauch ist die Nutzung einer gemeinsamen Datei im Dateisystem des Betriebssystems. Dadurch, dass das Betriebssystem den exklusiven Zugriff auf Dateien gewährleisten kann, ist es möglich ohne großen Aufwand eine synchronisierte Kommunikation zu realisieren. Etwas komplexer ist es für die Kommunikation einen Speicherbereich zu allokieren und die Referenz darauf den jeweiligen Kommunikationspartern für den Datenaustausch zur Verfügung zu stellen. In diesem Fall muss der exklusive Ausschluss selbst realisiert werden, falls er gewünscht ist. Hierzu dienen einfache Primitive aus dem java.lang.concurrency Packet.
+Eine der einfachsten technischen Mittel für den Daten- /Botschaftenaustauch ist die Nutzung einer gemeinsamen Datei im Dateisystem des Betriebssystems. Dadurch, dass das Betriebssystem den exklusiven Zugriff auf Dateien gewährleisten kann, ist es möglich, ohne großen Aufwand eine synchronisierte Kommunikation zu realisieren. Etwas komplexer ist es, für die Kommunikation einen Speicherbereich zu allokieren und die Referenz darauf, den jeweiligen Kommunikationspartnern für den Datenaustausch zur Verfügung zu stellen. In diesem Fall muss der exklusive Ausschluss selbst realisiert werden, falls er gewünscht ist. Hierzu dienen einfache Primitive aus dem java.lang.concurrency Packet.
 
 \subsection{MessageQueues}
-Die folgende Abbildung gibt einen schematischen Überblick über die Nutzung einer MessageQueue für die Kommunikation zwischen Objektinstanzen aus unterschiedlichen Threads. Beide Objekt Instanzen müssen eine Referenz auf das MessageQueue Objekt halten um Nachrichten (z.B. Message to Thread B) in diese Queue einzustellen oder herauszuholen. Das Konzept des nachrichtengetriebenen Datenaustausches hat den Vorteil, dass jede Nachricht eine atomare (in sich geschlossene) Einheit darstellt. Dadurch lassen sich einzelne Arbeitsaufträge unterscheiden. Je nach Implementierung der MessageQueue sind auch keine weiteren Synchronisationen mehr nötig.
+Die folgende Abbildung gibt einen schematischen Überblick über die Nutzung einer MessageQueue für die Kommunikation zwischen Objektinstanzen aus unterschiedlichen Threads. Beide Objekt- Instanzen müssen eine Referenz auf das MessageQueue- Objekt halten, um Nachrichten (z.B. Message to Thread B) in diese Queue einzustellen oder herauszuholen. Das Konzept des nachrichtengetriebenen Datenaustausches hat den Vorteil, dass jede Nachricht eine atomare (in sich geschlossene) Einheit darstellt. Dadurch lassen sich einzelne Arbeitsaufträge unterscheiden. Je nach Implementierung der MessageQueue sind auch keine weiteren Synchronisationen mehr nötig.
 \begin{figure}[H]
   \begin{centering}
     \includegraphics[width=0.8\textwidth]{img/MessageQueue.png}
@@ -261,18 +261,18 @@ Die Kommunikation mittels einer MessageQueue kann in zwei Formen realisiert werd
 \item Unidirektional
 \item Bidirektional
 \end{itemize}
-Bei der unidirektionalen Kommunikationsform darf ein Kommunikationspartner nur entweder Nachrichten aus der Queue entnehmen oder hinein geben. In unserem Beispiel dürfte demnach nur die Objekt Instanz des Thread A Nachrichten in die Queue geben und die Objekt Instanz des Thread B darf lediglich aus dieser lesen.\newline
+Bei der unidirektionalen Kommunikationsform darf ein Kommunikationspartner entweder nur Nachrichten aus der Queue entnehmen oder hineingeben. In unserem Beispiel dürfte demnach nur die Objekt- Instanz des Thread A Nachrichten in die Queue geben und die Objekt- Instanz des Thread B darf lediglich aus dieser lesen.\newline
 Bei der bidirektionalen Kommunikationsform dürfen beide Kommunikationspartner je Nachrichten in die MessageQueue einstellen wie auch herausnehmen.\newline 
 \newline
 
-Die letzten beiden Abschnitte haben einen Überblick über Technologieen gegeben, mit denen der Austausch von Informationen innerhalb einer nebenläufigen Verarbeitung über Thread Grenzen hinaus realisiert werden kann. Dabei stellen MessageQueues eine Abstraktionsebene zur Kommunikation über fest definierten Speicher dar. Die Entwicklung von Nebenläufigkeit kann jedoch auch zu schwerwiegenden Problemen führen.
+Die letzten beiden Abschnitte haben einen Überblick über Technologien gegeben, mit denen der Austausch von Informationen innerhalb einer nebenläufigen Verarbeitung über Thread- Grenzen hinaus realisiert werden kann. Dabei stellen MessageQueues eine Abstraktionsebene zur Kommunikation über fest definierten Speicher dar. Die Entwicklung von Nebenläufigkeit kann jedoch auch zu schwerwiegenden Problemen führen.
 
 
 \section{Risiken von Nebenläufigkeit}
-Der Botschaftenaustausch zwischen Threads, sowie deren Synchronisation kann zu schwerwiegenden Problemen im Zuge der Prallelverarbeitung führen. Folgende Szenarien sind eher allgemein gehalten, jedoch gilt es, besonders in dem Kapitel 2  zu den konkreten Implementierungen von Nebenläufigkeit, diese Problematiken zu beachten. In Kapitel 3 werden die in Kapitel 2 zu diskutierenden Beispielimplementierungen u.a. an Hand der hier aufgeführten Risikoszenarien und dem damit verbundenen Fehlerpotential bewertet.
+Der Botschaftenaustausch zwischen Threads sowie deren Synchronisation kann zu schwerwiegenden Problemen im Zuge der Prallelverarbeitung führen. Folgende Szenarien sind eher allgemein gehalten, jedoch gilt es, besonders in dem Kapitel 2  zu den konkreten Implementierungen von Nebenläufigkeit diese Problematiken zu beachten. In Kapitel 3 werden im Kapitel 2 zu diskutierenden Beispielimplementierungen u.a. an Hand der hier aufgeführten Risikoszenarien und dem damit verbundenen Fehlerpotential bewertet.
 
 \subsection{Philosophenproblem}
-Ein zentrales Problem der theoretischen Informatik ist das Philosophenproblem das erstmals beschrieben wurde durch Edsger W. Dijkstra. Darin wird ein Szenario berschrieben, in dem eine bestimmte Anzahl von Philosophen auf begrenzte Ressourcen zugreifen und bei gleichzeitigem Zugriff sich gegenseitig blockieren können.
+Ein zentrales Problem der theoretischen Informatik ist das Philosophenproblem, das erstmals durch Edsger W. Dijkstra beschrieben wurde. Darin wird ein Szenario berschrieben, in dem eine bestimmte Anzahl von Philosophen auf begrenzte Ressourcen zugreifen und sich bei gleichzeitigem Zugriff gegenseitig blockieren können.
 
 \begin{figure}[H]
   \begin{centering}
@@ -281,12 +281,12 @@ Ein zentrales Problem der theoretischen Informatik ist das Philosophenproblem da
     \label{Philosophenproblem}
   \end{centering}
 \end{figure}
-Die Abbildung zeigt wie eine Gruppe von Philosophen an einem Runden Tisch sitzen, vor ihnen etwas zu Essen. Um zu essen, benötigen nach diesem theoretischen Aufbau die Philosophen die rechte und die linke Gabel neben dem jeweiligen Teller. Dabei versuchen die Philosophen zu nächst die Gabel zu ihrer Linken zu nehmen. Ist die Gabel frei, so behalten sie diese in der Hand bis auch die Gabel auf der rechten aufgenommen werden kann. Kann ein Philosoph eine Gabel zur Zeit nicht nehmen, da sie in Verwendung ist, verweilt er denkend bis die benötigte Gabel frei ist. Versuchen jedoch alle Philosophen gleichzeitig die Gabeln aufzunehmen, so besteht die Gefahr einer Verklemmung (engl. Deadlock). Der Ablauf stockt und die Philosophen verharren denkend bis sie verhungern. In Bezug auf die Kommunikation über geteilten Speicher oder Dateien kann dieses Problem auftreten wenn parallele Zugriffe auf exklusive Ressourcen nicht sauber synchronisiert werden.
+Die Abbildung zeigt wie eine Gruppe von Philosophen an einem Runden Tisch sitzt, vor ihnen etwas zu Essen. Um zu essen, benötigen nach diesem theoretischen Aufbau die Philosophen die rechte und die linke Gabel neben dem jeweiligen Teller. Dabei versuchen die Philosophen zu nächst die Gabel zu ihrer Linken zu nehmen. Ist die Gabel frei, so behalten sie diese in der Hand bis auch die Gabel auf der rechten aufgenommen werden kann. Kann ein Philosoph eine Gabel zur Zeit nicht nehmen, da sie in Verwendung ist, verweilt er denkend bis die benötigte Gabel frei ist. Versuchen jedoch alle Philosophen gleichzeitig die Gabeln aufzunehmen, so besteht die Gefahr einer Verklemmung (engl. Deadlock). Der Ablauf stockt und die Philosophen verharren denkend bis sie verhungern. In Bezug auf die Kommunikation über geteilten Speicher oder Dateien kann dieses Problem auftreten wenn parallele Zugriffe auf exklusive Ressourcen nicht sauber synchronisiert werden.
 
 
 
 \subsection{Race Conditions}
-Ein weiteres Problem bei der Parallelverarbeitung tritt bei geteilten Speicher bzw. Daten auf. Folgende Abbildung illustriert das Szenario, dass drei Threads auf einen gemeinsamen Speicherbereich zugreifen. Die Threads eins bis drei greifen konkurrierend lesend, wie schreibend auf den Speicherbereich zu und tauschen darüber Informationen untereinander aus. Der Zugriff erfolgt nach dem Prinzip \glqq Wer zuerst kommt mahlt zuerst\grqq  ( = Race Condition).
+Ein weiteres Problem bei der Parallelverarbeitung tritt bei geteilten Speicher bzw. Daten auf. Folgende Abbildung illustriert das Szenario, in dem drei Threads auf einen gemeinsamen Speicherbereich zugreifen. Die Threads eins bis drei greifen konkurrierend lesend wie schreibend auf den Speicherbereich zu und tauschen darüber Informationen untereinander aus. Der Zugriff erfolgt nach dem Prinzip \glqq Wer zuerst kommt mahlt zuerst\grqq  ( = Race Condition).
 
 \begin{figure}[H]
   \begin{centering}
@@ -295,20 +295,20 @@ Ein weiteres Problem bei der Parallelverarbeitung tritt bei geteilten Speicher b
     \label{SharedMemory_RaceCondition}
   \end{centering}
 \end{figure}
-Ist der Zugriff der Threads auf den Speicher nicht synchronisiert, so kommt es zu dem Shared Memory Effekt, (geteilter Speicher Effekt) nach dem eine Datenstruktur die, die Grundlage von Berechnungen darstellt, durch einen anderen Thread verändert wird, ohne dass die Änderung dem ersten Thread bekannt gemacht wird. Da solche Probleme von der jeweils in diesem Moment vorliegenden Prozessauslastung im System abhängen (tatsächlich gleichzeitig laufende Threads im Multi Core System), sind derartige Effekte schwer reproduzierbar und somit auch die Ursachen schwer zu finden.
+Ist der Zugriff der Threads auf den Speicher nicht synchronisiert, so kommt es zu dem Shared- Memory- Effekt, (Geteilter- Speicher- Effekt) nach dem eine Datenstruktur, die die Grundlage von Berechnungen darstellt, durch einen anderen Thread verändert wird, ohne dass die Änderung dem ersten Thread bekannt gemacht wird. Da solche Probleme von der jeweils in diesem Moment vorliegenden Prozessauslastung im System abhängen (tatsächlich gleichzeitig laufende Threads im Multi- Core- System), sind derartige Effekte schwer reproduzierbar und somit auch die Ursachen schwer zu finden.
 
 
 \subsection{Speicherleck}
-Speicherlecks (eng. Memory Leaks) entstehen häufig aus Programmierfehler heraus, in denen Speicher reserviert, aber dieser nicht mehr freigegeben wird. Geschieht dies ausreichend oft während einer Laufzeit innerhalb des Addressraums des Programmes, so gerät im schlimmsten Fall der seitens der Hardware begrenzte Speicher an seine Grenzen. Das Betriebssystem registriert dieses Verhalten und terminiert sofort die Ausführung des Programmes. Bei der Technik des geteilten Speichers, ist das Risiko eines Speicherlecks z.B. dann präsent, wenn sich der Entwickler um korrekte Dereferenzierung des Speichers und dessen Freigabe explizit kümmern muss. Wird Speicher n-Fach allokiert und nicht wieder freigegeben, so handelt es sich um ein ernstes Speicherleck. Auch bei der MessageQueue sind Speicherlecks möglich, z.B. wenn kontinuierlich Botschaften in die Queue gepackt werden, diese aber nicht aus der Queue wieder herausgenommen werden.
+Speicherlecks (eng. Memory Leaks) entstehen häufig aus Programmierfehlern heraus, in denen Speicher reserviert, aber dieser nicht mehr freigegeben wird. Geschieht dies ausreichend oft während einer Laufzeit innerhalb des Addressraums des Programmes, so gerät im schlimmsten Fall der seitens der Hardware begrenzte Speicher an seine Grenzen. Das Betriebssystem registriert dieses Verhalten und terminiert sofort die Ausführung des Programmes. Bei der Technik des geteilten Speichers ist das Risiko eines Speicherlecks z.B. dann präsent, wenn sich der Entwickler um korrekte Dereferenzierung des Speichers und dessen Freigabe explizit kümmern muss. Wird Speicher n-Fach allokiert und nicht wieder freigegeben, so handelt es sich um ein ernstes Speicherleck. Auch bei der MessageQueue sind Speicherlecks möglich, z.B. wenn kontinuierlich Botschaften in die Queue gepackt werden, diese aber nicht aus der Queue wieder herausgenommen werden.
 
 \subsection{Reihenfolgeproblem}
-Im Falle einer bidirektionalen Kommunikation mittels einer MessageQueue muss beachtet werden, dass es nicht vorhersehbar ist, in welcher Reihenfolge die Nachrichten in die MessageQueue gelegt werden, oder wann sich welcher Thread eine Message aus der Queue holt. Dies kann zu unerwarteten Verhalten führen. So kann ein Thread B ungewollt blockieren, wenn er für seine weitere Verarbeitung eine bestimmte Nachricht benötigt und diese jedoch sich in der Reihenfolge hinter einer Nachricht für den anderen Thread A befindet. So muss Thread B solange warten bis Thread A seine Nachricht aus der Queue nimmt.
+Im Falle einer bidirektionalen Kommunikation mittels einer MessageQueue muss beachtet werden, dass es nicht vorhersehbar ist, in welcher Reihenfolge die Nachrichten in die MessageQueue gelegt werden oder wann sich welcher Thread eine Message aus der Queue holt. Dies kann zu unerwarteten Verhalten führen. So kann ein Thread B ungewollt blockieren, wenn er für seine weitere Verarbeitung eine bestimmte Nachricht benötigt und sich diese jedoch in der Reihenfolge hinter einer Nachricht für den anderen Thread A befindet. So muss Thread B solange warten bis Thread A seine Nachricht aus der Queue nimmt.
 \newline
-Welche Konzepte es gibt, um sich den allgemeinen Problematiken und Risiken von Nebenläufigkeit speziell für Android Applikationen zu nähern ist zentraler Forschungsschwerpunkt dieser Arbeit. Diese Konzepte werden im Kapitel 2 im einzelnen vorgestellt.
+Welche Konzepte es gibt, um sich den allgemeinen Problematiken und Risiken von Nebenläufigkeit speziell für Android Applikationen zu nähern ist zentraler Forschungsschwerpunkt dieser Arbeit. Diese Konzepte werden im Kapitel 2 im Einzelnen vorgestellt.
 
 
 \section{Parallelverarbeitung und Besonderheiten unter Android}
-Im vorangegangenen Abschnitt wurde allgemein auf die Terminologie, die Eigenschaften, sowie die Kommunikation innerhalb von Nebenläufigkeit eingegangen. Hier gilt es nun einen Fokus auf Nebenläufigkeit im mobilen Umfeld zu setzen, insbesondere unter dem Betriebsystem Android. Weiter wird ein erster Einblick in das Komponentenmodell, sowie in den Lebenszyklus von Android Applikationen erarbeitet.
+Im vorangegangenen Abschnitt wurde allgemein auf die Terminologie, die Eigenschaften sowie die Kommunikation innerhalb von Nebenläufigkeit eingegangen. Hier gilt es nun einen Fokus auf Nebenläufigkeit im mobilen Umfeld zu setzen, insbesondere unter dem Betriebsystem Android. Weiter wird ein erster Einblick in das Komponentenmodell sowie in den Lebenszyklus von Android- Applikationen erarbeitet.
 
 
 \subsection{Prozesse und Threads unter Android}
@@ -317,23 +317,23 @@ Das Android Betriebssystem basiert auf dem Linux/Unix System. Daher gelten die o
 \begin{enumerate}
 \item Fordergrundprozess $\rightarrow$ Fordergrundprozesse sind verantwortlich für alle Komponenten einer Anwendung, die unmittelbar im Vordergrund, also für den Nutzer sichtbar sind.
 \item sichtbarer Prozess $\rightarrow$ Sichtbare Prozesse fassen alle Komponenten zusammen, die zwar nicht unmittelbar sichtbar sein müssen, jedoch Komponenten aus dem Vordergrund beeinflussen.
-\item Service Prozess $\rightarrow$  Service Prozesse laufen losgelöst von anderen Prozessen. Einmal gestartet laufen diese selbstständig (z.B. das Abspielen von Musik). Sie lassen sich jedoch weiterhin von anderen Prozessen steuern.
+\item Serviceprozess $\rightarrow$  Serviceprozesse laufen losgelöst von anderen Prozessen. Einmal gestartet laufen diese selbstständig (z.B. das Abspielen von Musik). Sie lassen sich jedoch weiterhin von anderen Prozessen steuern.
 \item Hindergrundprozess $\rightarrow$ Der Hintergrundprozess hält gestoppte Anwendungskomponenten. So werden darin Activity Instanzen abgelegt, für welche die onStop() Methode (siehe Activity Lifecyle) aufgerufen wurde. Dies hat die Funktion, die Anwendung möglichst schnell wieder zu reaktivieren, wenn der Nutzer dies wünscht. Der Hintergrundprozess darf nicht mit der im folgenden Kapitel thematisierten Hintergrundverarbeitung zusammen in einen Kontext gebracht werden.
 \item leerer Prozess $\rightarrow$ Leere Prozesse werden bei ausreichend Hardware Ressourcen durch das Android Betriebssystem erzeugt und als Ressourcen für einen schnelleren Start von Applikationen gehalten. Wünscht ein Nutzer eine Anwendung zu starten, so existiert bereits hierfür ein Prozess mit entsprechender Laufzeitumgebung.
 \end{enumerate}
 Rein aus der Sicht des Betriebsystems handelt es sich stets um den gleichen Prozess, jedoch kann er unterschiedliche Charakteristika innerhalb seines Lebenszyklus annehmen.
-\paragraph{Sandbox Prinzip}
+\paragraph{Sandbox- Prinzip}
 Eine weitere Besonderheit in Android erweitert das Sandbox Prinzip von Unix/Linux Systemen zur Kapselung von Prozessen und deren Ressourcen (siehe Abschnitt 1.2.1 “Prozesse und Threads”). Dabei erzeugt Android bereits zum Installationszeitpunkt pro Anwendung einen speziellen User. Wird die Anwendung gestartet, so richtet das Betriebssystem einen in sich geschlossenen Speicherbereich ein und ordnet diesen dem jeweiligen Appliction-User zu. Somit wird der exklusive Zugriff auf den Speicherbereich allein durch diese Applikation realisiert.
 
-\paragraph{UI-Thread als Main Thread}
-Bei der Entwicklung von Android Applikationen steht die Benutzerschnittstelle im Vordergrund. So erscheint es konsequent, dass das User Interface durch den Main Thread verarbeitet wird (hier gilt also Main-Thread = UI-Thread). Dieses Ausführungsmodell steht z.B. dem von Java.Swing entgegen, in welchem die Benutzerinteraktion in einem sekundären Thread, ungleich dem Hauptthread gesteuert wird. Dies hat unweigerlich Einfluss auf die Konzeption von Applikationen unter Android,
- welche u.a. zeitintensive Operationen durchführen müssen. Denn in diesem Fall darf der UI Thread nicht blockieren und sich nach Ende der Verarbeitung erst wieder zurück melden. Die zeitintensive Operation muss in einen sekundär Thread ausgelagert werden, sodass der UI Thread weiter Benutzereingaben verarbeiten kann.
+\paragraph{UI- Thread als Main- Thread}
+Bei der Entwicklung von Android- Applikationen steht die Benutzerschnittstelle im Vordergrund. So erscheint es konsequent, dass das User- Interface durch den Main- Thread verarbeitet wird (hier gilt also Main- Thread = UI- Thread). Dieses Ausführungsmodell steht z.B. dem von Java Swing entgegen, in welchem die Benutzerinteraktion in einem sekundären Thread, ungleich dem Hauptthread gesteuert wird. Dies hat unweigerlich Einfluss auf die Konzeption von Applikationen unter Android,
+ welche u.a. zeitintensive Operationen durchführen müssen. Denn in diesem Fall darf der UI- Thread nicht blockieren und sich nach Ende der Verarbeitung erst wieder zurück melden. Die zeitintensive Operation muss in einen Sekundär- Thread ausgelagert werden, sodass der UI Thread weiter Benutzereingaben verarbeiten kann.
 
 \subsection{Besonderheiten im Android Umfeld bezüglich des Thread Managements}
-Das Android Betriebssystem formuliert einige spezielle Regeln für die Ausführung von Threads, die sich an einen hohen Anspruch seitens Google an der Benutzbarkeit der Applikationen orientieren. So ist der Thread für die Steuerung der Benutzeroberfläche (User Interface kurz UI) unter besonderer Beobachtung. Wird dieser Blockiert oder ist ausgelastet mit zeitintensiven Operationen, wird dieser vom Betriebssystem nach einer bestimmen Zeit angehalten. Je nach Konfiguration des Android Betriebssystems wird es dem Nutzer angeboten entweder weiter zu warten oder die Applikation zu terminieren.
+Das Android Betriebssystem formuliert einige spezielle Regeln für die Ausführung von Threads, die sich an einen hohen Anspruch seitens Google an der Benutzbarkeit der Applikationen orientieren. So ist der Thread für die Steuerung der Benutzeroberfläche (User- Interface kurz UI) unter besonderer Beobachtung. Wird dieser Blockiert oder ist ausgelastet mit zeitintensiven Operationen, wird dieser vom Betriebssystem nach einer bestimmten Zeit angehalten. Je nach Konfiguration des Android Betriebssystems wird es dem Nutzer angeboten entweder weiter zu warten oder die Applikation zu terminieren.
 
-\subsubsection{ANR Dialog}
-Ein grundsätzlicher Anspruch, den Google an mobile Anwendungen unter seinem Android Betriebssystem stellt, ist die Benutzbarkeit durch den alltäglichen Anwender. Dieser muss über keine technischen Kenntnisse verfügen um die Applikation entsprechend einfach und intuitiv benutzen können. So ist es unerwünscht, dass eine Applikation nach dem Start irgend eines Vorganges blockiert, also auf Interaktion des Nutzers nicht reagiert. Google formuliert in seiner Andorid Developper Dokumentation daher die grundsätzliche Anforderung der kontinuierlichen Ansprechbarkeit von Appliationen bzw. der nie zu unterbrechenden Interaktionsfähigkeit zwischen Benutzer und Applikation [vgl. Abschnitt zu ANR-Dialog \citet{androidDevDocu}]. So ist es gemäß der Designvorgaben für Android Applikationen unerwünscht, das Applikationen blockieren. Um jedoch für den Fall einer blockierenden Anwendung gerüstet zu sein, bietet Android die Möglichkeit, mittels eines Applikation Not Responding Dialogs, kurz ANR Dialog die Verarbeitung innerhalb einer Anwendung abzubrechen oder weiter auf deren Ergebnis zu warten. Wird im Dialog auf \glqq Warten\grqq geklickt, gibt das Betriebssystem den UI Thread wieder zur Ausführung frei. Folgende Abblildung zeigt einen exemplarischen ANR Dialog:
+\subsubsection{ANR- Dialog}
+Ein grundsätzlicher Anspruch, den Google an mobile Anwendungen unter seinem Android Betriebssystem stellt, ist die Benutzbarkeit durch den alltäglichen Anwender. Dieser muss über keine technischen Kenntnisse verfügen, um die Applikation entsprechend einfach und intuitiv benutzen zu können. So ist es unerwünscht, dass eine Applikation nach dem Start irgendeines Vorganges blockiert, also auf Interaktion des Nutzers nicht reagiert. Google formuliert in seiner Andorid- Developper- Dokumentation daher die grundsätzliche Anforderung der kontinuierlichen Ansprechbarkeit von Appliationen, bzw. der nie zu unterbrechenden Interaktionsfähigkeit zwischen Benutzer und Applikation [vgl. Abschnitt zu ANR-Dialog \citet{androidDevDocu}]. So ist es gemäß der Designvorgaben für Android- Applikationen unerwünscht, dass Applikationen blockieren. Um jedoch für den Fall einer blockierenden Anwendung gerüstet zu sein, bietet Android die Möglichkeit, mittels eines Applikation- Not- Responding- Dialogs, kurz ANR Dialog, die Verarbeitung innerhalb einer Anwendung abzubrechen oder weiter auf deren Ergebnis zu warten. Wird im Dialog auf \glqq Warten\grqq geklickt, gibt das Betriebssystem den UI- Thread wieder zur Ausführung frei. Folgende Abblildung zeigt einen exemplarischen ANR Dialog:
 \begin{figure}[H]
   \begin{centering}
     \includegraphics[width=0.6\textwidth]{img/anr-dialog.png}
@@ -341,11 +341,11 @@ Ein grundsätzlicher Anspruch, den Google an mobile Anwendungen unter seinem And
     \label{ANR Dialog}
   \end{centering}
 \end{figure}
-In diesem Beispiel greift Android in den Lebenszyklus der Aktivity ein, von der die zeitintensive Berechnung ausgeht und pausiert diese. Je nach Wunsch des Nutzers wird die Applikaiton dann in den Status \glqq Pausiert\grqq überführt, oder terminiert (siehe: onStoped() bzw. onDestroyed() im Lifecycle Diagramm) und vom Garbage Collector entsorgt (siehe hierzu Lebenszyklus einer Activity im nächsten Abschnitt). Die Zeit T innerhalb derer eine Applikation nicht auf Benutzereingaben reagiert und deren Ablauf der genannte Dialog erscheint ist für jedes Android Gerät konfigurierbar. Obwohl diese Eingreifmöglichkeit eine wichtige Funktion für die Kontrolle von Applikation durch den Nutzer darstellt, haben sich diverse Gerätehersteller mittlerweile entschieden die Zeit T sehr groß zu wählen, oder sogar den ANR-Dialog generell zu deaktivieren. In den Android Versionen ab Honeycomb führt das Blockieren einer Applikation bereits zur sofortigen Terminierung durch das Betriebssystem. Doch unabhängig vom ANR-Dialog bleibt der direkte Zusammenhang zwischen der Ansprechbarkeit einer Applikation und der Benutzbarkeit der Anwendung und dem Nutzererlebnis. Blockiert über zu lange Zeit eine Anwendung, so steigt damit auch die Unzufriedenheit des Nutzers über die Anwendung, besonders da er häufig die technischen Zusammenhänge, welche eine zeitintensive Verarbeitung durch aus rechtfertigen können, nicht kennt und gemäß der angesprochenen Designvorgaben auch nicht kennen muss.
+In diesem Beispiel greift Android in den Lebenszyklus der Activity ein, von der die zeitintensive Berechnung ausgeht und pausiert diese. Je nach Wunsch des Nutzers wird die Applikaiton dann in den Status \glqq Pausiert\grqq überführt oder terminiert (siehe: onStoped() bzw. onDestroyed() im Lifecycle- Diagramm) und vom Garbage- Collector entsorgt (siehe hierzu Lebenszyklus einer Activity im nächsten Abschnitt). Die Zeit T, innerhalb derer eine Applikation nicht auf Benutzereingaben reagiert und deren Ablauf der genannte Dialog erscheint, ist für jedes Android- Gerät konfigurierbar. Obwohl diese Eingreifmöglichkeit eine wichtige Funktion für die Kontrolle von Applikation durch den Nutzer darstellt, haben sich diverse Gerätehersteller mittlerweile entschieden, die Zeit T sehr groß zu wählen, oder sogar den ANR-Dialog generell zu deaktivieren. In den Android- Versionen ab Honeycomb führt das Blockieren einer Applikation bereits zur sofortigen Terminierung durch das Betriebssystem. Doch unabhängig vom ANR-Dialog bleibt der direkte Zusammenhang zwischen der Ansprechbarkeit einer Applikation und der Benutzbarkeit der Anwendung und dem Nutzererlebnis. Blockiert über zu lange Zeit eine Anwendung, so steigt damit auch die Unzufriedenheit des Nutzers über die Anwendung, besonders da er häufig die technischen Zusammenhänge, welche eine zeitintensive Verarbeitung durch aus rechtfertigen können, nicht kennt und gemäß der angesprochenen Designvorgaben auch nicht kennen muss.
 
 
 \subsubsection{Komponentenmodell}
-Bisher wurde die technische Ausführung von Android Applikationen auf der Betriebssystemebene erläutert. Für die einzelnen Konzepte der Nebenläufigkeit unter Android gilt es nun jedoch näher auf die Konzeption von Applikationen mittels klar definierten Komponenten selbst ein zu gehen, bevor im Kapitel 2 die einzelnen Konzepte an konkreten Implementierungsbeispielen verdeutlicht werden. Die folgende Abbildung zeigt die Basiskomponenten aus denen Anwendungen unter dem Android Betriebssystem bestehen:
+Bisher wurde die technische Ausführung von Android Applikationen auf der Betriebssystemebene erläutert. Für die einzelnen Konzepte der Nebenläufigkeit unter Android gilt es nun jedoch näher auf die Konzeption von Applikationen mittels klar definierten Komponenten selbst einzugehen, bevor im Kapitel 2 die einzelnen Konzepte an konkreten Implementierungsbeispielen verdeutlicht werden. Die folgende Abbildung zeigt die Basiskomponenten, aus denen Anwendungen unter dem Android Betriebssystem bestehen:
 \begin{figure}[H]
   \begin{centering}
     \includegraphics[width=0.6\textwidth]{img/Android_Komponent_Model.png}
@@ -354,8 +354,8 @@ Bisher wurde die technische Ausführung von Android Applikationen auf der Betrie
   \end{centering}
 \end{figure}
 \begin{itemize}
-\item Broadcast Receiver erlauben die Registrierung von systemweiten oder applikationsinternen Events.
-\item Content Provider repräsentieren Daten als relationalen Datensatz und ermöglichen den Zugriff über Applikationsgrenzen hinaus auf diese Daten.
+\item Broadcast- Receiver erlauben die Registrierung von systemweiten oder applikationsinternen Events.
+\item Content- Provider repräsentieren Daten als relationalen Datensatz und ermöglichen den Zugriff über Applikationsgrenzen hinaus auf diese Daten.
 \item Activities definieren das Verhalten von graphischen Benutzerschnittstellen
 \item Services können zeitintensive Hintergrundberechnungen abbilden. 
 \end{itemize}
@@ -445,10 +445,9 @@ public RandomPrimeNumGenerator(final View aView,
        String result = startCalculation();
        Message message = new Message();
        Bundle bundle = new Bundle();
-       bundle
-       	.putCharArray(String
+       bundle.putCharArray(String
        		.valueOf(targetView.getId())
-       			, result.toCharArray());
+       		,result.toCharArray());
        message.setData(bundle);
        Log.d(TAG,"Call handler" );
        handler.sendMessage(message);
@@ -489,9 +488,9 @@ public void run()
        String result = startCalculation();
        Message message = new Message();
        Bundle bundle = new Bundle();
-       bundle.putCharArray(String.valueOf
-       				(targetView
-       					.getId())
+       bundle.putCharArray(String
+       				.valueOf(targetView
+       				.getId())
        			,result.toCharArray());
        message.setData(bundle);
        Log.d(TAG,"Call handler");
@@ -518,9 +517,9 @@ Im Falle von mehreren Handlerinstanzen, die Nachrichten in die MessageQueue able
 
      if(bundle.containsKey(String
      		.valueOf(R.id.startCalculation1)))
-     {(
+     {
         char[] firstResult = 
-        	char[])bundle.get(String
+        	((char[])bundle.get(String
         	.valueOf(R.id.startCalculation1));
         Log.d("RandomPrimeNumGenerator",
         "Callback view string:" + 
@@ -529,7 +528,7 @@ Im Falle von mehreren Handlerinstanzen, die Nachrichten in die MessageQueue able
         firstCalculationOutput.
         setText(String.valueOf(firstResult));
         firstCalculationOutput.invalidate();
-    }
+     }
 
      if(bundle.containsKey(String
      	.valueOf(R.id.startCalculation2)))
@@ -579,7 +578,7 @@ In diesem Fall kann die alte Activity Instanz nicht entsorgt werden, da diese im
        }
 
        mLooper = Looper.myLooper();
-       if (mLooper == null) \{
+       if (mLooper == null) {
            throw new RuntimeException(
                "Can't create handler inside"+
                "thread that has not called"+ 
@@ -631,52 +630,83 @@ asyncTaskInstance.execute(Params…params)\newline
 Die Klasse \texttt{AndroidAsyncRandomPrimeGen} überschreibt die \texttt{doInBackground()}-Methode und integriert hier die zeitintensive Verarbeitung:\newline
 \begin{lstlisting}
 @Override
-protected AsyncTaskResult<String> 
-  		doInBackground(Integer... params)
+protected AsyncTaskResult<Map<Integer, String>> 
+          doInBackground(final Integer... params)
 {
-    if(params == null || params.length != 1)
-    {
-    return new AsyncTaskResult<String>(
-    	new IllegalArgumentException(
-			"Not the rights params:"+ 
-					params));
-    }
-    triggerViewId = params[0].intValue();
 
-    StringBuilder targetString = 
-     	new StringBuilder(10);
-    for(int i = 0; i < 10; i++)
-    {
-    BigInteger veryBig = 
-    new BigInteger(1500, new Random());
-    //Zeitintensive Berechnung
-    //siehe Bsp: BlockierendeEingabeAusgabe
-    ...
+   if (params == null || params.length != 1)
+   {
+      return new AsyncTaskResult<
+                  Map<Integer,String>>(
+                  new IllegalArgumentException(
+                 "Not the rights params:"+params));
+   }
+   final int triggerViewId = params[0].intValue();
+
+   publishProgress("Init Calculation");
+   StringBuilder targetString = 
+                           new StringBuilder(10);
+
+   for (int i = 0; i < 10; i++)
+   {      
+         ...
+            targetString.append(summe + " \n ");
+   }
+   Map<Integer,String> resultMap = 
+                 new HashMap<Integer, String>(1);
+   resultMap.put(triggerViewId, 
+                 targetString.toString());
+                 
+   return new AsyncTaskResult
+                 <Map<Integer,String>>(resultMap);
     }
-    return new AsyncTaskResult<String>(
-    		targetString.toString());
-}
 \end{lstlisting}
 Die oben beschriebenen Übergabeparametertypen werden in diesem Codebeispiel zur Methode \texttt{doInBackground()} als Integer konkretisiert und spezifizieren in der Implementierung die ID der View, welche die Berechnung angestoßen hat. An Hand dessen wird später die Ziel-View ermittelt, die das Ergebnis darstellen soll. Das Ergebnis der Berechnung wird hier als konkreter \texttt{AsyncTaskResult<String>} Typ zurückgegeben, damit dieser String an die \texttt{onPostExecute(Result … result)} Methode weitergegeben werden kann. Analog zur Hintergrundverarbeitung bietet Google mit der Methode \texttt{onProgressUpdate()} die Möglichkeit aus der laufenden Berechnung im sekundären Thread, Informationen oder Nachrichten wie z.B. Statusmeldungen an den UI Thread zu senden. Die Methode \texttt{onPostExecute()} wird nach Abschluss der Hintergrundoperationen dann wieder auf dem UI-Thread ausgeführt. Sie bietet sich an, um finale Aktualisierungen auf Basis der Ergebnisse aus der Hintergrundverarbeitung durchzuführen. In unserem Beispiel könnte das Ergebnis in die jeweiligen View Objekte der Activity übertragen werden:\newline
 \begin{lstlisting}
 @Override
 protected void onPostExecute(
-		AsyncTaskResult<String> result)
+        AsyncTaskResult
+           <Map<Integer, String>> result)
 {
-   ...
-   //update user interface
-   String realResult = result.getResult();
+   if (result.getError() != null)
+   {
+    // error handling here
+   }
+   else if (isCancelled())
+   {
+    // cancel handling here
+   }
+   else
+   {
+    //update user interface
+    Iterator<Map
+        .Entry<Integer,String>> resultMap = 
+                            result.getResult()
+                                  .entrySet()
+                                  .iterator();
 
-   if (triggerViewId == R.id.startCalculation1) 
+   if ( resultMap.hasNext() )
    {
-	firstOutputView.setText(realResult);
-	firstOutputView.invalidate();
+     final int triggerViewId = resultMap
+                                  .next()
+                                  .getKey();
+     final String resultText = resultMap
+                                  .next()
+                                  .getValue();
+
+     if( triggerViewId == R.id.startCalculation1)
+     {
+        firstOutputView.setText(resultText);
+        firstOutputView.invalidate();
+     }
+
+     if (triggerViewId == R.id.startCalculation2)
+     {
+        secondOutputView.setText(resultText);
+        secondOutputView.invalidate();
+     }
    }
-   if (triggerViewId == R.id.startCalculation2) 
-   {
-	secondOutputView.setText(realResult);
-	secondOutputView.invalidate();
-   }
+   } 
 }
 \end{lstlisting}
 Da einzig und allein von den vorgestellten Methoden, die \texttt{doInBackground()} Methode in dem sekundären Thread ausgeführt wird, muss darauf geachtet werden, keine zeitintensive Logik in den anderen Methoden zu integrieren. Ansonsten besteht wieder die Gefahr der blockierenden Anwendung, analog zu der Beispielimplementierung in Kapitel 2.1. Weiter ist gemäß der Android Developer Dokumentation darauf zu achten, dass nur gering zeitaufwändige (wenige Sekunden) Operationen mittels des AsyncTask in eine Hintergrundverarbeitung ausgelagert werden sollten [vgl. Abschnitt zu AsyncTask \citet{androidDevDocu}]. Woran das liegt und welche Konsequenzen sich aus längeren Operationen ergeben wird hier nicht genannt. Die Android Developper Dokumentation gibt hierzu lediglich einen groben Überblick wie dieser Mechanismus optimal zu nutzen ist und für welche Problemstellungen sich die Verwendung der Klasse AsyncTask eignet. Es bleiben also weitere Fragen offen:
@@ -828,7 +858,7 @@ Die ersten Ideen zum deklarativen Paradigma wurden bereits um 1930 mit dem Lamda
 \begin{figure}[H]
   \begin{centering}
     \includegraphics[width=0.9\textwidth]{img/Observable.png}
-    \caption{Datenstrom Datenstrom orientierte Verarbeitung modelliert als Observable [\citet {rxAllgDoku} vgl. Abschnitt zu Observable] }
+    \caption{datenstromorientierte Verarbeitung modelliert als Observable [\citet {rxAllgDoku} vgl. Abschnitt zu Observable] }
     \label{Observable}
   \end{centering}
 \end{figure}
@@ -1117,7 +1147,9 @@ private Subscriber<String> getFirstSubscriber()
    @Override
    public void onNext(String s) {
    //Actualize the view + setting value
-   String lastOutput = firstObserverOutput.getText().toString();
+   String lastOutput = firstObserverOutput
+                          .getText()
+                          .toString();
    firstObserverOutput.setText(lastOutput + s);
 
    firstObserverOutput.invalidate();
@@ -1174,7 +1206,7 @@ public void initSubscription(View aView)
  if (aView.getId() == R.id.startSubscription2) 
  {
    secondSubscriber = getSecondSubscriber();
-   subscription2 = getSubscription(secondSubscriber);
+   subscription2 =getSubscription(secondSubscriber);
  }
 }
 \end{lstlisting}
@@ -1196,7 +1228,7 @@ public void onDestroy()
 In diesem Kapitel werden drei unterschiedliche Konzepte zur Realisierung von Nebenläufigkeit in Bezug auf das Android Betriebssytem vorgestellt. Um diese Konzepte vergleichbar zu machen ist ein Beispiel Szenario definiert, indem eine oder mehrere zeitaufwändige Operationen innerhalb einer Android Applikation gestartet werden. In einer ersten Beispiel Implementierung ohne jegliche Nebenläufigkeit haben wird deutlich, wie durch Starten einer zeitaufwändigen Operation die Anwendung nicht mehr auf Benutzereingaben reagiert. Je nach Wartedauer meldet sich dabei nach kurzer Zeit die Applikation mit dem Ergebnis der Operation zurück oder nach längerer Wartezeit erscheint der Application Not Responding Dialog. Dieser gibt dem Nutzer die Möglichkeit entweder weiter auf die Rückmeldung der Anwendung zu warten, oder die Anwendung abzubrechen. Um zu Untersuchen wie die jeweiligen Konzepte die Ansprechbarkeit der Anwendung gewährleisten und gleichzeig die zeitaufwändige Operation im Hintergrund durchführen, werden in den letzten Abschnitten entsprechende Beispielimplementierungen  vorgestellt.\newline
 In der ersten Implementierung wird mittels der Funktionalitäten aus der Java Standard Edition versucht, die zeitaufwändige Operation in eine Hintergrundverarbeitung (sekundär Thread) auszulagern. Um den Nachrichtenaustasch zwischen dem sekundär Thread und dem Main Thread (verantwortlich für Verarbeitung der Benutzerinteraktion) der Anwendung zu realisieren wird ein spezieller Mechnismus vorgestellt und angewandt. Dabei handelt es sich um den Handler Looper Mechanismus aus dem Android SDK. Dieser Mechanismus bietet sich dadurch an, dass er standardgemäß durch das Betriebssystem für jede Anwendung initialisiert wird, um den applikationsinternen Nachrichtenaustausch zwischen unterschiedlichen Komponenten der Anwendung zu realisieren.\newline
 Im Kapitel 2.3 wird ein Konzept aus dem Android SDK selbst vorgestellt, mit dem nebenläufige Verarbeitung realisierbar ist. Mit der Android AsyncTask Funktionalität wird die Kapselung, Initialisierung und Auswertung (Erfolg oder Fehlerbehanldung) von nebenläufiger Verarbeitung in klar definierte abstrakte Methoden unterteilt. Die darin definierte Logik wird entsprechend durch den AsyncTask auf Sekundär- und Main- Thread verteilt. Der Nachrichtenaustauch zwischen den Threads ist dabei auch hier durch den Handler Looper Mechanismus realisiert. Der Fokus dieses Konzeptes liegt auf der möglichst einfachen Realisierung von Hintergrundverarbeitung durch den Entwickler. Dabei wird jedoch in der Standartvariante lediglich ein Hintergrund Thread erzeugt. D.h. im Falle von mehreren zeitaufwändigen Operationen werden diese seriell in einem Hintergrund Thread abgearbeitet, was mit unter sehr zeitintensiv und unperformant im Hinblick auf weitere Parallelisierungen besonders im Multicore-Betrieb sein kann. \newline
-Das dritte Konzept zur Nebenläufigkeit unter Android versucht die Hintergrundverarbeitung mittels reaktiver Programmierung zu realisieren. Dabei fließen Eingenschaften der funktionalen Programmierung in die eher prozedurale Programmierung von Android Applikationen mittels Java ein. Das Framework RXJava abstrahiert dabei von der Thread -Erzeugung, sowie über die Inter- Thread Kommunikation mittels standartisierter Rückrufmethoden. Der funktionale Ansatz führt zu einer Datenstrom orientierten Verarbeitung, in der die einzelnen Verarbeitungsschritte insich geschlossene Funktionen darstellen. Innerhalb der Verarbeitungskette werden die Funktionen als Returnwert einer Operation übergeben, um sie in Abhängigkeit der eintreffenden Daten im jeweiligen Kontext auszuführen.  Die Verarbeitungsketten werden mittels der Rückrufmethoden dann angesteuert, wenn ein Ergebnis aus der Hintergrundverarbeitung vorliegt. Dies können Zwischenergebnisse oder Status / bzw. Fehlermeldungen sein.
+Das dritte Konzept zur Nebenläufigkeit unter Android versucht die Hintergrundverarbeitung mittels reaktiver Programmierung zu realisieren. Dabei fließen Eingenschaften der funktionalen Programmierung in die eher prozedurale Programmierung von Android Applikationen mittels Java ein. Das Framework RXJava abstrahiert dabei von der Thread -Erzeugung, sowie über die Inter- Thread Kommunikation mittels standartisierter Rückrufmethoden. Der funktionale Ansatz führt zu einer datenstromorientierten Verarbeitung, in der die einzelnen Verarbeitungsschritte insich geschlossene Funktionen darstellen. Innerhalb der Verarbeitungskette werden die Funktionen als Returnwert einer Operation übergeben, um sie in Abhängigkeit der eintreffenden Daten im jeweiligen Kontext auszuführen.  Die Verarbeitungsketten werden mittels der Rückrufmethoden dann angesteuert, wenn ein Ergebnis aus der Hintergrundverarbeitung vorliegt. Dies können Zwischenergebnisse oder Status / bzw. Fehlermeldungen sein.
 Die Hintergrundverarbeitung in Sekundär- Threads wird mittels einfacher vordefinierter Scheduler definiert. Der Entwickler muss sich dabei weder um die korrekte Erzeugung noch um die Synchronisation beim Nachrichtenaustausch zwischen sekundär und Main Thread kümmern. \newline
 
 \chapter{Konzepte der Nebenläufigkeit im kritischen Diskurs}
@@ -1276,11 +1308,40 @@ In dieser Arbeit liegt der Fokus auf Nebenläufigkeit zum Erhalt der Ansprechbar
 \appendix
 
 \chapter*{Anhang}
- %\lstinputlisting
- %   [caption={Die Klasse Touch.java}
- %      \label{lst:javaclass},
- %      captionpos=t,language=JAVA]
-% {listings/Touch.java}
+\lstinputlisting
+    [caption={JavaConcurrency: MainConcurrentActivity}
+       \label{lst:javaclass},
+       captionpos=t,language=JAVA]
+ {listings/MainConcurrentActivity.java}
+\lstinputlisting
+    [caption={JavaConcurrency: RandomPrimeNumGenerator}
+       \label{lst:javaclass},
+       captionpos=t,language=JAVA]
+ {listings/RandomPrimeNumGenerator.java}
+ 
+ 
+\lstinputlisting
+    [caption={AndroidConcurrency: MainAndroidAsyncActivity}
+       \label{lst:javaclass},
+       captionpos=t,language=JAVA]
+ {listings/MainAndroidAsyncActivity.java}
+\lstinputlisting
+    [caption={AndroidConcurrency: AndroidAsyncRandomPrimeGen}
+       \label{lst:javaclass},
+       captionpos=t,language=JAVA]
+ {listings/AndroidAsyncRandomPrimeGen.java}
+ 
+ 
+ \lstinputlisting
+    [caption={RXConcurrency: MainActivity}
+       \label{lst:javaclass},
+       captionpos=t,language=JAVA]
+ {listings/rx/MainActivity.java}
+\lstinputlisting
+    [caption={RXConcurrency: RandomPrimeNumGenerator}
+       \label{lst:javaclass},
+       captionpos=t,language=JAVA]
+ {listings/rx/RandomPrimeNumGenerator.java}
 \addcontentsline{toc}{chapter}{Anhang}
 \chapter{Erklärung}
 

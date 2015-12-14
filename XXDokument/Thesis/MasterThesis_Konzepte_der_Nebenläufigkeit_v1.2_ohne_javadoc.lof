@@ -10,12 +10,12 @@
 \contentsline {figure}{\numberline {7}{\ignorespaces Mockup zur Testapplikation: Blockierende Ein-/Ausgabe}}{26}{figure.2.7}
 \contentsline {figure}{\numberline {8}{\ignorespaces Handler Looper Mechanismus f\IeC {\"u}r Android Applikationen [\citet {handlerLooperBlock}]}}{31}{figure.2.8}
 \contentsline {figure}{\numberline {9}{\ignorespaces Speicherleck durch non-static Handler Implementierung sowie falsche Referenzierung von Objekten der \IeC {\"a}u\IeC {\ss }eren Klasse in der innerer Klasse}}{35}{figure.2.9}
-\contentsline {figure}{\numberline {10}{\ignorespaces Sequenzdiagramm zum internen Ablauf in Android AsyncTask mit Zuordnung zum jeweiligen Thread}}{43}{figure.2.10}
-\contentsline {figure}{\numberline {11}{\ignorespaces Aktivit\IeC {\"a}tsdiagramm zum SerialExecutor in Android AsyncTask}}{49}{figure.2.11}
-\contentsline {figure}{\numberline {12}{\ignorespaces Datenstrom Datenstrom orientierte Verarbeitung modelliert als Observable [\citet {rxAllgDoku} vgl. Abschnitt zu Observable] }}{54}{figure.2.12}
-\contentsline {figure}{\numberline {13}{\ignorespaces (Netflix)RX kompatible Programmiersprachen}}{55}{figure.2.13}
-\contentsline {figure}{\numberline {14}{\ignorespaces Komplexe Verarbeitungskette mit mehreren Observern}}{63}{figure.2.14}
+\contentsline {figure}{\numberline {10}{\ignorespaces Sequenzdiagramm zum internen Ablauf in Android AsyncTask mit Zuordnung zum jeweiligen Thread}}{44}{figure.2.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Aktivit\IeC {\"a}tsdiagramm zum SerialExecutor in Android AsyncTask}}{50}{figure.2.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces datenstromorientierte Verarbeitung modelliert als Observable [\citet {rxAllgDoku} vgl. Abschnitt zu Observable] }}{55}{figure.2.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces (Netflix)RX kompatible Programmiersprachen}}{56}{figure.2.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Komplexe Verarbeitungskette mit mehreren Observern}}{64}{figure.2.14}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {15}{\ignorespaces Vergleichsmatrix zur szenarienbasierten Analyse}}{77}{figure.3.15}
+\contentsline {figure}{\numberline {15}{\ignorespaces Vergleichsmatrix zur szenarienbasierten Analyse}}{78}{figure.3.15}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
