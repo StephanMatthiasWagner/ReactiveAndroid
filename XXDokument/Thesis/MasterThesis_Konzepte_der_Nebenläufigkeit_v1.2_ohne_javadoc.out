@@ -20,14 +20,14 @@
 \BOOKMARK [1][-]{section.1.8}{Anforderungen an Applikationen}{chapter.1}% 20
 \BOOKMARK [1][-]{section.1.9}{Fokus und Eingrenzung}{chapter.1}% 21
 \BOOKMARK [0][-]{chapter.2}{Asynchrone Parallelverarbeitung unter Android}{}% 22
-\BOOKMARK [1][-]{section.2.1}{Bolckierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}{chapter.2}% 23
+\BOOKMARK [1][-]{section.2.1}{Blockierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}{chapter.2}% 23
 \BOOKMARK [1][-]{section.2.2}{Parallelverarbeitung mit der Java Standard Edition \(Java Concurrency\)}{chapter.2}% 24
-\BOOKMARK [2][-]{subsection.2.2.1}{Handler-Looper Mechanismus zur Inter-Thread-Kommunikation}{section.2.2}% 25
+\BOOKMARK [2][-]{subsection.2.2.1}{Handler-Looper-Mechanismus zur Inter-Thread-Kommunikation}{section.2.2}% 25
 \BOOKMARK [2][-]{subsection.2.2.2}{Verwendung des Handler Looper Mechnismus}{section.2.2}% 26
-\BOOKMARK [2][-]{subsection.2.2.3}{Probleme bei der Nutzung des Handler Looper Mechanismus}{section.2.2}% 27
+\BOOKMARK [2][-]{subsection.2.2.3}{Probleme bei der Nutzung des Handler- Looper- Mechanismus}{section.2.2}% 27
 \BOOKMARK [2][-]{subsection.2.2.4}{Vorsicht im Umgang mit Java Futures}{section.2.2}% 28
 \BOOKMARK [1][-]{section.2.3}{Parallelverarbeitung mit AndroidAsyncTask \(Anroid Concurrency\)}{chapter.2}% 29
-\BOOKMARK [2][-]{subsection.2.3.1}{Ausf\374hrungsmodell von Android AsyncTask in Bezug auf Multi Threading}{section.2.3}% 30
+\BOOKMARK [2][-]{subsection.2.3.1}{Ausf\374hrungsmodell von Android AsyncTask in Bezug auf Multi- Threading}{section.2.3}% 30
 \BOOKMARK [2][-]{subsection.2.3.2}{Serielle Ausf\374hrung in Android AsyncTask}{section.2.3}% 31
 \BOOKMARK [1][-]{section.2.4}{Parallelverarbeitung mit RXJava}{chapter.2}% 32
 \BOOKMARK [2][-]{subsection.2.4.1}{Imperative und Deklarative Programmierung}{section.2.4}% 33

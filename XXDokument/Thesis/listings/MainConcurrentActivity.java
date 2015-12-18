@@ -13,21 +13,26 @@ import java.math.BigInteger;
 import java.util.Random;
 
 /**
- * Java concurrency Example implementation of an android activity
+ * Java concurrency Example implementation of an
+ * android activity
  * @author Stephan Wagner
  */
-public class MainConcurrentActivity extends Activity{
+public class MainConcurrentActivity
+        extends Activity{
 
     /**
-     * The tag for identify logging of this class.
+     * The tag for identify logging of
+     * this class.
      */
-    private static final String TAG = "MainConcurrentActivity";
+    private static final String TAG
+            = "MainConcurrentActivity";
 
     /**
-     * The key to identify the bundle of this activity if
-     * it is recreated.
+     * The key to identify the bundle of this
+     * activity if it is recreated.
      */
-    private static final String SAVED_INSTANCE_SOME_KEY = "SOME_KEY";
+    private static final String
+            SAVED_INSTANCE_SOME_KEY = "SOME_KEY";
 
     /**
      * The Saved Instance string.
@@ -43,14 +48,16 @@ public class MainConcurrentActivity extends Activity{
     }
 
     /**
-     * TextView element that will show the calculation
-     * output of the first panel.
+     * TextView element that will show
+     * the calculation output of the
+     * first panel.
      */
     private static TextView firstCalculationOutput;
 
     /**
-     * TextView element tat will show the calculation
-     * output of the second panel
+     * TextView element tat will show the
+     * calculation output of the
+     * second panel
      */
     private static TextView secondCalculationOutput;
 
@@ -68,7 +75,8 @@ public class MainConcurrentActivity extends Activity{
          * @param msg MessageObject
          */
         @Override
-        public void handleMessage(final Message msg) {
+        public void handleMessage(final Message msg)
+        {
             updateView(msg);
         }
     };
@@ -76,40 +84,40 @@ public class MainConcurrentActivity extends Activity{
     /**
      * Called when the activity is first created.
      *
-     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then
-     *                           this Bundle contains the data it most recently supplied in onSaveInstanceSt
-     *
-     *                           (Bundle). <b>Note: Otherwise it is null.</b>
+     * @param savedInstanceState ignored in this
+     *                           example.
      */
     @Override
-    public void onCreate(final Bundle savedInstanceState) {
+    public void onCreate(
+            final Bundle savedInstanceState)
+    {
         Log.d(TAG, "ACTIVITY JUST CREATED");
         super.onCreate(savedInstanceState);
-
-        //in case of some backup state after
-        // destroyed activity instances
-        if (savedInstanceState != null
-                && savedInstanceState
-                .containsKey(SAVED_INSTANCE_SOME_KEY))
-        {
-            savedInstance = savedInstanceState.getString(SAVED_INSTANCE_SOME_KEY);
-        }
 
         setContentView(R.layout.activity_main);
 
         //create view with different fields
         //create button for starting with each field
 
-        firstCalculationOutput = (TextView) findViewById(R.id.firstCalculationOutput);
-        firstCalculationOutput.setText("This is the output of first Calculation:\n");
+        firstCalculationOutput =
+                (TextView) findViewById(
+                        R.id.firstCalculationOutput);
+        firstCalculationOutput.setText(
+                "This is the output of " +
+                        "first Calculation:\n");
 
-        secondCalculationOutput = (TextView) findViewById(R.id.secondCalculationOutput);
-        secondCalculationOutput.setText("This is the output of second Calculation:\n");
+        secondCalculationOutput =
+                (TextView) findViewById(
+                        R.id.secondCalculationOutput);
+        secondCalculationOutput.setText(
+                "This is the output of" +
+                        " second Calculation:\n");
 
     }
 
     /**
-     * Will be called in case of destroying this activity.
+     * Will be called in case of destroying
+     * this activity.
      */
     @Override
     public void onDestroy()
@@ -118,41 +126,63 @@ public class MainConcurrentActivity extends Activity{
     }
 
     /**
-     * Initialize the Calculation. This Method will be called
-     * by the Start Calculation Buttons from the layout.
+     * Initialize the Calculation. This Method will be
+     * called by the Start Calculation Buttons from the
+     * layout.
      * @param aView the viewId of the button that.
      */
     public void initCalculation(final View aView)
     {
-        RandomPrimeNumGenerator runnable = new RandomPrimeNumGenerator(aView,HANDLER);
+        RandomPrimeNumGenerator runnable =
+                new RandomPrimeNumGenerator(aView,HANDLER);
         Thread newThread = new Thread(runnable);
         newThread.start();
     }
 
     /**
-     * Updates the view to display the results of the calculation.
-     * @param aMessage contains the result of the calculation as bundle.
+     * Updates the view to display the results of
+     * the calculation.
+     * @param aMessage contains the result of the
+     *                 calculation as bundle.
      */
-    public static void updateView(final Message aMessage) {
+    public static void updateView(
+            final Message aMessage)
+    {
         Log.d(TAG,"updateView");
         Bundle bundle = aMessage.getData();
 
-        if(bundle.containsKey(String.valueOf(R.id.startCalculation1)))
+        if(bundle.containsKey(
+                String.valueOf(
+                        R.id.startCalculation1)))
         {
-            char[] firstResult = (char[]) bundle.get(String.valueOf(R.id.startCalculation1));
-            Log.d("RandomPrimeNumGenerator","Callback view string: "+String.valueOf(firstResult));
+            char[] firstResult =
+                    (char[]) bundle.get(
+                            String.valueOf(
+                                    R.id.startCalculation1));
 
-            firstCalculationOutput.setText(String.valueOf(firstResult));
+            Log.d("RandomPrimeNumGenerator",
+                    "Callback view string: "
+                            +String.valueOf(firstResult));
+
+            firstCalculationOutput
+                    .setText(String.valueOf(firstResult));
             firstCalculationOutput.invalidate();
         }
 
 
-        if(bundle.containsKey(String.valueOf(R.id.startCalculation2)))
+        if(bundle.containsKey(
+                String.valueOf(R.id.startCalculation2)))
         {
-            char[] secondResult = (char[])bundle.get(String.valueOf(R.id.startCalculation2));
-            Log.d("RandomPrimeNumGenerator","Callback view string: "+String.valueOf(secondResult));
+            char[] secondResult =
+                    (char[])bundle.get(
+                            String.valueOf(
+                                    R.id.startCalculation2));
+            Log.d("RandomPrimeNumGenerator",
+                    "Callback view string: "
+                            +String.valueOf(secondResult));
 
-            secondCalculationOutput.setText(String.valueOf(secondResult));
+            secondCalculationOutput
+                    .setText(String.valueOf(secondResult));
             secondCalculationOutput.invalidate();
         }
     }

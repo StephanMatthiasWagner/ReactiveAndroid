@@ -26,39 +26,39 @@
 \contentsline {subsubsection}{\numberline {1.7.2.3}Lebenszyklus einer Android Anwendung (Activity)}{21}{subsubsection.1.7.2.3}
 \contentsline {section}{\numberline {1.8}Anforderungen an Applikationen}{23}{section.1.8}
 \contentsline {section}{\numberline {1.9}Fokus und Eingrenzung}{24}{section.1.9}
-\contentsline {paragraph}{\nonumberline Zugriff auf Web Ressourcen}{24}{section*.7}
+\contentsline {paragraph}{\nonumberline Zugriff auf Web- Ressourcen}{24}{section*.7}
 \contentsline {paragraph}{\nonumberline Zeitintensive Berechnungen}{24}{section*.8}
 \contentsline {chapter}{\numberline {2}Asynchrone Parallelverarbeitung unter Android}{25}{chapter.2}
-\contentsline {section}{\numberline {2.1}Bolckierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}{25}{section.2.1}
-\contentsline {section}{\numberline {2.2}Parallelverarbeitung mit der Java Standard Edition (Java Concurrency)}{28}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Handler-Looper Mechanismus zur Inter-Thread-Kommunikation}{30}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.1}Blockierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}{25}{section.2.1}
+\contentsline {section}{\numberline {2.2}Parallelverarbeitung mit der Java Standard Edition (Java Concurrency)}{27}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Handler-Looper-Mechanismus zur Inter-Thread-Kommunikation}{29}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Verwendung des Handler Looper Mechnismus}{31}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Probleme bei der Nutzung des Handler Looper Mechanismus}{34}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Vorsicht im Umgang mit Java Futures}{37}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Parallelverarbeitung mit AndroidAsyncTask (Anroid Concurrency)}{38}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Ausf\IeC {\"u}hrungsmodell von Android AsyncTask in Bezug auf Multi Threading}{43}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Serielle Ausf\IeC {\"u}hrung in Android AsyncTask}{47}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Parallelverarbeitung mit RXJava}{52}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Imperative und Deklarative Programmierung}{52}{subsection.2.4.1}
-\contentsline {paragraph}{\nonumberline Imperative Programmierung}{52}{section*.9}
-\contentsline {paragraph}{\nonumberline Deklarative Programme}{53}{section*.10}
-\contentsline {paragraph}{\nonumberline Funktionale Programmierung}{53}{section*.11}
-\contentsline {subsection}{\numberline {2.4.2}Reaktive Programmierung \& Reactive Manifesto}{54}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}RX JAVA Entstehung}{55}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}RXJava Funktionsweise}{57}{subsection.2.4.4}
-\contentsline {subsection}{\numberline {2.4.5}RXJava in Android}{65}{subsection.2.4.5}
-\contentsline {section}{\numberline {2.5}Zusammenfassung}{71}{section.2.5}
-\contentsline {chapter}{\numberline {3}Konzepte der Nebenl\IeC {\"a}ufigkeit im kritischen Diskurs}{73}{chapter.3}
-\contentsline {section}{\numberline {3.1}Chancen und Risiken des Java Concurrency Konzepts}{73}{section.3.1}
-\contentsline {section}{\numberline {3.2}Android Concurrency}{74}{section.3.2}
-\contentsline {section}{\numberline {3.3}RXConcurrency}{76}{section.3.3}
-\contentsline {section}{\numberline {3.4}Szenariobasierte Analyse}{77}{section.3.4}
-\contentsline {paragraph}{\nonumberline Szenario A:}{79}{section*.12}
-\contentsline {paragraph}{\nonumberline Szenario B:}{79}{section*.13}
-\contentsline {paragraph}{\nonumberline Szenario C:}{80}{section*.14}
-\contentsline {paragraph}{\nonumberline SzenarioD:}{81}{section*.15}
-\contentsline {section}{\numberline {3.5}Fazit}{83}{section.3.5}
-\contentsline {section}{\numberline {3.6}Ausblick}{84}{section.3.6}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{85}{chapter*.16}
+\contentsline {subsection}{\numberline {2.2.3}Probleme bei der Nutzung des Handler- Looper- Mechanismus}{33}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Vorsicht im Umgang mit Java Futures}{36}{subsection.2.2.4}
+\contentsline {section}{\numberline {2.3}Parallelverarbeitung mit AndroidAsyncTask (Anroid Concurrency)}{37}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Ausf\IeC {\"u}hrungsmodell von Android AsyncTask in Bezug auf Multi- Threading}{42}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Serielle Ausf\IeC {\"u}hrung in Android AsyncTask}{46}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}Parallelverarbeitung mit RXJava}{51}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Imperative und Deklarative Programmierung}{51}{subsection.2.4.1}
+\contentsline {paragraph}{\nonumberline Imperative Programmierung}{51}{section*.9}
+\contentsline {paragraph}{\nonumberline Deklarative Programme}{52}{section*.10}
+\contentsline {paragraph}{\nonumberline Funktionale Programmierung}{52}{section*.11}
+\contentsline {subsection}{\numberline {2.4.2}Reaktive Programmierung \& Reactive Manifesto}{53}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}RX JAVA Entstehung}{54}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}RXJava Funktionsweise}{56}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}RXJava in Android}{64}{subsection.2.4.5}
+\contentsline {section}{\numberline {2.5}Zusammenfassung}{70}{section.2.5}
+\contentsline {chapter}{\numberline {3}Konzepte der Nebenl\IeC {\"a}ufigkeit im kritischen Diskurs}{72}{chapter.3}
+\contentsline {section}{\numberline {3.1}Chancen und Risiken des Java Concurrency Konzepts}{72}{section.3.1}
+\contentsline {section}{\numberline {3.2}Android Concurrency}{73}{section.3.2}
+\contentsline {section}{\numberline {3.3}RXConcurrency}{75}{section.3.3}
+\contentsline {section}{\numberline {3.4}Szenariobasierte Analyse}{76}{section.3.4}
+\contentsline {paragraph}{\nonumberline Szenario A:}{78}{section*.12}
+\contentsline {paragraph}{\nonumberline Szenario B:}{78}{section*.13}
+\contentsline {paragraph}{\nonumberline Szenario C:}{79}{section*.14}
+\contentsline {paragraph}{\nonumberline SzenarioD:}{80}{section*.15}
+\contentsline {section}{\numberline {3.5}Fazit}{82}{section.3.5}
+\contentsline {section}{\numberline {3.6}Ausblick}{83}{section.3.6}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{84}{chapter*.16}
 \contentsline {chapter}{Anhang}{110}{lstnumber.6.99}
 \contentsline {chapter}{\numberline {A}Erkl\IeC {\"a}rung}{111}{appendix.A}
