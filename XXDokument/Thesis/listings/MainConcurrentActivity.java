@@ -126,15 +126,16 @@ public class MainConcurrentActivity
     }
 
     /**
-     * Initialize the Calculation. This Method will be
-     * called by the Start Calculation Buttons from the
-     * layout.
+     * Initialize the Calculation. This Method
+     * will be called by the Start Calculation
+     * Buttons from the layout.
      * @param aView the viewId of the button that.
      */
     public void initCalculation(final View aView)
     {
         RandomPrimeNumGenerator runnable =
-                new RandomPrimeNumGenerator(aView,HANDLER);
+                new RandomPrimeNumGenerator(
+                        aView,HANDLER);
         Thread newThread = new Thread(runnable);
         newThread.start();
     }
@@ -188,10 +189,11 @@ public class MainConcurrentActivity
     }
 
     /**
-     * Clears the output field that belongs to the
-     * button calling this method.
-     * @param aView the button viewObject that called
-     *              this method.
+     * Clears the output field that
+     * belongs to the button calling
+     * this method.
+     * @param aView the button viewObject
+     *              that called this method.
      */
     public void clearOutput(View aView) {
         if (aView.getId() == R.id.clearOutput1) {

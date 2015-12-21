@@ -1,4 +1,4 @@
-\BOOKMARK [0][-]{chapter*.3}{Abbildungsverzeichnis}{}% 1
+\BOOKMARK [0][-]{chapter*.4}{Abbildungsverzeichnis}{}% 1
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 2
 \BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 3
 \BOOKMARK [1][-]{section.1.2}{Zielsetzung und Vorgehen}{chapter.1}% 4
@@ -23,7 +23,7 @@
 \BOOKMARK [1][-]{section.2.1}{Blockierung der Ein-/Ausgabe durch zeitintensive Verarbeitung}{chapter.2}% 23
 \BOOKMARK [1][-]{section.2.2}{Parallelverarbeitung mit der Java Standard Edition \(Java Concurrency\)}{chapter.2}% 24
 \BOOKMARK [2][-]{subsection.2.2.1}{Handler-Looper-Mechanismus zur Inter-Thread-Kommunikation}{section.2.2}% 25
-\BOOKMARK [2][-]{subsection.2.2.2}{Verwendung des Handler Looper Mechnismus}{section.2.2}% 26
+\BOOKMARK [2][-]{subsection.2.2.2}{Verwendung des Handler- Looper- Mechnismus}{section.2.2}% 26
 \BOOKMARK [2][-]{subsection.2.2.3}{Probleme bei der Nutzung des Handler- Looper- Mechanismus}{section.2.2}% 27
 \BOOKMARK [2][-]{subsection.2.2.4}{Vorsicht im Umgang mit Java Futures}{section.2.2}% 28
 \BOOKMARK [1][-]{section.2.3}{Parallelverarbeitung mit AndroidAsyncTask \(Anroid Concurrency\)}{chapter.2}% 29
@@ -37,12 +37,12 @@
 \BOOKMARK [2][-]{subsection.2.4.5}{RXJava in Android}{section.2.4}% 37
 \BOOKMARK [1][-]{section.2.5}{Zusammenfassung}{chapter.2}% 38
 \BOOKMARK [0][-]{chapter.3}{Konzepte der Nebenl\344ufigkeit im kritischen Diskurs}{}% 39
-\BOOKMARK [1][-]{section.3.1}{Chancen und Risiken des Java Concurrency Konzepts}{chapter.3}% 40
+\BOOKMARK [1][-]{section.3.1}{Chancen und Risiken des Java Concurrency- Konzepts}{chapter.3}% 40
 \BOOKMARK [1][-]{section.3.2}{Android Concurrency}{chapter.3}% 41
 \BOOKMARK [1][-]{section.3.3}{RXConcurrency}{chapter.3}% 42
 \BOOKMARK [1][-]{section.3.4}{Szenariobasierte Analyse}{chapter.3}% 43
 \BOOKMARK [1][-]{section.3.5}{Fazit}{chapter.3}% 44
 \BOOKMARK [1][-]{section.3.6}{Ausblick}{chapter.3}% 45
-\BOOKMARK [0][-]{chapter*.16}{Literaturverzeichnis}{}% 46
-\BOOKMARK [0][-]{lstnumber.6.99}{Anhang}{}% 47
+\BOOKMARK [0][-]{chapter*.17}{Literaturverzeichnis}{}% 46
+\BOOKMARK [0][-]{chapter*.17}{Anhang}{}% 47
 \BOOKMARK [0][-]{appendix.A}{Erkl\344rung}{}% 48
