@@ -101,10 +101,10 @@ public class MainConcurrentActivity extends Activity{
         //create button for starting with each field
 
         firstCalculationOutput = (TextView) findViewById(R.id.firstCalculationOutput);
-        firstCalculationOutput.setText("This is the output of first Calculation:\n");
+        firstCalculationOutput.setText("This is the output of first calculation:\n");
 
         secondCalculationOutput = (TextView) findViewById(R.id.secondCalculationOutput);
-        secondCalculationOutput.setText("This is the output of second Calculation:\n");
+        secondCalculationOutput.setText("This is the output of second calculation:\n");
 
     }
 

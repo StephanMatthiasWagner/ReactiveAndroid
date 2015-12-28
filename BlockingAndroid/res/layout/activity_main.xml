@@ -21,7 +21,7 @@
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:textSize="20dp"
-                  android:text="First Subscription1"
+                  android:text="First Calculation"
                   android:textColor="#FFFFFF"
                   android:id="@+id/firstSubscription"
                   android:gravity="center_horizontal"/>
@@ -69,7 +69,7 @@
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:textSize="20dp"
-                  android:text="First Subscription2"
+                  android:text="Second Calculation"
                   android:textColor="#FFFFFF"
                   android:id="@+id/secondSubscription"
                   android:gravity="center_horizontal"/>

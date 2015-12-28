@@ -137,8 +137,9 @@ public class AndroidAsyncRandomPrimeGen
 
             if ( resultMap.hasNext() )
             {
-                final int triggerViewId = resultMap.next().getKey();
-                final String resultText = resultMap.next().getValue();
+                final Map.Entry<Integer,String> entry  = resultMap.next();
+                final int triggerViewId = entry.getKey();
+                final String resultText = entry.getValue();
 
                 if( triggerViewId == R.id.startCalculation1)
                 {

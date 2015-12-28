@@ -61,12 +61,12 @@ public class MainActivity extends Activity {
         firstCalculationOutput =
                 (TextView) findViewById(R.id.firstObserverOutput);
         firstCalculationOutput
-                .setText("This is the output of first observer:\n");
+                .setText("This is the output of first calculation:\n");
 
         secondCalculationOutput =
                 (TextView) findViewById(R.id.secondObserverOutput);
         secondCalculationOutput.
-                setText("This is the output of second observer:\n");
+                setText("This is the output of second calculation:\n");
     }
 
     /**

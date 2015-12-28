@@ -75,7 +75,7 @@ public class RandomPrimeNumGenerator implements Runnable {
         for (int i = 0; i < 10; i++) {
 
             Log.d(TAG," calculation iteration: "+i);
-            BigInteger veryBig = new BigInteger(500, new Random());
+            BigInteger veryBig = new BigInteger(1500, new Random());
             BigInteger randomPrimeNumber = veryBig.nextProbablePrime();
             int summe = 0;
             while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO)) {
