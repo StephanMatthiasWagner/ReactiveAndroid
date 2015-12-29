@@ -15,7 +15,8 @@ import java.util.Random;
  * using AsyncTask mechanism.
  * @author Stephan Wagner
  */
-public class MainAndroidAsyncActivity extends Activity {
+public class MainAndroidAsyncActivity extends Activity
+{
 
     /**
      * The tag for logging.
@@ -25,7 +26,8 @@ public class MainAndroidAsyncActivity extends Activity {
     /**
      * The Constructor
      */
-    public MainAndroidAsyncActivity() {
+    public MainAndroidAsyncActivity()
+    {
         Log.d(TAG, "call constructor");
     }
 
@@ -49,8 +51,8 @@ public class MainAndroidAsyncActivity extends Activity {
      *                           null.</b>
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
+    public void onCreate(final Bundle savedInstanceState)
+    {
         Log.d(TAG, "ACTIVITY JUST CREATED");
         super.onCreate(savedInstanceState);
 
@@ -65,15 +67,17 @@ public class MainAndroidAsyncActivity extends Activity {
 
         secondOutput = (TextView) findViewById(R.id.secondCalculationOutput);
         secondOutput.setText("This is the output of second calculation:\n");
-
-
     }
 
-
+    /**
+     * Will be called if activity will be destroyed.
+     */
     @Override
     public void onDestroy()
     {
         //not needed in this example.
+        //but here you can wait until background processing
+        //has finished.
     }
 
     /**
@@ -82,21 +86,27 @@ public class MainAndroidAsyncActivity extends Activity {
      *
      * @param aView the View that triggered this method.
      */
-    public void initCalculation(View aView) {
-
+    public void initCalculation(final View aView)
+    {
         AndroidAsyncRandomPrimeGen randomPrimeGen =
                 new AndroidAsyncRandomPrimeGen(firstOutput, secondOutput);
         randomPrimeGen.execute(aView.getId());
 
     }
 
-
-    public void clearOutput(View aView) {
-        if (aView.getId() == R.id.clearOutput1) {
+    /**
+     * Clearing the output panel.
+     * @param aView the view that triggered this method.
+     */
+    public void clearOutput(final View aView)
+    {
+        if (aView.getId() == R.id.clearOutput1)
+        {
             firstOutput.setText("");
             firstOutput.invalidate();
         }
-        if (aView.getId() == R.id.clearOutput2) {
+        if (aView.getId() == R.id.clearOutput2)
+        {
             secondOutput.setText("");
             secondOutput.invalidate();
         }

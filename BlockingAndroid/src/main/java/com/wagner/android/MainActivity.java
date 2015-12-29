@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
     @Override
     public void onDestroy()
     {
-        //for later usage
+        //for later usage in the other examples.
     }
 
     /**
@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
      * will calculate large prime numbers.
      * @param aView the view that triggers this method.
      */
-    public void startCalculation(View aView)
+    public void startCalculation(final View aView)
     {
         StringBuilder targetString = new StringBuilder(10);
         for (int i = 0; i < 10; i++) {
@@ -115,7 +115,7 @@ public class MainActivity extends Activity {
      * @param aView the view to identify the panel
      *              that should be cleared.
      */
-    public void clearOutput(View aView)
+    public void clearOutput(final View aView)
     {
         if (aView.getId() == R.id.clearOutput1) {
             firstCalculationOutput.setText("");

@@ -16,23 +16,13 @@ import java.util.Random;
  * Java concurrency Example implementation of an android activity
  * @author Stephan Wagner
  */
-public class MainConcurrentActivity extends Activity{
+public class MainConcurrentActivity extends Activity
+{
 
     /**
      * The tag for identify logging of this class.
      */
     private static final String TAG = "MainConcurrentActivity";
-
-    /**
-     * The key to identify the bundle of this activity if
-     * it is recreated.
-     */
-    private static final String SAVED_INSTANCE_SOME_KEY = "SOME_KEY";
-
-    /**
-     * The Saved Instance string.
-     */
-    private String savedInstance;
 
     /**
      * The Constructor
@@ -86,15 +76,6 @@ public class MainConcurrentActivity extends Activity{
         Log.d(TAG, "ACTIVITY JUST CREATED");
         super.onCreate(savedInstanceState);
 
-        //in case of some backup state after
-        // destroyed activity instances
-        if (savedInstanceState != null
-                && savedInstanceState
-                .containsKey(SAVED_INSTANCE_SOME_KEY))
-        {
-            savedInstance = savedInstanceState.getString(SAVED_INSTANCE_SOME_KEY);
-        }
-
         setContentView(R.layout.activity_main);
 
         //create view with different fields
@@ -114,7 +95,7 @@ public class MainConcurrentActivity extends Activity{
     @Override
     public void onDestroy()
     {
-        //maybe cancel background calculation
+        //can be used to cancel background calculation
     }
 
     /**
@@ -133,7 +114,8 @@ public class MainConcurrentActivity extends Activity{
      * Updates the view to display the results of the calculation.
      * @param aMessage contains the result of the calculation as bundle.
      */
-    public static void updateView(final Message aMessage) {
+    public static void updateView(final Message aMessage)
+    {
         Log.d(TAG,"updateView");
         Bundle bundle = aMessage.getData();
 
@@ -163,12 +145,15 @@ public class MainConcurrentActivity extends Activity{
      * @param aView the button viewObject that called
      *              this method.
      */
-    public void clearOutput(View aView) {
-        if (aView.getId() == R.id.clearOutput1) {
+    public void clearOutput(View aView)
+    {
+        if (aView.getId() == R.id.clearOutput1)
+        {
             firstCalculationOutput.setText("");
             firstCalculationOutput.invalidate();
         }
-        if (aView.getId() == R.id.clearOutput2) {
+        if (aView.getId() == R.id.clearOutput2)
+        {
             secondCalculationOutput.setText("");
             secondCalculationOutput.invalidate();
         }

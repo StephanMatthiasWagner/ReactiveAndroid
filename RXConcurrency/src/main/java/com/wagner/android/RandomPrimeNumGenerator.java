@@ -15,7 +15,8 @@ import java.util.Random;
  *
  * @author Stephan Wagner
  */
-public class RandomPrimeNumGenerator {
+public class RandomPrimeNumGenerator
+{
 
     /**
      *  The Observable that will emit a Strings of its result
@@ -26,18 +27,22 @@ public class RandomPrimeNumGenerator {
     /**
      * The Constructor will crate the primNumCalculationObservable.
      */
-    public RandomPrimeNumGenerator() {
+    public RandomPrimeNumGenerator()
+    {
 
         primNumCalculationObservable = Observable.create(
-                new Observable.OnSubscribe<String>() {
+                new Observable.OnSubscribe<String>()
+                {
                     @Override
-                    public void call(Subscriber<? super String> sub) {
+                    public void call(Subscriber<? super String> sub)
+                    {
                         for (int i = 0; i < 10; i++) {
 
                             BigInteger veryBig = new BigInteger(1500, new Random());
                             BigInteger randomPrimeNumber = veryBig.nextProbablePrime();
                             int summe = 0;
-                            while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO)) {
+                            while (0 != randomPrimeNumber.compareTo(BigInteger.ZERO))
+                            {
                                 // addiere die letzte ziffer der uebergebenen zahl zur summe
                                 summe = summe + (randomPrimeNumber.mod(BigInteger.TEN)).intValue();
                                 // entferne die letzte ziffer der uebergebenen zahl
@@ -53,26 +58,6 @@ public class RandomPrimeNumGenerator {
                 }
         );
 
-
-        //in case of an error: you can call onError
-                       /* try {
-                            Thread.sleep(200);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                        }*/
-    /*   primIntObservable = Observable.create(
-       new Observable.OnSubscribe<Integer>() {
-          @Override
-          public void call(Subscriber<? super Integer> sub) {
-
-             sub.onNext( );
-             sub.onNext(randomPrimeNumber.toString());
-
-             sub.onCompleted();
-          }
-       }
-       );
-        */
     }
 
     /**
@@ -81,13 +66,18 @@ public class RandomPrimeNumGenerator {
      *
      * @return Observable<String> instance.
      */
-    public Observable<String> getFilteredObservable() {
-        return primNumCalculationObservable.filter(new Func1<String, Boolean>() {
+    public Observable<String> getFilteredObservable()
+    {
+        return primNumCalculationObservable.filter(new Func1<String, Boolean>()
+        {
             @Override
-            public Boolean call(String item) {
-                try {
+            public Boolean call(final String item) {
+                try
+                {
                     Integer.valueOf(item);
-                } catch (NumberFormatException e) {
+                }
+                catch (NumberFormatException e)
+                {
                     return false;
                 }
                 return true;

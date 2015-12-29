@@ -56,11 +56,13 @@ public class MainActivity extends Activity {
      * Called when the activity is first created.
      *
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this
-     *                           Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle). <b>Note: Otherwise it is
+     *                           Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     *                           <b>Note: Otherwise it is
      *                           null.</b>
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState)
+    {
         Log.d(TAG, "ACTIVITY JUST CREATED");
         super.onCreate(savedInstanceState);
 
@@ -100,7 +102,8 @@ public class MainActivity extends Activity {
      * Initialize the subscription to the view that called this method.
      * @param aView the view that called this method.
      */
-    public void initSubscription(View aView) {
+    public void initSubscription(final View aView)
+    {
 
         if (aView.getId() == R.id.startSubscription1) {
 
@@ -127,7 +130,8 @@ public class MainActivity extends Activity {
      *                    RandomPrimeNumGenerator instance.
      * @return a Subscription that contains the observable and subscriber.
      */
-    private Subscription getSubscription(Subscriber<String> aSubscriber) {
+    private Subscription getSubscription(final Subscriber<String> aSubscriber)
+    {
         RandomPrimeNumGenerator randomPrimeNumGenerator = new RandomPrimeNumGenerator();
 
         return randomPrimeNumGenerator
@@ -150,8 +154,7 @@ public class MainActivity extends Activity {
                 //Actualize the view + setting value
                 String lastOutput = firstObserverOutput.getText().toString();
                 firstObserverOutput.setText(lastOutput + " \n " + s);
-
-                firstObserverOutput.invalidate();
+            firstObserverOutput.invalidate();
             }
 
             @Override
